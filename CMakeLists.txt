@@ -7,9 +7,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 set(CMAKE_BUILD_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build")
 
 set(SOURCE_FILES test.c
-        poker.c)
+        poker.c
+        demo.c)
 
 set(HEADER_FILES poker.h)
 set(POKER_SOURCE_FILES poker.c)
 
-add_executable(testfile test.c)
+add_executable(demo demo.c ${POKER_SOURCE_FILES})
