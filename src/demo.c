@@ -4,11 +4,14 @@
 #include "poker.h"
 
 int main(){
-    struct card *deck = create_deck();
+    struct card * deck = create_deck();
     // print_cards(deck, LENGTH_DECK);
     shuffle_deck(deck, LENGTH_DECK);
     // print_cards(deck, LENGTH_DECK);
 
+    struct players players_list;
+    players_list.position_round = 0;
+    players_list.players_hands[0][0] = create_player(LENGTH_HANDS_5DRAW);
     struct card *player1 = create_player(LENGTH_HANDS_5DRAW);
     struct card *player2 = create_player(LENGTH_HANDS_5DRAW);
     struct card *player3 = create_player(LENGTH_HANDS_5DRAW);

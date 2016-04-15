@@ -3,7 +3,23 @@
 #include <string.h>
 #include "poker.h"
 
-int deck_position = 0;
+int position_deck = 0;
+
+
+struct card * create_deck() {
+    struct card * deck = malloc(sizeof(struct card) * LENGTH_DECK);
+
+    int position = 0;
+    for (int card_number = 1; card_number < 14; card_number++) {
+        for(int card_suit = 0; card_suit < 4; card_suit++) {
+            deck[position].number = (Number) card_number;
+            deck[position].suit = (Suit) card_suit;
+            position++;
+        }
+    }
+
+    return deck;
+}
 
 void swap(struct card * x, struct card * y) {
     struct card tmp = *x;
@@ -12,7 +28,7 @@ void swap(struct card * x, struct card * y) {
 }
 
 void shuffle_deck(struct card * a, int length) {
-    deck_position = 0;
+    position_deck = 0;
     for (int j = length - 1; j > 0; j--) {
         /* Generate a random number r
          * with 0 <= r <= j
@@ -35,6 +51,22 @@ void shuffle_deck(struct card * a, int length) {
     // printf("\n");
 }
 
+void print_cards(struct card * a, int length) {
+    for (int j = 0; j < length; j++) {
+        printf("%d %d", a[j].number, a[j].suit);
+        printf("\n");
+    }
+}
+
+void deal_card(struct card * deck, struct card * player, int length_hands){
+    for(int j = 0; j < length_hands; j++) {
+        if (player[j].number == 0) {
+            player[j] = deck[position_deck];
+            position_deck++;
+        }
+    }
+}
+
 void sort_hands(struct card * a, int length) {
     int min_pos;
 
@@ -46,45 +78,12 @@ void sort_hands(struct card * a, int length) {
     }
 }
 
-struct card * create_deck() {
-    struct card * deck = malloc(sizeof(struct card) * LENGTH_DECK);
-
-    int position = 0;
-    for (int card_number = 1; card_number < 14; card_number++) {
-        for(int card_suit = 0; card_suit < 4; card_suit++) {
-            deck[position].number = (Number) card_number;
-            deck[position].suit = (Suit) card_suit;
-            position++;
-        }
-    }
-
-    return deck;
-}
-
 struct card * create_player(int length_hands) {
     struct card * player = malloc(sizeof(struct card) * length_hands);
     for (int j = 0; j < length_hands; j++){
         player[j].number = (Number) 0;
     }
-
     return player;
 }
-
-void print_cards(struct card * a, int length) {
-    for (int j = 0; j < length; j++) {
-        printf("%d %d", a[j].number, a[j].suit);
-        printf("\n");
-    }
-}
-
-void deal_card(struct card * deck, struct card * player, int length_hands){
-    for(int j = 0; j < length_hands; j++) {
-        if (player[j].number == 0) {
-            player[j] = deck[deck_position];
-            deck_position++;
-        }
-    }
-}
-
 
 
