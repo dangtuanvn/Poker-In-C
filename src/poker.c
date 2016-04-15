@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "poker.h"
 
 int position_deck = 0;
 
-
 struct card * create_deck() {
+    srand(time(NULL));
     struct card * deck = malloc(sizeof(struct card) * LENGTH_DECK);
 
     int position = 0;
@@ -56,12 +57,13 @@ void print_cards(struct card * a, int length) {
         printf("%d %d", a[j].number, a[j].suit);
         printf("\n");
     }
+    printf("\n");
 }
 
-void deal_card(struct card * deck, struct card * player, int length_hands){
+void deal_card(struct card * deck, struct card * target, int length_hands){
     for(int j = 0; j < length_hands; j++) {
-        if (player[j].number == 0) {
-            player[j] = deck[position_deck];
+        if (target[j].number == 0) {
+            target[j] = deck[position_deck];
             position_deck++;
         }
     }
@@ -78,12 +80,25 @@ void sort_hands(struct card * a, int length) {
     }
 }
 
-struct card * create_player(int length_hands) {
-    struct card * player = malloc(sizeof(struct card) * length_hands);
+struct player_5draw create_player_5draw(int length_hands) {
+    struct player_5draw player;
     for (int j = 0; j < length_hands; j++){
-        player[j].number = (Number) 0;
+        player.player_hands[j].number = (Number) 0;
     }
     return player;
 }
 
+struct player_5draw * create_players_list_5draw(int num_players, int length_hands)
+{
+    struct player_5draw * players_list = malloc(sizeof(struct player_5draw)*num_players);
+    for(int j = 0; j < num_players; j++)
+    {
+        players_list[j] = create_player_5draw(length_hands);
+    }
+    return players_list;
+}
 
+void change_card(struct card * deck, struct card * hands, int position_card){
+    hands[position_card].number = (Number) 0;
+    deal_card(deck, hands, LENGTH_HANDS_5DRAW);
+}

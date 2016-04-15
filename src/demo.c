@@ -9,28 +9,23 @@ int main(){
     shuffle_deck(deck, LENGTH_DECK);
     // print_cards(deck, LENGTH_DECK);
 
-    struct players players_list;
-    players_list.position_round = 0;
-    players_list.players_hands[0][0] = create_player(LENGTH_HANDS_5DRAW);
-    struct card *player1 = create_player(LENGTH_HANDS_5DRAW);
-    struct card *player2 = create_player(LENGTH_HANDS_5DRAW);
-    struct card *player3 = create_player(LENGTH_HANDS_5DRAW);
-    struct card *player4 = create_player(LENGTH_HANDS_5DRAW);
+    struct player_5draw * players_list = create_players_list_5draw(NUM_PLAYERS, LENGTH_HANDS_5DRAW);
 
-
-
-for(int i = 0; i < LENGTH_HANDS_5DRAW; i++){
-    deal_card(deck, player1, LENGTH_HANDS_5DRAW);
+for(int j = 0; j < LENGTH_HANDS_5DRAW; j++){
+    for(int i = 0; i < NUM_PLAYERS; i++) {
+        deal_card(deck, players_list[i].player_hands, LENGTH_HANDS_5DRAW);
+    }
 }
 
-    print_cards(player1, LENGTH_HANDS_5DRAW);
-
+for(int j = 0; j < 1; j++)
+{
+    print_cards(players_list[j].player_hands, LENGTH_HANDS_5DRAW);
+}
+    change_card(deck, players_list[0].player_hands, 0);
+print_cards(players_list[0].player_hands, LENGTH_HANDS_5DRAW);
 
 
     free(deck);
-    free(player1);
-    free(player2);
-    free(player3);
-    free(player4);
+    free(players_list);
     return 0;
 }

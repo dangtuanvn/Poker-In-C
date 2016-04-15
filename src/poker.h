@@ -4,6 +4,7 @@
 #define     LENGTH_DECK         52
 #define     LENGTH_HANDS_5DRAW  5
 #define     NUM_PLAYERS         4
+
 /* Using enum to define card numbers with names
  */
 enum numbers {
@@ -23,14 +24,13 @@ typedef enum suits Suit;
 
 /* Data type card with two variables: number and suit
  */
-typedef struct card {
+struct card {
     Number number;
     Suit suit;
 };
 
-struct players {
-    int position_round;
-    struct card players_hands[][NUM_PLAYERS];
+struct player_5draw {
+    struct card player_hands[LENGTH_HANDS_5DRAW];
 };
 
 /* Create a deck of 52 cards
@@ -57,10 +57,10 @@ void print_cards(struct card * a, int length);
 
 /* Deal a card to a player
  * @param deck is the deck used to deal the card
- * @param player is the player to receive the card
+ * @param target is the player to receive the card
  * @param n is the number of card to give out
  */
-void deal_card(struct card * deck, struct card * player, int n);
+void deal_card(struct card * deck, struct card * target, int n);
 
 /*
  *
@@ -82,6 +82,11 @@ void showdown(struct card * hands, int length);
 /* Create a player
  * @param length_hands is the number of cards in the player's hands
  */
-struct card * create_player(int length_hands);
+
+struct player_5draw create_player_5draw(int length_hands);
+
+struct player_5draw * create_players_list_5draw(int num_players, int length_hands);
+
+void change_card(struct card * deck, struct card * hands, int position_card);
 
 #endif //COSC2451_A2_S3500286_S3500291_POKER_H
