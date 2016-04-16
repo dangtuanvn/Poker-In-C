@@ -8,15 +8,17 @@
 /* Using enum to define card numbers with names
  */
 enum numbers {
-    ACE = 1,
     JACK = 11,
     QUEEN = 12,
-    KING = 13
+    KING = 13,
+    ACE = 14,
+
 };
 
 /* Using enum to define suits
  */
 typedef enum numbers Number;
+
 enum suits {
     HEART, DIAMOND, CLUB, SPADE
 };
@@ -29,19 +31,33 @@ struct card {
     Suit suit;
 };
 
+enum poker_hands {
+    HIGH_CARD, PAIR, TWO_PAIRS, THREE_OF_A_KIND, STRAIGHT, FLUSH, FULL_HOUSE, FOUR_OF_A_KIND, STRAIGHT_FLUSH, ROYAL_FLUSH
+};
+
+typedef enum poker_hands Poker_hands;
+
+struct deck_52 {
+    int position_deal;
+    struct card cards[LENGTH_HANDS_5DRAW];
+};
+
 struct player_5draw {
     struct card player_hands[LENGTH_HANDS_5DRAW];
 };
 
+
+
+
 /* Create a deck of 52 cards
  */
-struct card * create_deck();
+struct deck_52 * create_deck_52();
 
 /* Shuffle a deck of cards Fisher and Yates algorithm
  * @param deck is the deck to be shuffled
  * @param length is the number of cards in the deck, which is the length of the array
  */
-void shuffle_deck(struct card * deck, int length);
+void shuffle_deck(struct deck_52 * deck, int length);
 
 /* Swap the cards
  * @param x is the first card to be swapped
@@ -65,7 +81,7 @@ void deal_card(struct card * deck, struct card * target, int n);
 /*
  *
  */
-void swap_cards(struct card * a, int length);
+void change_cards(struct card * a, int length);
 
 /* Sort the cards in the hands of a player
  * @param hands is the cards in the hands to be sorted
@@ -77,7 +93,7 @@ void sort_hands(struct card * hands, int length);
  * @param hands is the cards in the hands to be checked
  * @param length is the number of cards, which is the length of the array
  */
-void showdown(struct card * hands, int length);
+Poker_hands showdown(struct card * hands, int length);
 
 /* Create a player
  * @param length_hands is the number of cards in the player's hands
