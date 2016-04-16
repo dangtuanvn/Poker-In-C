@@ -23,23 +23,23 @@ for(int j = 0; j < 1; j++)
 //    change_card(deck, players_list[0].player_hands, 0);
 
     players_list[0].player_hands[0].number = (Number) ACE;
-    players_list[0].player_hands[0].suit = (Suit) 0;
+    players_list[0].player_hands[0].suit = (Suit) 1;
     players_list[0].player_hands[1].number = (Number) 2;
     players_list[0].player_hands[1].suit = (Suit) 0;
-    players_list[0].player_hands[2].number = (Number) 3;
+    players_list[0].player_hands[2].number = (Number) 2;
     players_list[0].player_hands[2].suit = (Suit) 0;
-    players_list[0].player_hands[3].number = (Number) 4;
+    players_list[0].player_hands[3].number = (Number) 2;
     players_list[0].player_hands[3].suit = (Suit) 0;
-    players_list[0].player_hands[4].number = (Number) 5;
+    players_list[0].player_hands[4].number = (Number) 2;
     players_list[0].player_hands[4].suit = (Suit) 0;
 
     sort_hands(players_list[0].player_hands, LENGTH_HANDS_5DRAW);
     print_cards(players_list[0].player_hands, LENGTH_HANDS_5DRAW);
 
-    Poker_hands check = showdown(players_list[0].player_hands, LENGTH_HANDS_5DRAW);
-    printf("%d", check);
+    struct poker_hands check = showdown(players_list[0].player_hands, LENGTH_HANDS_5DRAW);
+    printf("%d\n", check.hands);
     free(deck);
     free(players_list);
-
+    check_pairs(players_list[0].player_hands, LENGTH_HANDS_5DRAW);
     return 0;
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "poker.h"
 
 int position_deck = 0;
@@ -187,9 +188,11 @@ int check_three(struct card * hands, int length){
 
 }
 
-int check_pairs(struct card * hands, int length){
-    Number temp[length] = {(Number) 0};
-    int count[length] = {0};
+struct poker_hands check_pairs(struct card * hands, int length){
+    int temp[length];
+    memset(temp, 0, sizeof(int) * length);
+    int count[length];
+    memset(count, 0, sizeof(int) * length);
     int position = 1;
     for(int j = 0; j < length; j++) {
         if (j == 0) {
@@ -197,10 +200,32 @@ int check_pairs(struct card * hands, int length){
             count[0]++;
         }
         else{
-
-            position++;
+            int check = 0;
+            for(int i = 0; i < j; i ++){
+                if(hands[j].number == temp[i]){
+                    check = 1;
+                    count[i]++;
+                    break;
+                }
+            }
+            if(check == 0){
+                temp[position] = hands[j].number;
+                count[position]++;
+                position++;
+            }
         }
+    }
 
+    // Print
+    for(int i = 0; i < length; i++){
+        printf("%d %d\n", temp[i], count[i]);
+    }
+
+    int num_pair = 0;
+    for( int j = 0; j < length; j++){
+        if(j[0] == 2){
+
+        }
     }
 }
 
@@ -208,26 +233,26 @@ int check_high_card(struct card * hands, int length){
 
 }
 
-Poker_hands showdown(struct card * hands, int length){
+struct poker_hands showdown(struct card * hands, int length){
     int flush = check_flush(hands, length);
     int straight = check_straight(hands, length);
-    Poker_hands result = HIGH_CARD;
+    struct poker_hands result;
     if(flush){
-        result = FLUSH;
+        result.hands = FLUSH;
         printf("flush");
     }
 
     if(straight){
-        result = STRAIGHT;
+        result.hands = STRAIGHT;
         printf("straight");
     }
 
     if(flush && straight) {
         if (hands[5].number == ACE) {
-            result = ROYAL_FLUSH;
+            result.hands = ROYAL_FLUSH;
         }
         else {
-            result = STRAIGHT_FLUSH;
+            result.hands = STRAIGHT_FLUSH;
         }
         return result;
     }

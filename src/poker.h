@@ -31,11 +31,19 @@ struct card {
     Suit suit;
 };
 
-enum poker_hands {
+enum hands_type {
     HIGH_CARD, PAIR, TWO_PAIRS, THREE_OF_A_KIND, STRAIGHT, FLUSH, FULL_HOUSE, FOUR_OF_A_KIND, STRAIGHT_FLUSH, ROYAL_FLUSH
 };
 
-typedef enum poker_hands Poker_hands;
+typedef enum hands_type Hands_type;
+
+struct poker_hands{
+    Hands_type hands;
+    Number high_card;
+    Number three_of_a_kind;
+    Number pair_1;
+    Number pair_2;
+};
 
 struct deck_52 {
     int position_deal;
@@ -93,7 +101,7 @@ void sort_hands(struct card * hands, int length);
  * @param hands is the cards in the hands to be checked
  * @param length is the number of cards, which is the length of the array
  */
-Poker_hands showdown(struct card * hands, int length);
+struct poker_hands showdown(struct card * hands, int length);
 
 /* Create a player
  * @param length_hands is the number of cards in the player's hands
@@ -104,5 +112,7 @@ struct player_5draw create_player_5draw(int length_hands);
 struct player_5draw * create_players_list_5draw(int num_players, int length_hands);
 
 void change_card(struct card * deck, struct card * hands, int position_card);
+
+struct poker_hands check_pairs(struct card * hands, int length);
 
 #endif //COSC2451_A2_S3500286_S3500291_POKER_H
