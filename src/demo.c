@@ -6,7 +6,7 @@
 int main(){
     struct deck_52 * deck = create_deck_52();
     // print_cards(deck, LENGTH_DECK);
-    shuffle_deck(deck->cards, LENGTH_DECK);
+    shuffle_deck(deck, LENGTH_DECK);
     // print_cards(deck, LENGTH_DECK);
 
     struct player_5draw * players_list = create_players_list_5draw(NUM_PLAYERS, LENGTH_HANDS_5DRAW);
@@ -23,14 +23,14 @@ for(int j = 0; j < 1; j++)
 //    change_card(deck, players_list[0].player_hands, 0);
 
     players_list[0].player_hands[0].number = (Number) ACE;
-    players_list[0].player_hands[0].suit = (Suit) 1;
-    players_list[0].player_hands[1].number = (Number) 2;
+    players_list[0].player_hands[0].suit = (Suit) 0;
+    players_list[0].player_hands[1].number = (Number) KING;
     players_list[0].player_hands[1].suit = (Suit) 0;
-    players_list[0].player_hands[2].number = (Number) 2;
+    players_list[0].player_hands[2].number = (Number) JACK;
     players_list[0].player_hands[2].suit = (Suit) 0;
-    players_list[0].player_hands[3].number = (Number) 2;
+    players_list[0].player_hands[3].number = (Number) 10;
     players_list[0].player_hands[3].suit = (Suit) 0;
-    players_list[0].player_hands[4].number = (Number) 2;
+    players_list[0].player_hands[4].number = (Number) QUEEN;
     players_list[0].player_hands[4].suit = (Suit) 0;
 
     sort_hands(players_list[0].player_hands, LENGTH_HANDS_5DRAW);

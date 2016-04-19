@@ -161,7 +161,7 @@ int check_straight(struct card * hands, int length){
     int check = 0;
     for(int j = 1; j < length; j++){
         if(j == length - 1 && hands[j].number == ACE){
-            if(hands[0].number == 2 && check == 1){
+            if(hands[0].number == 2){
                 return check;
             }
             else{
@@ -174,6 +174,7 @@ int check_straight(struct card * hands, int length){
         }
         else{
             check = 0;
+            return check;
         }
     }
     return check;
@@ -194,6 +195,7 @@ struct poker_hands check_pairs(struct card * hands, int length){
     int count[length];
     memset(count, 0, sizeof(int) * length);
     int position = 1;
+
     for(int j = 0; j < length; j++) {
         if (j == 0) {
             temp[0] = hands[j].number;
@@ -221,12 +223,6 @@ struct poker_hands check_pairs(struct card * hands, int length){
         printf("%d %d\n", temp[i], count[i]);
     }
 
-    int num_pair = 0;
-    for( int j = 0; j < length; j++){
-        if(j[0] == 2){
-
-        }
-    }
 }
 
 int check_high_card(struct card * hands, int length){
@@ -248,7 +244,7 @@ struct poker_hands showdown(struct card * hands, int length){
     }
 
     if(flush && straight) {
-        if (hands[5].number == ACE) {
+        if (hands[4].number == ACE) {
             result.hands = ROYAL_FLUSH;
         }
         else {
@@ -257,6 +253,13 @@ struct poker_hands showdown(struct card * hands, int length){
         return result;
     }
 
+
+    int num_pair = 0;
+    for( int j = 0; j < length; j++){
+        if(j[0] == 2){
+
+        }
+    }
 
     return result;
 }
