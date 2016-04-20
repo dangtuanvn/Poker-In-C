@@ -4,12 +4,11 @@
 #include <string.h>
 #include "poker.h"
 
-int position_deck = 0;
-
-struct deck_52 * create_deck_52() {
+struct deck * create_deck() {
     srand((unsigned)time(NULL));
-    struct deck_52 * deck = malloc(sizeof(struct card) * LENGTH_DECK);
-
+    struct deck * deck = malloc(sizeof(struct deck));
+    deck->cards = malloc(sizeof(struct card) * LENGTH_DECK);
+    deck->top = LENGTH_DECK - 1;
     int position = 0;
     for (int card_number = 2; card_number < 15; card_number++) {
         for(int card_suit = 0; card_suit < 4; card_suit++) {
@@ -27,8 +26,8 @@ void swap(struct card * x, struct card * y) {
     *y = tmp;
 }
 
-void shuffle_deck(struct deck_52 * a, int length) {
-    a->position_deal = 0;
+void shuffle_deck(struct deck * a, int length) {
+    a->top = LENGTH_DECK - 1;
     for (int j = length - 1; j > 0; j--) {
         /* Generate a random number r
          * with 0 <= r <= j
@@ -81,16 +80,16 @@ void print_cards(struct card * a, int length) {
         else{
             printf(" \u2660");
         }
-        printf("\n");
+        printf("  ");
     }
     printf("\n");
 }
 
-void deal_card(struct card * deck, struct card * target, int length_hands){
+void deal_card(struct deck * deck, struct player target, int length_hands){
     for(int j = 0; j < length_hands; j++) {
-        if (target[j].number == 0) {
-            target[j] = deck[position_deck];
-            position_deck++;
+        if (target.player_hands[j].number == 0) {
+            target.player_hands[j] = deck->cards[deck->top];
+            deck->top--;
         }
     }
 }
@@ -121,97 +120,105 @@ void sort_hands(struct card * a, int length) {
     }
 }
 
-struct player_5draw create_player_5draw(int length_hands) {
-    struct player_5draw player;
-    for (int j = 0; j < length_hands; j++){
-        player.player_hands[j].number = (Number) 0;
-    }
-    return player; // WARNING
+struct player create_player(int length_hands) {
+    struct player * player = malloc(sizeof(struct player));
+    player->length = length_hands;
+    player->rank = 0;
+    player->chips = STARTING_CHIPS;
+    player->player_hands = malloc(sizeof(struct card) * length_hands);
+    memset(player->player_hands, 0, sizeof(struct card) * length_hands);
+    /*for (int j = 0; j < length_hands; j++){
+        player->player_hands[j].number = (Number) 0;
+    }*/
+    return * player; // WARNING
 }
 
-struct player_5draw * create_players_list_5draw(int num_players, int length_hands)
+struct player * create_players_list(int num_players, int length_hands)
 {
-    struct player_5draw * players_list = malloc(sizeof(struct player_5draw)*num_players);
+    struct player * players_list = malloc(sizeof(struct player)*num_players);
     for(int j = 0; j < num_players; j++)
     {
-        players_list[j] = create_player_5draw(length_hands);
+        players_list[j] = create_player(length_hands);
     }
     return players_list;
 }
 
-void change_card(struct card * deck, struct card * hands, int position_card){
-    hands[position_card].number = (Number) 0;
-    deal_card(deck, hands, LENGTH_HANDS_5DRAW);
+void change_card(struct deck * deck, struct player target, int position_card){
+    target.player_hands[position_card].number = (Number) 0;
+    deal_card(deck, target, LENGTH_HANDS);
 }
 
-int check_flush(struct card * hands, int length){
-    int check = 0;
-    for(int j = 1; j < length; j++){
-        if(hands[j].suit == hands[j - 1].suit){
-            check = 1;
-        }
-        else{
-            check = 0;
-        }
-    }
-    return check;
-}
-
-int check_straight(struct card * hands, int length){
-    int check = 0;
-    for(int j = 1; j < length; j++){
-        if(j == length - 1 && hands[j].number == ACE){
-            if(hands[0].number == 2){
-                return check;
-            }
-            else{
-                check = 0;
+ void check_straight_flush(struct player * player){
+    int check_straight = 0;
+    for(int j = 1; j < LENGTH_HANDS; j++){
+        if(j == LENGTH_HANDS - 1 && player->player_hands[j].number == ACE)
+        {
+            if(player->player_hands[0].number != 2 && player->player_hands[0].number != 10){
+                check_straight = 0;
             }
         }
-
-        if(hands[j].number - 1 == hands[j-1].number){
-            check = 1;
+        else if(player->player_hands[j].number - 1 == player->player_hands[j-1].number){
+            check_straight = 1;
         }
         else{
-            check = 0;
-            return check;
+            check_straight = 0;
+            break;
         }
     }
-    return check;
+
+    if(check_straight == 1)
+    {
+        player->result.hands = STRAIGHT;
+    }
+
+     int check_flush = 0;
+     for(int j = 1; j < LENGTH_HANDS; j++){
+         if(player->player_hands[j].suit == player->player_hands[j - 1].suit){
+             check_flush = 1;
+         }
+         else{
+             check_flush = 0;
+             break;
+         }
+     }
+     if(check_flush == 1 && player->result.hands == STRAIGHT)
+     {
+         if (player->player_hands[0].number == 10) {
+             player->result.hands = ROYAL_FLUSH;
+         }
+         else{
+             player->result.hands = STRAIGHT_FLUSH;
+         }
+     }
+     else if (check_flush == 1)
+     {
+         player->result.hands = FLUSH;
+     }
 }
 
-
-int check_four(struct card * hands, int length){
-
-}
-
-int check_three(struct card * hands, int length){
-
-}
-
-struct poker_hands check_pairs(struct card * hands, int length){
-    int temp[length];
-    memset(temp, 0, sizeof(int) * length);
-    int count[length];
-    memset(count, 0, sizeof(int) * length);
+void check_pairs(struct player * player){
+    int temp[LENGTH_HANDS];
+    memset(temp, 0, sizeof(int) * LENGTH_HANDS);
+    int count[LENGTH_HANDS];
+    memset(count, 0, sizeof(int) * LENGTH_HANDS);
     int position = 1;
 
-    for(int j = 0; j < length; j++) {
+    for(int j = 0; j < LENGTH_HANDS; j++) {
         if (j == 0) {
-            temp[0] = hands[j].number;
+            temp[0] = player->player_hands[j].number;
             count[0]++;
         }
         else{
             int check = 0;
             for(int i = 0; i < j; i ++){
-                if(hands[j].number == temp[i]){
+                if(player->player_hands[j].number == temp[i]){
                     check = 1;
                     count[i]++;
                     break;
                 }
             }
             if(check == 0){
-                temp[position] = hands[j].number;
+                temp[position] = player->player_hands[j].number;
                 count[position]++;
                 position++;
             }
@@ -219,47 +226,217 @@ struct poker_hands check_pairs(struct card * hands, int length){
     }
 
     // Print
-    for(int i = 0; i < length; i++){
-        printf("%d %d\n", temp[i], count[i]);
+/*
+    for(int i = 0; i < LENGTH_HANDS; i++){
+        printf("%d %d,", temp[i], count[i]);
+    }
+*/
+    int count_pair = 0;
+    int three_of_a_kind = 0;
+    for(int j = 0; j < LENGTH_HANDS; j++)
+    {
+        if(count[j] == 2)
+        {
+            if(count_pair == 0){
+                player->result.hands = PAIR;
+                player->result.pair_1 = (Number) temp[j];
+                count_pair++;
+            }
+            else{
+                player->result.hands = TWO_PAIRS;
+                player->result.pair_2 = (Number) temp[j];
+                count_pair++;
+            }
+        }
+        if(count[j] == 3) {
+            player->result.high_card = (Number) temp[j];
+            player->result.hands = THREE_OF_A_KIND;
+            three_of_a_kind++;
+        }
+        if(count[j] == 4){
+            player->result.high_card = (Number) temp[j];
+            player->result.hands = FOUR_OF_A_KIND;
+        }
+    }
+    if(three_of_a_kind == 1 && count_pair == 1){
+            player->result.hands = FULL_HOUSE;
+    }
+}
+
+void showdown(struct player * list){
+    for(int j = 0; j < NUM_PLAYERS; j++) {
+        list[j].result.hands = HIGH_CARD;
+        list[j].result.high_card = list[j].player_hands[LENGTH_HANDS - 1].number;
+
+        check_straight_flush(&list[j]);
+        check_pairs(&list[j]);
+
+        printf("High card: %d\n", list[j].result.high_card);
+
+        if (list[j].result.hands == ROYAL_FLUSH) {
+            printf("Royal flush\n");
+        }
+        else if (list[j].result.hands == STRAIGHT_FLUSH) {
+            printf("Straight flush\n");
+        }
+        else if (list[j].result.hands == FOUR_OF_A_KIND) {
+            printf("Four of a kind\n");
+        }
+        else if (list[j].result.hands == FULL_HOUSE) {
+            printf("Full house\n");
+        }
+        else if (list[j].result.hands == FLUSH) {
+            printf("Flush\n");
+        }
+        else if (list[j].result.hands == STRAIGHT) {
+            printf("Straight\n");
+        }
+        else if (list[j].result.hands == THREE_OF_A_KIND) {
+            printf("Three of a kind: %d\n", list[j].result.high_card);
+        }
+        else if (list[j].result.hands == TWO_PAIRS) {
+            printf("Two pairs: %d and %d\n", list[j].result.pair_1, list[j].result.pair_2);
+        }
+        else if (list[j].result.hands == PAIR) {
+            printf("A pair: %d\n", list[j].result.pair_1);
+        }
+    }
+    int max = compare_hands(list, NUM_PLAYERS);
+
+    for(int j = 0; j < NUM_PLAYERS; j++){
+        if(list[j].rank == max){
+            printf("%d", j);
+        }
     }
 
 }
 
-int check_high_card(struct card * hands, int length){
+int compare_hands(struct player * list, int length){
+    int max = 0;
+    list[0].rank = 1;
+    for (int j  = 1; j < length; j++){
+        if(list[max].result.hands < list[j].result.hands){
+            list[j].rank = list[max].rank + 1;
+            max = j;
+            printf("a");
+        }
+        else if(list[max].result.hands == list[j].result.hands){
+            if(list[max].result.hands == PAIR){
+                if(list[max].result.pair_1 < list[j].result.pair_1){
+                    list[j].rank = list[max].rank + 1;
+                    max = j;
+                    printf("b");
+                }
+                else if(list[max].result.pair_1 == list[j].result.pair_1){
+                    if(list[max].result.high_card < list[j].result.high_card){
+                        list[j].rank = list[max].rank + 1;
+                        max = j;
+                        printf("c");
+                    }
+                    else if(list[max].result.high_card == list[j].result.high_card){
+                        list[j].rank = list[max].rank;
+                        printf("d");
+                    }
+                }
+            }
 
+            if(list[max].result.hands == TWO_PAIRS){
+                if(list[max].result.pair_2 < list[j].result.pair_2){
+                    list[j].rank = list[max].rank + 1;
+                    max = j;
+                    printf("e");
+                }
+                else if(list[max].result.pair_2 == list[j].result.pair_2){
+                    if(list[max].result.pair_1 < list[j].result.pair_1){
+                        list[j].rank = list[max].rank + 1;
+                        max = j;
+                        printf("f");
+                    }
+                    else if(list[max].result.pair_1 == list[j].result.pair_1){
+                        if(list[max].result.high_card < list[j].result.high_card){
+                            list[j].rank = list[max].rank + 1;
+                            max = j;
+                            printf("g");
+                        }
+                        else if(list[max].result.high_card == list[j].result.high_card){
+                            list[j].rank = list[max].rank;
+                            printf("h");
+                        }
+                    }
+                }
+            }
+
+            if(list[max].result.hands == THREE_OF_A_KIND){
+                if(list[max].result.high_card < list[j].result.high_card){
+                    list[j].rank = list[max].rank + 1;
+                    max = j;
+                }
+                else if(list[max].result.high_card == list[j].result.high_card){
+                    list[j].rank = list[max].rank;
+                }
+            }
+
+            if(list[max].result.hands == FOUR_OF_A_KIND){
+                if(list[max].result.high_card < list[j].result.high_card){
+                    list[j].rank = list[max].rank + 1;
+                    max = j;
+                }
+                else if(list[max].result.high_card == list[j].result.high_card){
+                    list[j].rank = list[max].rank;
+                }
+            }
+
+            if(list[max].result.hands == STRAIGHT){
+                if(list[max].result.high_card < list[j].result.high_card){
+                    list[j].rank = list[max].rank + 1;
+                    max = j;
+                }
+                else if(list[max].result.high_card == list[j].result.high_card){
+                    list[j].rank = list[max].rank;
+                } // WARNING 12345 and 10JQKA
+            }
+
+            if(list[max].result.hands == FLUSH){
+                if(list[max].result.high_card < list[j].result.high_card){
+                    list[j].rank = list[max].rank + 1;
+                    max = j;
+                }
+                else if(list[max].result.high_card == list[j].result.high_card){
+                    list[j].rank = list[max].rank;
+                }
+            }
+
+            if(list[max].result.hands == FULL_HOUSE){
+                if(list[max].result.high_card < list[j].result.high_card){
+                    list[j].rank = list[max].rank + 1;
+                    max = j;
+                }
+                else if(list[max].result.high_card == list[j].result.high_card){
+                    list[j].rank = list[max].rank;
+                }
+            }
+
+            if(list[max].result.hands == STRAIGHT_FLUSH){
+                if(list[max].result.high_card < list[j].result.high_card){
+                    list[j].rank = list[max].rank + 1;
+                    max = j;
+                }
+                else if(list[max].result.high_card == list[j].result.high_card){
+                    list[j].rank = list[max].rank;
+                }
+            }
+
+            if(list[max].result.hands == ROYAL_FLUSH){
+                list[j].rank = list[max].rank;
+            }
+        }
+    }
+    printf("Rank: %d  ", list[max].rank);
+    printf("Position: %d  ", max);
+    return list[max].rank;
 }
 
-struct poker_hands showdown(struct card * hands, int length){
-    int flush = check_flush(hands, length);
-    int straight = check_straight(hands, length);
-    struct poker_hands result;
-    if(flush){
-        result.hands = FLUSH;
-        printf("flush");
-    }
-
-    if(straight){
-        result.hands = STRAIGHT;
-        printf("straight");
-    }
-
-    if(flush && straight) {
-        if (hands[4].number == ACE) {
-            result.hands = ROYAL_FLUSH;
-        }
-        else {
-            result.hands = STRAIGHT_FLUSH;
-        }
-        return result;
-    }
-
-
-    int num_pair = 0;
-    for( int j = 0; j < length; j++){
-        if(j[0] == 2){
-
-        }
-    }
-
-    return result;
+void free_deck(struct deck * deck){
+    free(deck->cards);
+    free(deck);
 }
