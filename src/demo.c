@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "poker.h"
-
+#include "stack.h"
 int main(){
+
     struct deck * deck = create_deck();
     // print_cards(deck, LENGTH_DECK);
 
@@ -11,12 +13,16 @@ int main(){
     // print_cards(deck, LENGTH_DECK);
 
     struct player * players_list = create_players_list(NUM_PLAYERS, LENGTH_HANDS);
+    strcpy(players_list[0].name , "Duc");
+    strcpy(players_list[1].name , "Bob");
+    strcpy(players_list[2].name , "Kevin");
+    strcpy(players_list[3].name , "Miranda");
 
-for(int j = 0; j < LENGTH_HANDS; j++){
-    for(int i = 0; i < NUM_PLAYERS; i++) {
-        deal_card(deck, players_list[i], LENGTH_HANDS);
+    for(int j = 0; j < LENGTH_HANDS; j++){
+        for(int i = 0; i < NUM_PLAYERS; i++) {
+            deal_card(deck, players_list[i], LENGTH_HANDS);
+        }
     }
-}
 
 /*
     for(int j = 0; j < 1; j++)
@@ -27,7 +33,7 @@ for(int j = 0; j < LENGTH_HANDS; j++){
 
     // change_card(deck, players_list[0], 0);
 
-
+/*
     players_list[1].player_hands[0].number = (Number) 8;
     players_list[1].player_hands[0].suit = (Suit) 3;
     players_list[1].player_hands[1].number = (Number) 1;
@@ -40,7 +46,6 @@ for(int j = 0; j < LENGTH_HANDS; j++){
     players_list[1].player_hands[4].suit = (Suit) 3;
 
 
-
     players_list[3].player_hands[0].number = (Number) 10;
     players_list[3].player_hands[0].suit = (Suit) 2;
     players_list[3].player_hands[1].number = (Number) 8;
@@ -51,13 +56,15 @@ for(int j = 0; j < LENGTH_HANDS; j++){
     players_list[3].player_hands[3].suit = (Suit) 2;
     players_list[3].player_hands[4].number = (Number) 3;
     players_list[3].player_hands[4].suit = (Suit) 2;
-
+*/
 
     for(int j = 0; j < NUM_PLAYERS; j++)
     {
         sort_hands(players_list[j].player_hands, LENGTH_HANDS);
         print_cards(players_list[j].player_hands, LENGTH_HANDS);
     }
+    printf("\n");
+
     showdown(players_list);
 
 

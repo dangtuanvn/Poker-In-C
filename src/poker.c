@@ -9,6 +9,8 @@ struct deck * create_deck() {
     struct deck * deck = malloc(sizeof(struct deck));
     deck->cards = malloc(sizeof(struct card) * LENGTH_DECK);
     deck->top = LENGTH_DECK - 1;
+
+    // Create cards
     int position = 0;
     for (int card_number = 2; card_number < 15; card_number++) {
         for(int card_suit = 0; card_suit < 4; card_suit++) {
@@ -18,6 +20,34 @@ struct deck * create_deck() {
         }
     }
     return deck;
+}
+
+void free_deck(struct deck * deck){
+    free(deck->cards);
+    free(deck);
+}
+
+struct player create_player(int length_hands) {
+    struct player * player = malloc(sizeof(struct player));
+    player->length = length_hands;
+    player->rank = 0;
+    player->chips = STARTING_CHIPS;
+    player->player_hands = malloc(sizeof(struct card) * length_hands);
+    memset(player->player_hands, 0, sizeof(struct card) * length_hands);
+    /*for (int j = 0; j < length_hands; j++){
+        player->player_hands[j].number = (Number) 0;
+    }*/
+    return * player; // WARNING
+}
+
+struct player * create_players_list(int num_players, int length_hands)
+{
+    struct player * players_list = malloc(sizeof(struct player)*num_players);
+    for(int j = 0; j < num_players; j++)
+    {
+        players_list[j] = create_player(length_hands);
+    }
+    return players_list;
 }
 
 void swap(struct card * x, struct card * y) {
@@ -120,35 +150,12 @@ void sort_hands(struct card * a, int length) {
     }
 }
 
-struct player create_player(int length_hands) {
-    struct player * player = malloc(sizeof(struct player));
-    player->length = length_hands;
-    player->rank = 0;
-    player->chips = STARTING_CHIPS;
-    player->player_hands = malloc(sizeof(struct card) * length_hands);
-    memset(player->player_hands, 0, sizeof(struct card) * length_hands);
-    /*for (int j = 0; j < length_hands; j++){
-        player->player_hands[j].number = (Number) 0;
-    }*/
-    return * player; // WARNING
-}
-
-struct player * create_players_list(int num_players, int length_hands)
-{
-    struct player * players_list = malloc(sizeof(struct player)*num_players);
-    for(int j = 0; j < num_players; j++)
-    {
-        players_list[j] = create_player(length_hands);
-    }
-    return players_list;
-}
-
 void change_card(struct deck * deck, struct player target, int position_card){
     target.player_hands[position_card].number = (Number) 0;
     deal_card(deck, target, LENGTH_HANDS);
 }
 
- void check_straight_flush(struct player * player){
+void check_straight_flush(struct player * player){
     int check_straight = 0;
     for(int j = 1; j < LENGTH_HANDS; j++){
         if(j == LENGTH_HANDS - 1 && player->player_hands[j].number == ACE)
@@ -259,19 +266,20 @@ void check_pairs(struct player * player){
         }
     }
     if(three_of_a_kind == 1 && count_pair == 1){
-            player->result.hands = FULL_HOUSE;
+        player->result.hands = FULL_HOUSE;
     }
 }
 
 void showdown(struct player * list){
     for(int j = 0; j < NUM_PLAYERS; j++) {
+        printf("%s:\n", list[j].name);
         list[j].result.hands = HIGH_CARD;
         list[j].result.high_card = list[j].player_hands[LENGTH_HANDS - 1].number;
 
         check_straight_flush(&list[j]);
         check_pairs(&list[j]);
 
-        printf("High card: %d\n", list[j].result.high_card);
+        printf("High card - %d\n", list[j].result.high_card);
 
         if (list[j].result.hands == ROYAL_FLUSH) {
             printf("Royal flush\n");
@@ -292,23 +300,25 @@ void showdown(struct player * list){
             printf("Straight\n");
         }
         else if (list[j].result.hands == THREE_OF_A_KIND) {
-            printf("Three of a kind: %d\n", list[j].result.high_card);
+            printf("Three of a kind - %d\n", list[j].result.high_card);
         }
         else if (list[j].result.hands == TWO_PAIRS) {
-            printf("Two pairs: %d and %d\n", list[j].result.pair_1, list[j].result.pair_2);
+            printf("Two pairs - %d and %d\n", list[j].result.pair_1, list[j].result.pair_2);
         }
         else if (list[j].result.hands == PAIR) {
-            printf("A pair: %d\n", list[j].result.pair_1);
+            printf("A pair - %d\n", list[j].result.pair_1);
         }
+        printf("\n");
     }
-    int max = compare_hands(list, NUM_PLAYERS);
+    int top_rank = compare_hands(list, NUM_PLAYERS);
 
+    printf("Player(s) with the best hands:");
     for(int j = 0; j < NUM_PLAYERS; j++){
-        if(list[j].rank == max){
-            printf("%d", j);
+        if(list[j].rank == top_rank){
+            printf(" %s", list[j].name);
         }
     }
-
+    printf("\n");
 }
 
 int compare_hands(struct player * list, int length){
@@ -318,24 +328,20 @@ int compare_hands(struct player * list, int length){
         if(list[max].result.hands < list[j].result.hands){
             list[j].rank = list[max].rank + 1;
             max = j;
-            printf("a");
         }
         else if(list[max].result.hands == list[j].result.hands){
             if(list[max].result.hands == PAIR){
                 if(list[max].result.pair_1 < list[j].result.pair_1){
                     list[j].rank = list[max].rank + 1;
                     max = j;
-                    printf("b");
                 }
                 else if(list[max].result.pair_1 == list[j].result.pair_1){
                     if(list[max].result.high_card < list[j].result.high_card){
                         list[j].rank = list[max].rank + 1;
                         max = j;
-                        printf("c");
                     }
                     else if(list[max].result.high_card == list[j].result.high_card){
                         list[j].rank = list[max].rank;
-                        printf("d");
                     }
                 }
             }
@@ -344,23 +350,19 @@ int compare_hands(struct player * list, int length){
                 if(list[max].result.pair_2 < list[j].result.pair_2){
                     list[j].rank = list[max].rank + 1;
                     max = j;
-                    printf("e");
                 }
                 else if(list[max].result.pair_2 == list[j].result.pair_2){
                     if(list[max].result.pair_1 < list[j].result.pair_1){
                         list[j].rank = list[max].rank + 1;
                         max = j;
-                        printf("f");
                     }
                     else if(list[max].result.pair_1 == list[j].result.pair_1){
                         if(list[max].result.high_card < list[j].result.high_card){
                             list[j].rank = list[max].rank + 1;
                             max = j;
-                            printf("g");
                         }
                         else if(list[max].result.high_card == list[j].result.high_card){
                             list[j].rank = list[max].rank;
-                            printf("h");
                         }
                     }
                 }
@@ -431,12 +433,47 @@ int compare_hands(struct player * list, int length){
             }
         }
     }
-    printf("Rank: %d  ", list[max].rank);
-    printf("Position: %d  ", max);
+    // printf("Rank: %d  \n", list[max].rank);
+    // printf("Position: %d  \n", max);
     return list[max].rank;
 }
 
-void free_deck(struct deck * deck){
-    free(deck->cards);
-    free(deck);
+
+void add_chips(struct player player, int chipsToAdd)
+{
+    player.chips += chipsToAdd;
 }
+void withdraw_chips(struct player player, int chipsToWithdraw)
+{
+    if(player.chips < chipsToWithdraw)
+    {
+        
+    }
+    else
+    {
+        player.chips -= chipsToWithdraw;
+    }
+}
+
+void bet(struct pot pot, struct player player, int chips)
+{
+    pot.call = chips;
+    
+}
+
+void fold(struct player player)
+{
+    
+}
+
+void call(struct player player)
+{
+    
+}
+
+void check(struct player player);
+
+void allIn(struct player player);
+
+void raise(struct player player, int chips);
+
