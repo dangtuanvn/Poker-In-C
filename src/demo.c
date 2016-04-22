@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "poker.h"
-#include "stack.h"
+
 int main(){
 
-    struct deck * deck = create_deck();
+    Deck * deck = create_deck();
     // print_cards(deck, LENGTH_DECK);
 
     shuffle_deck(deck, LENGTH_DECK);
     // print_cards(deck, LENGTH_DECK);
 
-    struct player * players_list = create_players_list(NUM_PLAYERS, LENGTH_HANDS);
+    Player * players_list = create_players_list(NUM_PLAYERS, LENGTH_HANDS);
     strcpy(players_list[0].name , "Duc");
     strcpy(players_list[1].name , "Bob");
     strcpy(players_list[2].name , "Kevin");
@@ -34,28 +33,27 @@ int main(){
     // change_card(deck, players_list[0], 0);
 
 /*
-    players_list[1].player_hands[0].number = (Number) 8;
+    players_list[3].player_hands[0].number = (Number) 14;
+    players_list[3].player_hands[0].suit = (Suit) 3;
+    players_list[3].player_hands[1].number = (Number) 13;
+    players_list[3].player_hands[1].suit = (Suit) 3;
+    players_list[3].player_hands[2].number = (Number) 12;
+    players_list[3].player_hands[2].suit = (Suit) 3;
+    players_list[3].player_hands[3].number = (Number) 11;
+    players_list[3].player_hands[3].suit = (Suit) 4;
+    players_list[3].player_hands[4].number = (Number) 10;
+    players_list[3].player_hands[4].suit = (Suit) 3;
+
+    players_list[1].player_hands[0].number = (Number) 14;
     players_list[1].player_hands[0].suit = (Suit) 3;
-    players_list[1].player_hands[1].number = (Number) 1;
-    players_list[1].player_hands[1].suit = (Suit) 3;
-    players_list[1].player_hands[2].number = (Number) 7;
-    players_list[1].player_hands[2].suit = (Suit) 3;
+    players_list[1].player_hands[1].number = (Number) 2;
+    players_list[1].player_hands[1].suit = (Suit) 2;
+    players_list[1].player_hands[2].number = (Number) 3;
+    players_list[1].player_hands[2].suit = (Suit) 2;
     players_list[1].player_hands[3].number = (Number) 4;
-    players_list[1].player_hands[3].suit = (Suit) 3;
-    players_list[1].player_hands[4].number = (Number) 3;
-    players_list[1].player_hands[4].suit = (Suit) 3;
-
-
-    players_list[3].player_hands[0].number = (Number) 10;
-    players_list[3].player_hands[0].suit = (Suit) 2;
-    players_list[3].player_hands[1].number = (Number) 8;
-    players_list[3].player_hands[1].suit = (Suit) 2;
-    players_list[3].player_hands[2].number = (Number) 8;
-    players_list[3].player_hands[2].suit = (Suit) 2;
-    players_list[3].player_hands[3].number = (Number) 9;
-    players_list[3].player_hands[3].suit = (Suit) 2;
-    players_list[3].player_hands[4].number = (Number) 3;
-    players_list[3].player_hands[4].suit = (Suit) 2;
+    players_list[1].player_hands[3].suit = (Suit) 2;
+    players_list[1].player_hands[4].number = (Number) 5;
+    players_list[1].player_hands[4].suit = (Suit) 2;
 */
 
     for(int j = 0; j < NUM_PLAYERS; j++)

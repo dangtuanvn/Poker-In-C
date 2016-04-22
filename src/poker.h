@@ -27,17 +27,17 @@ typedef enum suits Suit;
 
 /* Struct card with two variables: number and suit
  */
-struct card {
+typedef struct {
     Number number;
     Suit suit;
-};
+} Card;
 
 /* Struct deck with integer top and an array of cards
  */
-struct deck {
+typedef struct {
     int top;
-    struct card *cards;
-};
+    Card *cards;
+} Deck;
 
 /* Using enum to define poker hands
  */
@@ -48,131 +48,140 @@ typedef enum hands_type Hands_type;
 
 /* Struct poker_hands to store variables
  */
-struct poker_hands{
+typedef struct {
     Hands_type hands;
     Number high_card;
     Number pair_1;
     Number pair_2;
     int rank;
+} Poker_hands;
+
+/* Using enum to define player' status
+ */
+enum status {
+    BUST, FOLD, ACTIVE, CHECKED, BET, RAISE
 };
+typedef enum status Status;
 
 /* Struct player with unique variables
  */
-struct player {
-    int status;
+typedef struct {
+    Status status;
     int rank;
     int length;
-    struct card * player_hands;
-    struct poker_hands result;
+    int bet_amount;
+    Card * player_hands;
+    Poker_hands result;
     int chips;
     char name[20];
-};
+} Player;
 
-struct pot {
-    int main_pot;
-    int call;
+typedef struct {
+    int round_number;
+    int position_turn;
+    int pot;
+    int call_amount;
     int ante;
-    int side_pots[NUM_PLAYERS-1];
-};
+} Game_round;
 
 // FUNCTIONS
 
 /* Create a deck of 52 cards with 13 numbers and 4 suits
  */
-struct deck * create_deck();
+Deck * create_deck();
 
 /* Free the resources allocated for a deck of card
  * @param deck is the deck to be released
  */
-void free_deck(struct deck * deck);
+void free_deck(Deck * deck);
 
 /* Create a player
  * @param length_hands is the number of cards in the player's hands
  */
-struct player create_player(int length_hands);
+Player create_player(int length_hands);
 
 /* Create a list of players
  * @param num_players is the number of players
  * @param length_hands is the number of cards in each player's hands
  */
-struct player * create_players_list(int num_players, int length_hands);
+Player * create_players_list(int num_players, int length_hands);
 
 /* Swap the position of the cards
  * @param x is the first card to be swapped
  * @param y is the second card to be swapped with the first card
  */
-void swap(struct card * x, struct card * y);
+void swap(Card * x, Card * y);
 
 /* Shuffle a deck of cards Fisher and Yates algorithm
  * @param deck is the deck to be shuffled
  * @param length is the number of cards in the deck, which is the length of the array
  */
-void shuffle_deck(struct deck * deck, int length);
+void shuffle_deck(Deck * deck, int length);
 
 /* Print out the cards in a deck or hands
  * @param a is the cards to be printed on the screen
  * @param length is the number of cards to be printed
  */
-void print_cards(struct card * a, int length);
+void print_cards(Card * a, int length);
 
 /* Deal a card to a player
  * @param deck is the deck used to deal the card
  * @param target is the player to receive the card
  * @param n is the number of card to give out
  */
-void deal_card(struct deck * deck, struct player target, int n);
+void deal_card(Deck * deck, Player target, int n);
 
 /* Sort the cards in the hands of a player
  * @param hands is the cards in the hands to be sorted
  * @param length is the number of cards, which is the length of the array
  */
-void sort_hands(struct card * hands, int length);
+void sort_hands(Card * hands, int length);
 
 /* Change the card that the player wishes to change in change phase
  * @param deck is the deck used to deal cards
  * @param target is the player who wishes to change card
  * @param position_card is the position of the card in the player's hand
  */
-void change_card(struct deck * deck, struct player target, int position_card);
+void change_card(Deck * deck, Player target, int position_card);
 
 /* Check the cards of a player for straight, flush, straight flush or royal flush
  * The cards musts be already sorted
  * @param player is the player to be checked
  */
-void check_straight_flush(struct player * player);
+void check_straight_flush(Player * player);
 
 /* Check the cards of a player for pair, three of a kind, four of a kind, full house
  * The cards musts be already sorted
  * @param player is the player to be checked
  */
-void check_pairs(struct player * player);
+void check_pairs(Player * player);
 
 /* Determine the hands of each player, then pick the best hands
  * @param list is the list of players
  */
-void showdown(struct player * list);
+void showdown(Player * list);
 
 /* Compare a list of hands and choose the player with the best hands
  * The hands should already be checked with check_straight_flush and check_pairs
  * @param list is the list of the player
  * @param length is the number of players
  */
-int compare_hands(struct player * list, int length);
+int compare_hands(Player * list, int length);
 
-void add_chips(struct player player, int chipsToAdd);
+void add_chips(Player player, int chipsToAdd);
 
-void withdraw_chips(struct player player, int chipsToWithdraw);
+void withdraw_chips(Player player, int chipsToWithdraw);
 
-void bet(struct pot pot, struct player player, int chips);
+void bet(Game_round round, Player player, int chips);
 
-void fold(struct player player);
+void fold(Player player);
 
-void call(struct player player);
+void call( Game_round round, Player player);
 
-void check(struct player player);
+void check(Game_round round, Player player);
 
-void allIn(struct player player);
+void allIn(Player player);
 
-void raise(struct player player, int chips);
+void raise(Player player, int chips);
 
 #endif //COSC2451_A2_S3500286_S3500291_POKER_H

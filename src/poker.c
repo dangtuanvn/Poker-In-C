@@ -4,10 +4,10 @@
 #include <string.h>
 #include "poker.h"
 
-struct deck * create_deck() {
+Deck * create_deck() {
     srand((unsigned)time(NULL));
-    struct deck * deck = malloc(sizeof(struct deck));
-    deck->cards = malloc(sizeof(struct card) * LENGTH_DECK);
+    Deck * deck = malloc(sizeof(Deck));
+    deck->cards = malloc(sizeof(Card) * LENGTH_DECK);
     deck->top = LENGTH_DECK - 1;
 
     // Create cards
@@ -22,27 +22,27 @@ struct deck * create_deck() {
     return deck;
 }
 
-void free_deck(struct deck * deck){
+void free_deck(Deck * deck){
     free(deck->cards);
     free(deck);
 }
 
-struct player create_player(int length_hands) {
-    struct player * player = malloc(sizeof(struct player));
+Player create_player(int length_hands) {
+    Player * player = malloc(sizeof(Player));
     player->length = length_hands;
     player->rank = 0;
     player->chips = STARTING_CHIPS;
-    player->player_hands = malloc(sizeof(struct card) * length_hands);
-    memset(player->player_hands, 0, sizeof(struct card) * length_hands);
+    player->player_hands = malloc(sizeof(Card) * length_hands);
+    memset(player->player_hands, 0, sizeof(Card) * length_hands);
     /*for (int j = 0; j < length_hands; j++){
         player->player_hands[j].number = (Number) 0;
     }*/
-    return * player; // WARNING
+    return * player;
 }
 
-struct player * create_players_list(int num_players, int length_hands)
+Player * create_players_list(int num_players, int length_hands)
 {
-    struct player * players_list = malloc(sizeof(struct player)*num_players);
+    Player * players_list = malloc(sizeof(Player)*num_players);
     for(int j = 0; j < num_players; j++)
     {
         players_list[j] = create_player(length_hands);
@@ -50,13 +50,13 @@ struct player * create_players_list(int num_players, int length_hands)
     return players_list;
 }
 
-void swap(struct card * x, struct card * y) {
-    struct card tmp = *x;
+void swap(Card * x, Card * y) {
+    Card tmp = *x;
     *x = *y;
     *y = tmp;
 }
 
-void shuffle_deck(struct deck * a, int length) {
+void shuffle_deck(Deck * a, int length) {
     a->top = LENGTH_DECK - 1;
     for (int j = length - 1; j > 0; j--) {
         /* Generate a random number r
@@ -80,7 +80,7 @@ void shuffle_deck(struct deck * a, int length) {
     // printf("\n");
 }
 
-void print_cards(struct card * a, int length) {
+void print_cards(Card * a, int length) {
     for (int j = 0; j < length; j++) {
         if(a[j].number == 14){
             printf("A");
@@ -115,7 +115,7 @@ void print_cards(struct card * a, int length) {
     printf("\n");
 }
 
-void deal_card(struct deck * deck, struct player target, int length_hands){
+void deal_card(Deck * deck, Player target, int length_hands){
     for(int j = 0; j < length_hands; j++) {
         if (target.player_hands[j].number == 0) {
             target.player_hands[j] = deck->cards[deck->top];
@@ -124,7 +124,7 @@ void deal_card(struct deck * deck, struct player target, int length_hands){
     }
 }
 
-void sort_hands(struct card * a, int length) {
+void sort_hands(Card * a, int length) {
     int min_pos;
 
     for(int i = 0; i < length; i++) {
@@ -150,12 +150,12 @@ void sort_hands(struct card * a, int length) {
     }
 }
 
-void change_card(struct deck * deck, struct player target, int position_card){
+void change_card(Deck * deck, Player target, int position_card){
     target.player_hands[position_card].number = (Number) 0;
     deal_card(deck, target, LENGTH_HANDS);
 }
 
-void check_straight_flush(struct player * player){
+void check_straight_flush(Player * player){
     int check_straight = 0;
     for(int j = 1; j < LENGTH_HANDS; j++){
         if(j == LENGTH_HANDS - 1 && player->player_hands[j].number == ACE)
@@ -203,7 +203,7 @@ void check_straight_flush(struct player * player){
      }
 }
 
-void check_pairs(struct player * player){
+void check_pairs(Player * player){
     int temp[LENGTH_HANDS];
     memset(temp, 0, sizeof(int) * LENGTH_HANDS);
     int count[LENGTH_HANDS];
@@ -270,7 +270,7 @@ void check_pairs(struct player * player){
     }
 }
 
-void showdown(struct player * list){
+void showdown(Player * list){
     for(int j = 0; j < NUM_PLAYERS; j++) {
         printf("%s:\n", list[j].name);
         list[j].result.hands = HIGH_CARD;
@@ -321,7 +321,7 @@ void showdown(struct player * list){
     printf("\n");
 }
 
-int compare_hands(struct player * list, int length){
+int compare_hands(Player * list, int length){
     int max = 0;
     list[0].rank = 1;
     for (int j  = 1; j < length; j++){
@@ -393,9 +393,18 @@ int compare_hands(struct player * list, int length){
                     list[j].rank = list[max].rank + 1;
                     max = j;
                 }
-                else if(list[max].result.high_card == list[j].result.high_card){
-                    list[j].rank = list[max].rank;
-                } // WARNING 12345 and 10JQKA
+                else if(list[max].result.high_card == list[j].result.high_card) {
+                    if (list[max].result.high_card == ACE) {
+                        printf("here");
+                        if (list[max].player_hands[0].number < list[j].player_hands[0].number) {
+                            list[j].rank = list[max].rank + 1;
+                            max = j;
+                        }
+                    }
+                    else {
+                        list[j].rank = list[max].rank;
+                    }
+                }
             }
 
             if(list[max].result.hands == FLUSH){
@@ -439,15 +448,15 @@ int compare_hands(struct player * list, int length){
 }
 
 
-void add_chips(struct player player, int chipsToAdd)
+void add_chips(Player player, int chipsToAdd)
 {
     player.chips += chipsToAdd;
 }
-void withdraw_chips(struct player player, int chipsToWithdraw)
+void withdraw_chips(Player player, int chipsToWithdraw)
 {
     if(player.chips < chipsToWithdraw)
     {
-        
+
     }
     else
     {
@@ -455,25 +464,51 @@ void withdraw_chips(struct player player, int chipsToWithdraw)
     }
 }
 
-void bet(struct pot pot, struct player player, int chips)
+
+
+void bet(Game_round round, Player player, int chips)
 {
-    pot.call = chips;
-    
+    round.pot += chips;
+    round.call_amount = chips;
+    withdraw_chips(player, chips);
+    player.bet_amount += chips;
 }
 
-void fold(struct player player)
+void call(Game_round round, Player player)
 {
-    
+    int chips = round.call_amount - player.bet_amount;
+    withdraw_chips(player, chips);
+    round.pot += chips;
+    player.bet_amount = chips;
 }
 
-void call(struct player player)
+void fold(Player player)
 {
-    
+    player.status = FOLD;
 }
 
-void check(struct player player);
+void check(Game_round round, Player player)
+{
+    round.position_turn += 1;
+}
 
-void allIn(struct player player);
+void allIn(Player);
 
-void raise(struct player player, int chips);
+void raise(Player, int chips);
 
+void place_ante(Game_round round, Player * player){
+
+}
+
+void round_position_increment(Game_round round){
+    round.position_turn += 1;
+//    if(round.position_turn == NUM_PLAYERS)
+}
+
+
+/* TODO
+ * position round
+ * status: active, inactive
+ * number of players remain when other leaves (out of chips)
+ *
+ */
