@@ -30,8 +30,6 @@ int main(){
 }
 */
 
-    // change_card(deck, players_list[0], 0);
-
 /*
     players_list[3].player_hands[0].number = (Number) 14;
     players_list[3].player_hands[0].suit = (Suit) 3;
@@ -55,6 +53,7 @@ int main(){
     players_list[1].player_hands[4].number = (Number) 5;
     players_list[1].player_hands[4].suit = (Suit) 2;
 */
+    change_card(deck, players_list[1], 0);
 
     for(int j = 0; j < NUM_PLAYERS; j++)
     {
@@ -64,7 +63,6 @@ int main(){
     printf("\n");
 
     showdown(players_list);
-
 
     free_deck(deck);
     free(players_list);

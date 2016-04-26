@@ -56,6 +56,13 @@ typedef struct {
     int rank;
 } Poker_hands;
 
+/* Using enum to define player' type
+ */
+enum player_type {
+    HUMAN, AI_NORMAL, AI_EASY
+};
+typedef enum player_type Player_type;
+
 /* Using enum to define player' status
  */
 enum status {
@@ -74,6 +81,7 @@ typedef struct {
     Poker_hands result;
     int chips;
     char name[20];
+    Player_type type;
 } Player;
 
 typedef struct {
@@ -82,6 +90,7 @@ typedef struct {
     int pot;
     int call_amount;
     int ante;
+    int num_players;
 } Game_round;
 
 // FUNCTIONS
@@ -105,6 +114,12 @@ Player create_player(int length_hands);
  * @param length_hands is the number of cards in each player's hands
  */
 Player * create_players_list(int num_players, int length_hands);
+
+/* Free the resources allocated for each player and the player list
+ * @param list is the list of players
+ * @param num_players is the number of players
+ */
+void free_players_list(Player * list, int num_players);
 
 /* Swap the position of the cards
  * @param x is the first card to be swapped
@@ -184,4 +199,9 @@ void allIn(Player player);
 
 void raise(Player player, int chips);
 
+void AI_normal_change(Deck * deck, Player player);
+
+void AI_easy_change(Deck * deck, Player player);
+
 #endif //COSC2451_A2_S3500286_S3500291_POKER_H
+

@@ -50,6 +50,15 @@ Player * create_players_list(int num_players, int length_hands)
     return players_list;
 }
 
+void free_players_list(Player * list, int num_players){
+    for(int j = 0; j < num_players; j++){
+        free(list->player_hands);
+        free(&list[j]);
+    }
+    free(list);
+}
+
+
 void swap(Card * x, Card * y) {
     Card tmp = *x;
     *x = *y;
@@ -508,7 +517,74 @@ void round_position_increment(Game_round round){
 
 /* TODO
  * position round
- * status: active, inactive
  * number of players remain when other leaves (out of chips)
- *
+ * AI
  */
+
+
+void AI_change_cards(Deck * deck, Player * list){
+    for(int j = 0; j < list->length; j++) {
+        if (list[j].type == AI_NORMAL) {
+            AI_normal_change(deck, list[j]);
+        }
+        else if(list[j].type == AI_EASY){
+            AI_easy_change(deck, list[j]);
+        }
+    }
+}
+
+void AI_normal_change(Deck * deck, Player player){
+    int position[LENGTH_HANDS];
+    int index = 0;
+    memset(position, 0, sizeof(int) * LENGTH_HANDS);
+    check_straight_flush(&player);
+    check_pairs(&player);
+    if(player.result.hands < 4){
+        if(player.result.hands == THREE_OF_A_KIND){
+            for(int i = 0; i < LENGTH_HANDS; i++){
+                if(player.player_hands[i].number != player.result.high_card){
+                    position[index] = i;
+                    index++;
+                }
+            }
+        }
+        else if(player.result.hands == TWO_PAIRS){
+            for(int i = 0; i < LENGTH_HANDS; i++){
+                if(player.player_hands[i].number != player.result.pair_1 &&
+                   player.player_hands[i].number != player.result.pair_2){
+                    position[index] = i;
+                    index++;
+                }
+            }
+        }
+        else if (player.result.hands == PAIR) {
+            for (int i = 0; i < LENGTH_HANDS; i++) {
+                if (player.player_hands[i].number != player.result.pair_1) {
+                    position[index] = i;
+                    index++;
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < LENGTH_HANDS - 1; i++) {
+                position[index] = i;
+                index++;
+            }
+        }
+    }
+    for(int n = 0; n < index + 1; n++){
+        change_card(deck, player, position[n]);
+    }
+}
+
+void AI_easy_change(Deck * deck, Player player) {
+    srand((unsigned) time(NULL));
+    for (int n = 0; n < LENGTH_HANDS; n++) {
+        int r = rand() % 2;
+        if (r == 1) {
+            change_card(deck, player, n);
+        }
+    }
+}
+
+
