@@ -84,6 +84,8 @@ typedef struct {
     Player_type type;
 } Player;
 
+/* Struct game_round with unique variables
+ */
 typedef struct {
     int round_number;
     int position_turn;
@@ -198,6 +200,8 @@ void check(Game_round round, Player player);
 void allIn(Player player);
 
 void raise(Player player, int chips);
+
+void AI_change_cards(Deck * deck, Player * list);
 
 void AI_normal_change(Deck * deck, Player player);
 
