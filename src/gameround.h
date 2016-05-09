@@ -17,16 +17,17 @@ void place_ante(Game_round round, Player *player);
 
 void add_chips(Player player, int chipsToAdd);
 
-void withdraw_chips(Player player, int chipsToWithdraw);
+int withdraw_chips(Player player, int chipsToWithdraw);
 
 void bet(Game_round round, Player player, int chips);
 
+void call(Game_round round, Player player);
+
+void raise(Game_round round, Player player, int chips);
+
 void fold(Player player);
 
-void call(Game_round round, Player player);
 
 void check(Game_round round, Player player);
 
 void allIn(Player player);
-
-void raise(Player player, int chips);

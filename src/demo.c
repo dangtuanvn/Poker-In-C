@@ -11,7 +11,7 @@ int main(){
     // print_cards(deck, LENGTH_DECK);
 
     Player * players_list = create_players_list(NUM_PLAYERS, LENGTH_HANDS);
-    strcpy(players_list[0].name , "Duck");
+    strcpy(players_list[0].name , "You");
     strcpy(players_list[1].name , "Bob");
     strcpy(players_list[2].name , "Kevin");
     strcpy(players_list[3].name , "Sarah");
@@ -29,7 +29,7 @@ int main(){
 }
 */
 
-    /*
+
     players_list[0].player_hands[0].number = (Number) 11;
     players_list[0].player_hands[0].suit = (Suit) 3;
     players_list[0].player_hands[1].number = (Number) 4;
@@ -53,7 +53,7 @@ int main(){
     players_list[1].player_hands[4].suit = (Suit) 0;
 
     players_list[2].player_hands[0].number = (Number) 14;
-    players_list[2].player_hands[0].suit = (Suit) 1;
+    players_list[2].player_hands[0].suit = (Suit) 2;
     players_list[2].player_hands[1].number = (Number) 13;
     players_list[2].player_hands[1].suit = (Suit) 1;
     players_list[2].player_hands[2].number = (Number) 5;
@@ -73,7 +73,6 @@ int main(){
     players_list[3].player_hands[3].suit = (Suit) 1;
     players_list[3].player_hands[4].number = (Number) 12;
     players_list[3].player_hands[4].suit = (Suit) 1;
-    */
 
     printf("-----------------------START-----------------------\n\n");
     for(int j = 0; j < NUM_PLAYERS; j++)

@@ -125,6 +125,7 @@ void AI_normal_change(Deck * deck, Player player) {
                 for (int i = 0; i < LENGTH_HANDS; i++) {
                     if (player.player_hands[i].suit != suit[0]) {
                         position[index] = i;
+                        index++;
                         break;
                     }
                 }
@@ -133,6 +134,7 @@ void AI_normal_change(Deck * deck, Player player) {
                 for (int i = 0; i < LENGTH_HANDS; i++) {
                     if (player.player_hands[i].suit != suit[1]) {
                         position[index] = i;
+                        index++;
                         break;
                     }
                 }
@@ -145,9 +147,10 @@ void AI_normal_change(Deck * deck, Player player) {
             }
         }
     }
+
     for (int n = 0; n < index; n++) {
         change_card(deck, player, position[n]);
-        printf("%d ", position[n]);
+        // printf("%d ", position[n]);
     }
     printf("\n");
 }

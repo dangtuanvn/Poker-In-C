@@ -1,7 +1,3 @@
-//
-// Created by bit on 4/27/16.
-//
-
 #ifndef COSC2451_A2_S3500286_S3500291_PLAYER_H
 #define COSC2451_A2_S3500286_S3500291_PLAYER_H
 
@@ -14,7 +10,7 @@
 /* Using enum to define player' status
  */
 enum status {
-    BUST, FOLD, ACTIVE, CHECKED, BET, RAISE
+    BUST, FOLD, ALLIN, ACTIVE, CHECK, BET, RAISE, CALL
 };
 typedef enum status Status;
 

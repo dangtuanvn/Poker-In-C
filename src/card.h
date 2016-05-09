@@ -1,7 +1,3 @@
-//
-// Created by bit on 4/27/16.
-//
-
 #ifndef COSC2451_A2_S3500286_S3500291_CARD_H
 #define COSC2451_A2_S3500286_S3500291_CARD_H
 
