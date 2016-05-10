@@ -20,8 +20,10 @@ void round_position_increment(Game_round * round) {
 //    if(round.position_turn == NUM_PLAYERS)
 }
 
-void place_ante(Game_round * round, Player *player) {
-
+void place_ante(Game_round * round, Player * list) {
+    for(int j = 0; j < round->call_amount; j++){
+        bet(round, &list[j], round->ante);
+    }
 }
 
 void add_chips(Player * player, int chipsToAdd) {
