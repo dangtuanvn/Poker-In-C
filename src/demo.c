@@ -7,20 +7,57 @@ int main(){
     Deck * deck = create_deck();
     // print_cards(deck, LENGTH_DECK);
 
-    shuffle_deck(deck, LENGTH_DECK);
-    // print_cards(deck, LENGTH_DECK);
-
     Player * players_list = create_players_list(NUM_PLAYERS, LENGTH_HANDS);
     strcpy(players_list[0].name , "You");
     strcpy(players_list[1].name , "Bob");
     strcpy(players_list[2].name , "Kevin");
     strcpy(players_list[3].name , "Sarah");
 
-    for(int j = 0; j < LENGTH_HANDS; j++){
-        for(int i = 0; i < NUM_PLAYERS; i++) {
-            deal_card(deck, players_list[i], LENGTH_HANDS);
+    int ongoing = 1;
+    while(ongoing){
+
+        // ROUND START
+        shuffle_deck(deck, LENGTH_DECK);
+        // print_cards(deck, LENGTH_DECK);
+
+        Game_round round = create_game_round(NUM_PLAYERS);
+        for(int j = 0; j < LENGTH_HANDS; j++){
+            for(int i = 0; i < NUM_PLAYERS; i++) {
+                deal_card(deck, players_list[i], LENGTH_HANDS);
+            }
         }
+
+        // BETTING PHASE 1
+        print_player_info(players_list[0]);
+
+        bet(&round, &players_list[0], 20);
+        call(&round, &players_list[1]);
+        raise(&round, &players_list[2], 70);
+        call(&round, &players_list[3]);
+
+        for(int j = 0; j < NUM_PLAYERS; j++){
+            printf("\n");
+            print_player_info(players_list[j]);
+        }
+
+        printf("\n");
+        printf("Call amount: %d\n", round.call_amount);
+        printf("Pot: %d\n", round.pot);
+
+        // EXCHANGE CARDS PHASE
+
+
+        // BETTING PHASE 2
+
+
+
+        // SHOWDOWN PHASE
+
+        ongoing = 0;
     }
+
+
+
 
 /*
     for(int j = 0; j < 1; j++)
@@ -29,7 +66,7 @@ int main(){
 }
 */
 
-
+/*
     players_list[0].player_hands[0].number = (Number) 11;
     players_list[0].player_hands[0].suit = (Suit) 3;
     players_list[0].player_hands[1].number = (Number) 4;
@@ -99,6 +136,7 @@ int main(){
 
     printf("---------------------SHOWDOWN---------------------\n\n");
     showdown(players_list);
+*/
 
     free_deck(deck);
     free(players_list);

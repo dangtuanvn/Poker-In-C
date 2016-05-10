@@ -102,3 +102,4 @@ void check_pairs(Player * player);
  */
 int compare_hands(Player * list, int length);
 
+void print_player_info(Player player);

@@ -20,14 +20,12 @@ enum suits {
 };
 typedef enum suits Suit;
 
-
 /* Struct card with two variables: number and suit
  */
 typedef struct {
     Number number;
     Suit suit;
 } Card;
-
 
 /* Swap the position of the cards
  * @param x is the first card to be swapped

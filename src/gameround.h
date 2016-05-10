@@ -11,23 +11,24 @@ typedef struct {
     int num_players;
 } Game_round;
 
-void round_position_increment(Game_round round);
+Game_round create_game_round(int num_players);
 
-void place_ante(Game_round round, Player *player);
+void round_position_increment(Game_round * round);
 
-void add_chips(Player player, int chipsToAdd);
+void place_ante(Game_round * round, Player * player);
 
-int withdraw_chips(Player player, int chipsToWithdraw);
+void add_chips(Player * player, int chipsToAdd);
 
-void bet(Game_round round, Player player, int chips);
+void withdraw_chips(Player * player, int chipsToWithdraw);
 
-void call(Game_round round, Player player);
+void bet(Game_round * round, Player * player, int chips);
 
-void raise(Game_round round, Player player, int chips);
+void call(Game_round * round, Player * player);
 
-void fold(Player player);
+void raise(Game_round * round, Player * player, int chips);
 
+void fold(Game_round * round, Player * player);
 
-void check(Game_round round, Player player);
+void check(Game_round * round, Player * player);
 
-void allIn(Player player);
+void allIn(Game_round * round, Player * player);

@@ -8,6 +8,7 @@ Player create_player(int length_hands) {
     player->length = length_hands;
     player->rank = 0;
     player->chips = STARTING_CHIPS;
+    player->status = ACTIVE;
     player->player_hands = malloc(sizeof(Card) * length_hands);
     memset(player->player_hands, 0, sizeof(Card) * length_hands);
     /*for (int j = 0; j < length_hands; j++){
@@ -291,4 +292,13 @@ int compare_hands(Player *list, int length) {
     // printf("Rank: %d  \n", list[max].rank);
     // printf("Position: %d  \n", max);
     return list[max].rank;
+}
+
+void print_player_info(Player player){
+    printf("%s\n", player.name);
+    printf("Status: %d\n", player.status);
+    printf("Bet amount: %d\n", player.bet_amount);
+    printf("Chips: %d\n", player.chips);
+    print_cards(player.player_hands, player.length);
+
 }
