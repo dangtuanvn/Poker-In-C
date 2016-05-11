@@ -14,6 +14,14 @@
 #define TERM_MAX_HEIGHT  30
 #define CARD_HEIGHT  5
 #define CARD_WIDTH  8
+#define MYCOLOR_WHITE 0
+#define MYCOLOR_RED 1
+#define MYCOLOR_GREEN 2
+#define MYCOLOR_YELLOW 3
+#define MYCOLOR_BLUE 4
+#define MYCOLOR_MAGNETA 5
+#define MYCOLOR_CYAN 6
+#define MYCOLOR_BLACK 7
 
 enum stage_num {
     MAIN_MENU = 0,

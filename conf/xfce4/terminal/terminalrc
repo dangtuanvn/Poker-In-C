@@ -1,12 +1,11 @@
 [Configuration]
-ColorPalette=#eee8d5;#dc322f;#859900;#b58900;#268bd2;#d33682;#2aa198;#073642;#fdf6e3;#cb4b16;#93a1a1;#839496;#657b83;#6c71c4;#586e75;#002b36
-FontName=Monospace 28
+ColorPalette=#c7aec092c092;#aaaa00000000;#0000aaaa0000;#aaaa55550000;#00000000aaaa;#aaaa0000aaaa;#357d5d7a5a74;#000000000000;#fdfdf6f6e3e3;#cbcb4b4b1616;#9393a1a1a1a1;#838394949696;#65657b7b8383;#6c6c7171c4c4;#58586e6e7575;#00002b2b3636
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBordersDefault=TRUE
 MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
-MiscDefaultGeometry=80x24
+MiscDefaultGeometry=135x30
 MiscInheritGeometry=FALSE
 MiscMenubarDefault=TRUE
 MiscMouseAutohide=FALSE
@@ -17,10 +16,11 @@ MiscTabCloseButtons=TRUE
 MiscTabCloseMiddleClick=TRUE
 MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
-ColorForeground=#657b83
+ColorForeground=#ffabffabffab
 ColorBackground=#fdf6e3
-ColorCursor=#586e75
-ColorBold=#586e75
+ColorCursor=#ffffffffffff
+ColorBold=#000000000000
 ColorBoldUseDefault=FALSE
 TabActivityColor=#dc322f
+FontName=Monospace 11
 

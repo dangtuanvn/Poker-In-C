@@ -1,8 +1,3 @@
-
-
-
-
-
 #include <time.h>
 #include <ncurses.h>
 #include <signal.h>
@@ -34,8 +29,7 @@ int main(int argc, char *argv[]) {
     //mouse event
     MEVENT event;
     init_screen();
-
-    assume_default_colors(COLOR_BLUE,COLOR_WHITE);
+    assume_default_colors(MYCOLOR_BLUE,MYCOLOR_WHITE);
 
     for(int i=0;i<30;i++) {
         printf("%d\n\r",i);
@@ -46,8 +40,8 @@ int main(int argc, char *argv[]) {
     WINDOW *my_wins[2];
 
     my_wins[0] = newwin(MENU_HEIGHT, MENU_WIDTH, (getmaxy(stdscr) - MENU_HEIGHT)/2 + 7, (getmaxx(stdscr) - MENU_WIDTH)/2);
-    my_wins[1] = newwin(MENU_HEIGHT/2 + 3, MENU_WIDTH/2, getbegy(my_wins[0]) + 1,
-                                  getbegx(my_wins[0]) + MENU_WIDTH/2 - 1);
+    my_wins[1] = newwin(MENU_HEIGHT/2 + 3, MENU_WIDTH/2, getbegy(my_wins[0])+3,
+                                  getbegx(my_wins[0]) + MENU_WIDTH/2 + 6);
     WINDOW *current_win = my_wins[0];
 
     display_title(current_win);
@@ -59,11 +53,12 @@ int main(int argc, char *argv[]) {
 
         c = wgetch(stdscr);//get mouse ad key event
 
-        mvprintw(20, 3, "keystroke: %i ", c);
-        mvprintw(21, 3, "term height: %i ", getmaxy(stdscr));
+        mvprintw(1, 3, "%i", getmaxy(stdscr));
+        mvprintw(25, 3, "keystroke: %i ", c);
+        mvprintw(26, 3, "term height: %i ", getmaxy(stdscr));
 
-        mvprintw(22, 3, "Stage: %i ,Selection: %i", current_stage.num, current_stage.selection);
-        mvprintw(23, 3, "mode: %i", get_mode());
+        mvprintw(27, 3, "Stage: %i ,Selection: %i", current_stage.num, current_stage.selection);
+        mvprintw(28, 3, "mode: %i", get_mode());
 
         if(current_stage.num == IN_GAME) // Start game
         {
@@ -79,7 +74,7 @@ int main(int argc, char *argv[]) {
             {
                 case KEY_MOUSE:
                     if(getmouse(&event) == OK && event.bstate & BUTTON1_CLICKED) {
-                        mvprintw(19, 3, "%i , %i", event.x, event.y);
+                        mvprintw(29, 3, "%i , %i", event.x, event.y);
                         process_change_card(deck, players_list);
                         display_deck(player_seat[0], players_list[0]);
                     }
@@ -119,7 +114,7 @@ int main(int argc, char *argv[]) {
             switch(c)
             {
                 case KEY_MOUSE:
-                    mvprintw(19, 3, "%i , %i", event.x, event.y);
+                    mvprintw(29, 3, "%i , %i", event.x, event.y);
                     if(getmouse(&event) == OK && event.bstate & BUTTON1_CLICKED)
                     {
                         if(current_stage.num == SINGLE_PLAYER && event.y == 2 + getbegy(current_win)
@@ -221,19 +216,20 @@ static void init_screen() {
     (void) noecho();       /* do not echo input */
     (void) curs_set(0);
     keypad(stdscr, TRUE);
+
     /* Get all the mouse events */
     mousemask(ALL_MOUSE_EVENTS, NULL);
     start_color();
     timeout(500);          /* wait maximum 500ms for a character */
     /* Use timeout(-1) for blocking mode */
-
     /* set default color pair */
-    init_pair(1, COLOR_BLUE, COLOR_WHITE);
-    init_pair(2, COLOR_RED, COLOR_WHITE);
-    init_pair(3, COLOR_WHITE, COLOR_MAGENTA);
-    init_pair(4, COLOR_RED, COLOR_GREEN);
-    init_pair(5, COLOR_RED, COLOR_YELLOW);
-    init_pair(6, COLOR_BLACK, COLOR_YELLOW);
+
+    init_pair(1, MYCOLOR_BLUE, MYCOLOR_WHITE);
+    init_pair(2, MYCOLOR_RED, MYCOLOR_WHITE);
+    init_pair(3, MYCOLOR_WHITE, MYCOLOR_MAGNETA);
+    init_pair(4, MYCOLOR_RED, MYCOLOR_GREEN);
+    init_pair(5, MYCOLOR_RED, MYCOLOR_YELLOW);
+    init_pair(6, MYCOLOR_BLACK, MYCOLOR_YELLOW);
 
 }
 
@@ -250,23 +246,23 @@ void set_up_player_seat(int num_players)//set up position of players based on nu
     int seat_width = CARD_WIDTH*5 + 6;
     player_seat = malloc(sizeof(WINDOW)*num_players);
 
-    player_seat[0] = newwin(seat_height, seat_width, TERM_MAX_HEIGHT - seat_height - 2,
-                              (TERM_MAX_WIDTH - seat_width)/2);
+    player_seat[0] = newwin(seat_height, seat_width, getmaxy(stdscr) - seat_height - 2,
+                              (getmaxx(stdscr)- seat_width)/2);
     if(num_players == 2)
     {
-        player_seat[1] = newwin(seat_height, seat_width, 1, (TERM_MAX_WIDTH - seat_width)/2);
+        player_seat[1] = newwin(seat_height, seat_width, 1, (getmaxx(stdscr) - seat_width)/2);
     }
     else if (num_players == 3)
     {
         player_seat[1] = newwin(seat_height, seat_width, 1, 2);
-        player_seat[2] = newwin(seat_height, seat_width, 1, TERM_MAX_WIDTH - seat_width - 2);
+        player_seat[2] = newwin(seat_height, seat_width, 1, getmaxx(stdscr) - seat_width - 2);
     }
     else if (num_players == 4)
     {
-        player_seat[1] = newwin(seat_height, seat_width, 1, (TERM_MAX_WIDTH - seat_width)/2);
-        player_seat[2] = newwin(seat_height, seat_width, (TERM_MAX_HEIGHT - seat_height)/2, 2);
-        player_seat[3] = newwin(seat_height, seat_width, (TERM_MAX_HEIGHT - seat_height)/2,
-                                TERM_MAX_WIDTH - seat_width - 2);
+        player_seat[1] = newwin(seat_height, seat_width, 1, (getmaxx(stdscr) - seat_width)/2);
+        player_seat[2] = newwin(seat_height, seat_width, (getmaxy(stdscr) - seat_height)/2, 2);
+        player_seat[3] = newwin(seat_height, seat_width, (getmaxy(stdscr) - seat_height)/2,
+                                getmaxx(stdscr) - seat_width - 2);
     }
 }
 
