@@ -1,4 +1,8 @@
+#ifndef COSC2451_A2_S3500286_S3500291_POKER_H
+#define COSC2451_A2_S3500286_S3500291_POKER_H
+
 #include "gameround.h"
+
 #define     NUM_PLAYERS         4
 
 
@@ -17,3 +21,5 @@ void AI_normal_change(Deck * deck, Player player);
 
 void AI_easy_change(Deck * deck, Player player);
 
+
+#endif //COSC2451_A2_S3500286_S3500291_POKER_H

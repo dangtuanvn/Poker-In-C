@@ -1,3 +1,7 @@
+#ifndef COSC2451_A2_S3500286_S3500291_GAMEROUND_H
+#define COSC2451_A2_S3500286_S3500291_GAMEROUND_H
+
+
 #include "player.h"
 
 /* Struct game_round with unique variables
@@ -26,10 +30,12 @@ void bet(Game_round * round, Player * player, int chips);
 
 void call(Game_round * round, Player * player);
 
-void raise(Game_round * round, Player * player, int chips);
+void raisea(Game_round * round, Player * player, int chips);
 
 void fold(Game_round * round, Player * player);
 
 void check(Game_round * round, Player * player);
 
 void allIn(Game_round * round, Player * player);
+
+#endif //COSC2451_A2_S3500286_S3500291_GAMEROUND_H

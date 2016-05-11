@@ -8,7 +8,6 @@ Player create_player(int length_hands) {
     player->length = length_hands;
     player->rank = 0;
     player->chips = STARTING_CHIPS;
-    player->status = ACTIVE;
     player->player_hands = malloc(sizeof(Card) * length_hands);
     memset(player->player_hands, 0, sizeof(Card) * length_hands);
     /*for (int j = 0; j < length_hands; j++){
@@ -17,18 +16,15 @@ Player create_player(int length_hands) {
     return *player;
 }
 
-Player *create_players_list(int num_players, int length_hands) {
+Player *create_players_list(int num_players, int length_hands, Player_type mode) {
     Player *players_list = malloc(sizeof(Player) * num_players);
     for (int j = 0; j < num_players; j++) {
         players_list[j] = create_player(length_hands);
         if (j == 0) {
             players_list[j].type = HUMAN;
         }
-        else if (j == 1) { // WARNING TODO: FIX
-            players_list[j].type = AI_NORMAL;
-        }
         else {
-            players_list[j].type = AI_NORMAL; //TODO: Change to easy
+            players_list[j].type = mode;
         }
     }
     return players_list;
@@ -292,13 +288,4 @@ int compare_hands(Player *list, int length) {
     // printf("Rank: %d  \n", list[max].rank);
     // printf("Position: %d  \n", max);
     return list[max].rank;
-}
-
-void print_player_info(Player player){
-    printf("%s\n", player.name);
-    printf("Status: %d\n", player.status);
-    printf("Bet amount: %d\n", player.bet_amount);
-    printf("Chips: %d\n", player.chips);
-    print_cards(player.player_hands, player.length);
-
 }

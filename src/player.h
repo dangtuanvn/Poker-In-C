@@ -1,7 +1,6 @@
 #ifndef COSC2451_A2_S3500286_S3500291_PLAYER_H
 #define COSC2451_A2_S3500286_S3500291_PLAYER_H
 
-#endif //COSC2451_A2_S3500286_S3500291_PLAYER_H
 #include "deck.h"
 
 #define     STARTING_CHIPS      3000
@@ -17,7 +16,7 @@ typedef enum status Status;
 /* Using enum to define player' type
  */
 enum player_type {
-    HUMAN, AI_NORMAL, AI_EASY
+    AI_EASY, AI_NORMAL, HUMAN
 };
 typedef enum player_type Player_type;
 
@@ -62,7 +61,7 @@ Player create_player(int length_hands);
  * @param num_players is the number of players
  * @param length_hands is the number of cards in each player's hands
  */
-Player * create_players_list(int num_players, int length_hands);
+Player * create_players_list(int num_players, int length_hands, Player_type mode);
 
 /* Free the resources allocated for each player and the player list
  * @param list is the list of players
@@ -102,4 +101,4 @@ void check_pairs(Player * player);
  */
 int compare_hands(Player * list, int length);
 
-void print_player_info(Player player);
+#endif //COSC2451_A2_S3500286_S3500291_PLAYER_H

@@ -1,3 +1,7 @@
+#ifndef COSC2451_A2_S3500286_S3500291_DECK_H
+#define COSC2451_A2_S3500286_S3500291_DECK_H
+
+
 #include "card.h"
 
 #define     LENGTH_DECK         52
@@ -27,3 +31,4 @@ void shuffle_deck(Deck * deck, int length);
 
 
 
+#endif //COSC2451_A2_S3500286_S3500291_DECK_H

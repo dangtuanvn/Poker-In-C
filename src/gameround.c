@@ -58,7 +58,7 @@ void call(Game_round * round, Player * player) {
 }
 
 
-void raise(Game_round * round, Player * player, int chips){
+void raisea(Game_round * round, Player * player, int chips){
     call(round, player);
     bet(round, player, chips - round->call_amount);
     player->status = RAISE;
