@@ -39,6 +39,7 @@ void place_ante(Game_round * round, Player **list) {
                 round->pot += list[j]->chips;
                 list[j]->bet_amount = round->ante;
                 list[j]->status = ALLIN;
+                printf("-----------------------_ALL IN---------------------------------------\n");
             }
             else{
                 withdraw_chips(list[j], round->ante);
@@ -51,9 +52,9 @@ void place_ante(Game_round * round, Player **list) {
     round->call_amount = round->ante;
 }
 
-void add_chips(Player * player, int chipsToAdd) {
+void add_chips(Game_round * round, Player * player, int chipsToAdd) {
     player->chips += chipsToAdd;
-    // TODO: deduct chips from the pot
+    round->pot -= chipsToAdd;
 }
 
 void withdraw_chips(Player * player, int chipsToWithdraw) {
@@ -62,55 +63,41 @@ void withdraw_chips(Player * player, int chipsToWithdraw) {
 
 void action_bet(Game_round * round, Player * player, int chips) {
     round->position_turn = round->num_players;
-    if (player->chips < chips) {
+    if(player->chips <= chips){
         action_allIn(round, player);
-        round->call_amount += player->chips;
     }
-    else {
+    else{
         withdraw_chips(player, chips);
         round->pot += chips;
         round->call_amount += chips;
         player->bet_amount += chips;
         player->status = BET;
-        printf("%s bets %d\n", player->name, chips );
-    }
+        }
 }
 
 void action_call(Game_round * round, Player * player) {
     player->status = CALL;
     int chips = round->call_amount - player->bet_amount;
-    if(chips > player->chips){
+    if(player->chips <= chips){
         chips = player->chips;
         player->status = ALLIN;
+        //printf("-----------------------_ALL IN---------------------------------------\n");
     }
     withdraw_chips(player, chips);
     round->pot += chips;
     player->bet_amount += chips;
-    printf("%s calls %d\n", player->name, chips );
 }
-
 
 void action_raise(Game_round * round, Player * player, int chips){
     round->position_turn = round->num_players;
-    if (player->chips < chips) {
+    if (player->chips <= chips) {
         action_allIn(round, player);
-        round->call_amount += player->chips;
     }
     else {
         action_call(round, player);
         action_bet(round, player, chips - round->call_amount);
         player->status = RAISE;
-        printf("%s raises %d\n", player->name, chips );
     }
-}
-
-void action_fold(Game_round * round, Player * player) {
-    player->status = FOLD;
-    printf("%s folds\n", player->name);
-}
-
-void action_check(Game_round * round, Player * player) {
-    printf("%s checks\n", player->name);
 }
 
 void action_allIn(Game_round * round, Player * player){
@@ -119,9 +106,51 @@ void action_allIn(Game_round * round, Player * player){
     round->pot += chips;
     player->bet_amount += chips;
     player->status = ALLIN;
-    printf("%s all in %d\n", player->name, chips );
+    if(round->call_amount < player->bet_amount){
+        round->call_amount = player->bet_amount;
+    }
+    //printf("-----------------------_ALL IN---------------------------------------\n");
+}
+
+void action_fold(Game_round * round, Player * player) {
+    player->status = FOLD;
+}
+
+void action_check(Game_round * round, Player * player) {
+    player->status = CHECK;
+}
+
+int get_pot(Game_round * round, Player ** list, int top_rank){
+    int num_winners = 0;
+    int winner_positions[round->num_players];
+    for (int j = 0; j < round->num_players; j++) {
+        if (list[j]->rank == top_rank) {
+            winner_positions[num_winners] = j;
+            num_winners++;
+        }
+    }
+
+    int total_chips = 0;
+    int temp = num_winners;
+    for (int i = 0; i < num_winners; i++) {
+        for (int j = 0; j < round->num_players; j++) {
+            int winning_chips = list[j]->bet_amount / temp;
+            add_chips(round, list[winner_positions[i]], winning_chips);
+            total_chips += winning_chips;
+            list[j]->bet_amount -= winning_chips;
+            if (i == num_winners - 1) {
+                add_chips(round, list[j], list[j]->bet_amount);
+                list[j]->bet_amount = 0;
+            }
+        }
+        temp--;
+    }
+    printf("\n%d %d\n", total_chips, num_winners);
+    return total_chips / num_winners;
 }
 
 /* TODO
  * number of players remain when other leaves (out of chips)
+ * winner receive money
+ * Change NUM_PLAYERS
  */

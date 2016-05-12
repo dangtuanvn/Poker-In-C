@@ -14,6 +14,9 @@ int main(){
     strcpy(players_list[1]->name , "BOB");
     strcpy(players_list[2]->name , "KEVIN");
     strcpy(players_list[3]->name , "SARAH");
+    //players_list[1]->chips = 3005;
+    //players_list[2]->chips = 3003;
+    //players_list[3]->chips = 2000;
 
     Game_round * round = create_game_round(NUM_PLAYERS);
 
@@ -30,37 +33,16 @@ int main(){
         }
         place_ante(round, players_list);
 
-        players_list[0]->player_hands[0].number = (Number) 11;
-        players_list[0]->player_hands[0].suit = (Suit) 3;
-        players_list[0]->player_hands[1].number = (Number) 4;
-        players_list[0]->player_hands[1].suit = (Suit) 1;
-        players_list[0]->player_hands[2].number = (Number) 4;
-        players_list[0]->player_hands[2].suit = (Suit) 2;
-        players_list[0]->player_hands[3].number = (Number) 4;
-        players_list[0]->player_hands[3].suit = (Suit) 3;
-        players_list[0]->player_hands[4].number = (Number) 4;
-        players_list[0]->player_hands[4].suit = (Suit) 0;
-
-        players_list[1]->player_hands[0].number = (Number) 14;
-        players_list[1]->player_hands[0].suit = (Suit) 3;
-        players_list[1]->player_hands[1].number = (Number) 14;
-        players_list[1]->player_hands[1].suit = (Suit) 2;
-        players_list[1]->player_hands[2].number = (Number) 3;
-        players_list[1]->player_hands[2].suit = (Suit) 2;
-        players_list[1]->player_hands[3].number = (Number) 3;
-        players_list[1]->player_hands[3].suit = (Suit) 1;
-        players_list[1]->player_hands[4].number = (Number) 3;
-        players_list[1]->player_hands[4].suit = (Suit) 0;
 
         players_list[2]->player_hands[0].number = (Number) 14;
-        players_list[2]->player_hands[0].suit = (Suit) 2;
-        players_list[2]->player_hands[1].number = (Number) 13;
+        players_list[2]->player_hands[0].suit = (Suit) 1;
+        players_list[2]->player_hands[1].number = (Number) 10;
         players_list[2]->player_hands[1].suit = (Suit) 1;
-        players_list[2]->player_hands[2].number = (Number) 5;
+        players_list[2]->player_hands[2].number = (Number) 13;
         players_list[2]->player_hands[2].suit = (Suit) 1;
-        players_list[2]->player_hands[3].number = (Number) 7;
+        players_list[2]->player_hands[3].number = (Number) 11;
         players_list[2]->player_hands[3].suit = (Suit) 1;
-        players_list[2]->player_hands[4].number = (Number) 9;
+        players_list[2]->player_hands[4].number = (Number) 12;
         players_list[2]->player_hands[4].suit = (Suit) 1;
 
         players_list[3]->player_hands[0].number = (Number) 14;
@@ -112,6 +94,25 @@ int main(){
             }
 
 
+            if(players_list[position]->status == CHECK){
+                printf("%s checks, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+            else if(players_list[position]->status == CALL){
+                printf("%s calls, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+            else if(players_list[position]->status == BET){
+                printf("%s bets, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+            else if(players_list[position]->status == RAISE){
+                printf("%s raises, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+            else if(players_list[position]->status == FOLD){
+                printf("%s folds\n", players_list[position]->name);
+            }
+            else if(players_list[position]->status == ALLIN){
+                printf("%s all in, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+
             // printf("%s: %d - %d\n", players_list[position].name, players_list->bet_amount, players_list->status);
             // printf("Position: %d\n", position);
             position++;
@@ -126,6 +127,7 @@ int main(){
         printf("BETTING PHASE 1 FINISHED\n");
         printf("Call amount: %d\n", round->call_amount);
         printf("Pot: %d\n", round->pot);
+        printf("\n");
 
         // EXCHANGE CARDS PHASE
         AI_change_cards(deck, players_list, NUM_PLAYERS);
@@ -150,6 +152,24 @@ int main(){
                 }
             }
 
+            if(players_list[position]->status == CHECK){
+                printf("%s checks, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+            else if(players_list[position]->status == CALL){
+                printf("%s calls, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+            else if(players_list[position]->status == BET){
+                printf("%s bets, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+            else if(players_list[position]->status == RAISE){
+                printf("%s raises, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
+            else if(players_list[position]->status == FOLD){
+                printf("%s folds\n", players_list[position]->name);
+            }
+            else if(players_list[position]->status == ALLIN){
+                printf("%s all in, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+            }
 
             // printf("%s: %d - %d\n", players_list[position].name, players_list->bet_amount, players_list->status);
             // printf("Position: %d\n", position);
@@ -177,7 +197,8 @@ int main(){
         printf("\n");
 
         printf("---------------------SHOWDOWN---------------------\n\n");
-        showdown(players_list);
+        int top_rank = showdown(*round, players_list);
+        get_pot(round, players_list, top_rank);
 
         for(int j = 0; j < NUM_PLAYERS; j++){
             printf("\n");
@@ -186,6 +207,8 @@ int main(){
         ongoing = 0;
     }
 
+    printf("Call amount: %d\n", round->call_amount);
+    printf("\nPot: %d\n", round->pot);
 
 /*
     for(int j = 0; j < 1; j++)
@@ -193,79 +216,6 @@ int main(){
     print_cards(players_list[j].player_hands, LENGTH_HANDS);
 }
 */
-
-/*
-    players_list[0].player_hands[0].number = (Number) 11;
-    players_list[0].player_hands[0].suit = (Suit) 3;
-    players_list[0].player_hands[1].number = (Number) 4;
-    players_list[0].player_hands[1].suit = (Suit) 1;
-    players_list[0].player_hands[2].number = (Number) 4;
-    players_list[0].player_hands[2].suit = (Suit) 2;
-    players_list[0].player_hands[3].number = (Number) 4;
-    players_list[0].player_hands[3].suit = (Suit) 3;
-    players_list[0].player_hands[4].number = (Number) 4;
-    players_list[0].player_hands[4].suit = (Suit) 0;
-
-    players_list[1].player_hands[0].number = (Number) 14;
-    players_list[1].player_hands[0].suit = (Suit) 3;
-    players_list[1].player_hands[1].number = (Number) 14;
-    players_list[1].player_hands[1].suit = (Suit) 2;
-    players_list[1].player_hands[2].number = (Number) 3;
-    players_list[1].player_hands[2].suit = (Suit) 2;
-    players_list[1].player_hands[3].number = (Number) 3;
-    players_list[1].player_hands[3].suit = (Suit) 1;
-    players_list[1].player_hands[4].number = (Number) 3;
-    players_list[1].player_hands[4].suit = (Suit) 0;
-
-    players_list[2].player_hands[0].number = (Number) 14;
-    players_list[2].player_hands[0].suit = (Suit) 2;
-    players_list[2].player_hands[1].number = (Number) 13;
-    players_list[2].player_hands[1].suit = (Suit) 1;
-    players_list[2].player_hands[2].number = (Number) 5;
-    players_list[2].player_hands[2].suit = (Suit) 1;
-    players_list[2].player_hands[3].number = (Number) 7;
-    players_list[2].player_hands[3].suit = (Suit) 1;
-    players_list[2].player_hands[4].number = (Number) 9;
-    players_list[2].player_hands[4].suit = (Suit) 1;
-
-    players_list[3].player_hands[0].number = (Number) 14;
-    players_list[3].player_hands[0].suit = (Suit) 1;
-    players_list[3].player_hands[1].number = (Number) 10;
-    players_list[3].player_hands[1].suit = (Suit) 1;
-    players_list[3].player_hands[2].number = (Number) 13;
-    players_list[3].player_hands[2].suit = (Suit) 1;
-    players_list[3].player_hands[3].number = (Number) 11;
-    players_list[3].player_hands[3].suit = (Suit) 1;
-    players_list[3].player_hands[4].number = (Number) 12;
-    players_list[3].player_hands[4].suit = (Suit) 1;
-
-    printf("-----------------------START-----------------------\n\n");
-    for(int j = 0; j < NUM_PLAYERS; j++)
-    {
-        sort_hands(players_list[j].player_hands, LENGTH_HANDS);
-        printf("%s:\t", players_list[j].name);
-        print_cards(players_list[j].player_hands, LENGTH_HANDS);
-    }
-    printf("\n");
-
-    printf("----------------------CHANGE-----------------------\n\n");
-
-    // change_card(deck, players_list[0], 0);
-    // change_card(deck, players_list[0], 4);
-    AI_change_cards(deck, players_list, NUM_PLAYERS);
-
-    for(int j = 0; j < NUM_PLAYERS; j++)
-    {
-        sort_hands(players_list[j].player_hands, LENGTH_HANDS);
-        printf("%s:\t", players_list[j].name);
-        print_cards(players_list[j].player_hands, LENGTH_HANDS);
-    }
-    printf("\n");
-
-    printf("---------------------SHOWDOWN---------------------\n\n");
-    showdown(players_list);
-*/
-
     free_deck(deck);
     free_players_list(players_list, NUM_PLAYERS);
     free_game_round(round);

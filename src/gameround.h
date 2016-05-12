@@ -23,7 +23,7 @@ void round_position_increment(Game_round * round);
 
 void place_ante(Game_round * round, Player ** player);
 
-void add_chips(Player * player, int chipsToAdd);
+void add_chips(Game_round * round, Player * player, int chipsToAdd);
 
 void withdraw_chips(Player * player, int chipsToWithdraw);
 
@@ -38,5 +38,7 @@ void action_fold(Game_round * round, Player * player);
 void action_check(Game_round * round, Player * player);
 
 void action_allIn(Game_round * round, Player * player);
+
+int get_pot(Game_round * round, Player ** list, int winner_position);
 
 #endif //COSC2451_A2_S3500286_S3500291_GAMEROUND_H

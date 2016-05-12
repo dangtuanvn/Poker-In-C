@@ -13,7 +13,7 @@
 /* Determine the hands of each player, then pick the best hands
  * @param list is the list of players
  */
-void showdown(Player ** list);
+int showdown(Game_round round, Player ** list);
 
 void AI_change_cards(Deck * deck, Player ** list, int length);
 
