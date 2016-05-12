@@ -12,9 +12,9 @@ set(SOURCE_FILES
         src/card.c
         src/deck.c
         src/gameround.c
-        src/poker_game.c
-        src/display.c
-#        src/demo.c
+#        src/poker_game.c
+#        src/display.c
+        src/demo.c
         )
 
 set(HEADER_FILES

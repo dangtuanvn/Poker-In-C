@@ -15,27 +15,28 @@ typedef struct {
     int num_players;
 } Game_round;
 
+Game_round * create_game_round(int num_players);
 
-Game_round create_game_round(int num_players);
+void free_game_round(Game_round * game_round);
 
 void round_position_increment(Game_round * round);
 
-void place_ante(Game_round * round, Player * player);
+void place_ante(Game_round * round, Player ** player);
 
 void add_chips(Player * player, int chipsToAdd);
 
 void withdraw_chips(Player * player, int chipsToWithdraw);
 
-void bet(Game_round * round, Player * player, int chips);
+void action_bet(Game_round * round, Player * player, int chips);
 
-void call(Game_round * round, Player * player);
+void action_call(Game_round * round, Player * player);
 
-void raisea(Game_round * round, Player * player, int chips);
+void action_raise(Game_round * round, Player * player, int chips);
 
-void fold(Game_round * round, Player * player);
+void action_fold(Game_round * round, Player * player);
 
-void check(Game_round * round, Player * player);
+void action_check(Game_round * round, Player * player);
 
-void allIn(Game_round * round, Player * player);
+void action_allIn(Game_round * round, Player * player);
 
 #endif //COSC2451_A2_S3500286_S3500291_GAMEROUND_H

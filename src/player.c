@@ -3,39 +3,40 @@
 #include <string.h>
 #include "player.h"
 
-Player create_player(int length_hands) {
-    Player *player = malloc(sizeof(Player));
+Player * create_player(int length_hands) {
+    Player * player = malloc(sizeof(Player));
     player->length = length_hands;
     player->rank = 0;
     player->chips = STARTING_CHIPS;
+    player->status = ACTIVE;
     player->player_hands = malloc(sizeof(Card) * length_hands);
     memset(player->player_hands, 0, sizeof(Card) * length_hands);
     /*for (int j = 0; j < length_hands; j++){
         player->player_hands[j].number = (Number) 0;
     }*/
-    return *player;
+    return player;
 }
 
-Player *create_players_list(int num_players, int length_hands, Player_type mode) {
-    Player *players_list = malloc(sizeof(Player) * num_players);
+Player ** create_players_list(int num_players, int length_hands, Player_type mode) {
+    Player ** players_list = malloc(sizeof(Player) * num_players);
     for (int j = 0; j < num_players; j++) {
         players_list[j] = create_player(length_hands);
         if (j == 0) {
-            players_list[j].type = HUMAN;
+            players_list[j]->type = HUMAN;
         }
         else {
-            players_list[j].type = mode;
+            players_list[j]->type = AI_NORMAL;
         }
     }
     return players_list;
 }
 
-void free_players_list(Player *list, int num_players) {
+void free_players_list(Player **list, int num_players) {
     for (int j = 0; j < num_players; j++) {
-        free(list->player_hands);
-        free(&list[j]);
+        free(list[j]->player_hands);
+        free(list[j]);
     }
-    free(list); // WARNING: double free? TODO: FIX
+    free(list);
 }
 
 
@@ -165,127 +166,135 @@ void check_pairs(Player * player) {
     }
 }
 
-int compare_hands(Player *list, int length) {
+int compare_hands(Player **list, int length) {
     int max = 0;
-    list[0].rank = 1;
+    list[0]->rank = 1;
     for (int j = 1; j < length; j++) {
-        if (list[max].result.hands < list[j].result.hands) {
-            list[j].rank = list[max].rank + 1;
+        if (list[max]->result.hands < list[j]->result.hands) {
+            list[j]->rank = list[max]->rank + 1;
             max = j;
         }
-        else if (list[max].result.hands == list[j].result.hands) {
-            if (list[max].result.hands == PAIR) {
-                if (list[max].result.pair_1 < list[j].result.pair_1) {
-                    list[j].rank = list[max].rank + 1;
+        else if (list[max]->result.hands == list[j]->result.hands) {
+            if (list[max]->result.hands == PAIR) {
+                if (list[max]->result.pair_1 < list[j]->result.pair_1) {
+                    list[j]->rank = list[max]->rank + 1;
                     max = j;
                 }
-                else if (list[max].result.pair_1 == list[j].result.pair_1) {
-                    if (list[max].result.high_card < list[j].result.high_card) {
-                        list[j].rank = list[max].rank + 1;
+                else if (list[max]->result.pair_1 == list[j]->result.pair_1) {
+                    if (list[max]->result.high_card < list[j]->result.high_card) {
+                        list[j]->rank = list[max]->rank + 1;
                         max = j;
                     }
-                    else if (list[max].result.high_card == list[j].result.high_card) {
-                        list[j].rank = list[max].rank;
+                    else if (list[max]->result.high_card == list[j]->result.high_card) {
+                        list[j]->rank = list[max]->rank;
                     }
                 }
             }
 
-            if (list[max].result.hands == TWO_PAIRS) {
-                if (list[max].result.pair_2 < list[j].result.pair_2) {
-                    list[j].rank = list[max].rank + 1;
+            if (list[max]->result.hands == TWO_PAIRS) {
+                if (list[max]->result.pair_2 < list[j]->result.pair_2) {
+                    list[j]->rank = list[max]->rank + 1;
                     max = j;
                 }
-                else if (list[max].result.pair_2 == list[j].result.pair_2) {
-                    if (list[max].result.pair_1 < list[j].result.pair_1) {
-                        list[j].rank = list[max].rank + 1;
+                else if (list[max]->result.pair_2 == list[j]->result.pair_2) {
+                    if (list[max]->result.pair_1 < list[j]->result.pair_1) {
+                        list[j]->rank = list[max]->rank + 1;
                         max = j;
                     }
-                    else if (list[max].result.pair_1 == list[j].result.pair_1) {
-                        if (list[max].result.high_card < list[j].result.high_card) {
-                            list[j].rank = list[max].rank + 1;
+                    else if (list[max]->result.pair_1 == list[j]->result.pair_1) {
+                        if (list[max]->result.high_card < list[j]->result.high_card) {
+                            list[j]->rank = list[max]->rank + 1;
                             max = j;
                         }
-                        else if (list[max].result.high_card == list[j].result.high_card) {
-                            list[j].rank = list[max].rank;
+                        else if (list[max]->result.high_card == list[j]->result.high_card) {
+                            list[j]->rank = list[max]->rank;
                         }
                     }
                 }
             }
 
-            if (list[max].result.hands == THREE_OF_A_KIND) {
-                if (list[max].result.high_card < list[j].result.high_card) {
-                    list[j].rank = list[max].rank + 1;
+            if (list[max]->result.hands == THREE_OF_A_KIND) {
+                if (list[max]->result.high_card < list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank + 1;
                     max = j;
                 }
-                else if (list[max].result.high_card == list[j].result.high_card) {
-                    list[j].rank = list[max].rank;
+                else if (list[max]->result.high_card == list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank;
                 }
             }
 
-            if (list[max].result.hands == FOUR_OF_A_KIND) {
-                if (list[max].result.high_card < list[j].result.high_card) {
-                    list[j].rank = list[max].rank + 1;
+            if (list[max]->result.hands == FOUR_OF_A_KIND) {
+                if (list[max]->result.high_card < list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank + 1;
                     max = j;
                 }
-                else if (list[max].result.high_card == list[j].result.high_card) {
-                    list[j].rank = list[max].rank;
+                else if (list[max]->result.high_card == list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank;
                 }
             }
 
-            if (list[max].result.hands == STRAIGHT) {
-                if (list[max].result.high_card < list[j].result.high_card) {
-                    list[j].rank = list[max].rank + 1;
+            if (list[max]->result.hands == STRAIGHT) {
+                if (list[max]->result.high_card < list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank + 1;
                     max = j;
                 }
-                else if (list[max].result.high_card == list[j].result.high_card) {
-                    if (list[max].result.high_card == ACE) {
-                        if (list[max].player_hands[0].number < list[j].player_hands[0].number) {
-                            list[j].rank = list[max].rank + 1;
+                else if (list[max]->result.high_card == list[j]->result.high_card) {
+                    if (list[max]->result.high_card == ACE) {
+                        if (list[max]->player_hands[0].number < list[j]->player_hands[0].number) {
+                            list[j]->rank = list[max]->rank + 1;
                             max = j;
                         }
                     }
                     else {
-                        list[j].rank = list[max].rank;
+                        list[j]->rank = list[max]->rank;
                     }
                 }
             }
 
-            if (list[max].result.hands == FLUSH) {
-                if (list[max].result.high_card < list[j].result.high_card) {
-                    list[j].rank = list[max].rank + 1;
+            if (list[max]->result.hands == FLUSH) {
+                if (list[max]->result.high_card < list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank + 1;
                     max = j;
                 }
-                else if (list[max].result.high_card == list[j].result.high_card) {
-                    list[j].rank = list[max].rank;
+                else if (list[max]->result.high_card == list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank;
                 }
             }
 
-            if (list[max].result.hands == FULL_HOUSE) {
-                if (list[max].result.high_card < list[j].result.high_card) {
-                    list[j].rank = list[max].rank + 1;
+            if (list[max]->result.hands == FULL_HOUSE) {
+                if (list[max]->result.high_card < list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank + 1;
                     max = j;
                 }
-                else if (list[max].result.high_card == list[j].result.high_card) {
-                    list[j].rank = list[max].rank;
+                else if (list[max]->result.high_card == list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank;
                 }
             }
 
-            if (list[max].result.hands == STRAIGHT_FLUSH) {
-                if (list[max].result.high_card < list[j].result.high_card) {
-                    list[j].rank = list[max].rank + 1;
+            if (list[max]->result.hands == STRAIGHT_FLUSH) {
+                if (list[max]->result.high_card < list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank + 1;
                     max = j;
                 }
-                else if (list[max].result.high_card == list[j].result.high_card) {
-                    list[j].rank = list[max].rank;
+                else if (list[max]->result.high_card == list[j]->result.high_card) {
+                    list[j]->rank = list[max]->rank;
                 }
             }
 
-            if (list[max].result.hands == ROYAL_FLUSH) {
-                list[j].rank = list[max].rank;
+            if (list[max]->result.hands == ROYAL_FLUSH) {
+                list[j]->rank = list[max]->rank;
             }
         }
     }
     // printf("Rank: %d  \n", list[max].rank);
     // printf("Position: %d  \n", max);
-    return list[max].rank;
+    return list[max]->rank;
+}
+
+void print_player_info(Player player){
+    printf("%s\n", player.name);
+    printf("Status: %d\n", player.status);
+    printf("Bet amount: %d\n", player.bet_amount);
+    printf("Chips: %d\n", player.chips);
+    print_cards(player.player_hands, player.length);
 }

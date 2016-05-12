@@ -9,7 +9,7 @@
 /* Using enum to define player' status
  */
 enum status {
-    BUST, FOLD, ALLIN, ACTIVE, CHECK, BET, RAISE, CALL
+    BUSTED, FOLD, ALLIN, ACTIVE, CHECK, BET, CALL, RAISE
 };
 typedef enum status Status;
 
@@ -55,19 +55,19 @@ typedef struct {
 /* Create a player
  * @param length_hands is the number of cards in the player's hands
  */
-Player create_player(int length_hands);
+Player * create_player(int length_hands);
 
 /* Create a list of players
  * @param num_players is the number of players
  * @param length_hands is the number of cards in each player's hands
  */
-Player * create_players_list(int num_players, int length_hands, Player_type mode);
+Player ** create_players_list(int num_players, int length_hands, Player_type mode);
 
 /* Free the resources allocated for each player and the player list
  * @param list is the list of players
  * @param num_players is the number of players
  */
-void free_players_list(Player * list, int num_players);
+void free_players_list(Player **list, int num_players);
 
 /* Change the card that the player wishes to change in change phase
  * @param deck is the deck used to deal cards
@@ -99,6 +99,8 @@ void check_pairs(Player * player);
  * @param list is the list of the player
  * @param length is the number of players
  */
-int compare_hands(Player * list, int length);
+int compare_hands(Player ** list, int length);
+
+void print_player_info(Player player);
 
 #endif //COSC2451_A2_S3500286_S3500291_PLAYER_H
