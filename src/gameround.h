@@ -13,6 +13,8 @@ typedef struct {
     int call_amount;
     int ante;
     int num_players;
+    int remaining_players;
+    int fold_count;
 } Game_round;
 
 Game_round * create_game_round(int num_players);
@@ -40,5 +42,11 @@ void action_check(Game_round * round, Player * player);
 void action_allIn(Game_round * round, Player * player);
 
 int get_pot(Game_round * round, Player ** list, int winner_position);
+
+int check_num_busted_players(Game_round * round, Player ** list);
+
+void reset_round(Game_round * round, Player ** list);
+
+int check_fold_count(Game_round * round, Player ** list);
 
 #endif //COSC2451_A2_S3500286_S3500291_GAMEROUND_H

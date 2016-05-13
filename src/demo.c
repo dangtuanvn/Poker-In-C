@@ -1,9 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "poker.h"
-#include "gameround.h"
-#include "player.h"
 
 int main(){
     Deck * deck = create_deck();
@@ -18,33 +15,29 @@ int main(){
     //players_list[2]->chips = 3003;
     //players_list[3]->chips = 2000;
 
+    //players_list[0]->chips = 0;
+    //players_list[0]->status = BUSTED;
+
     Game_round * round = create_game_round(NUM_PLAYERS);
 
-    int ongoing = 1;
-    while(ongoing){
+    while(round->remaining_players != 1){
         // ROUND START
+        printf("\nROUND %d STARTS!!!\n", round->round_number);
+        deck->top = LENGTH_DECK - 1;
         shuffle_deck(deck, LENGTH_DECK);
         // print_cards(deck, LENGTH_DECK);
 
         for(int j = 0; j < LENGTH_HANDS; j++){
-            for(int i = 0; i < NUM_PLAYERS; i++) {
-                deal_card(deck, *players_list[i], LENGTH_HANDS);
+            for(int i = 0; i < round->num_players; i++) {
+                if(players_list[i]->status != BUSTED) {
+                    deal_card(deck, *players_list[i], LENGTH_HANDS);
+                }
             }
         }
         place_ante(round, players_list);
+        printf("Players places initial ante of %d\n", round->ante);
 
-
-        players_list[2]->player_hands[0].number = (Number) 14;
-        players_list[2]->player_hands[0].suit = (Suit) 1;
-        players_list[2]->player_hands[1].number = (Number) 10;
-        players_list[2]->player_hands[1].suit = (Suit) 1;
-        players_list[2]->player_hands[2].number = (Number) 13;
-        players_list[2]->player_hands[2].suit = (Suit) 1;
-        players_list[2]->player_hands[3].number = (Number) 11;
-        players_list[2]->player_hands[3].suit = (Suit) 1;
-        players_list[2]->player_hands[4].number = (Number) 12;
-        players_list[2]->player_hands[4].suit = (Suit) 1;
-
+        /*
         players_list[3]->player_hands[0].number = (Number) 14;
         players_list[3]->player_hands[0].suit = (Suit) 1;
         players_list[3]->player_hands[1].number = (Number) 10;
@@ -55,7 +48,9 @@ int main(){
         players_list[3]->player_hands[3].suit = (Suit) 1;
         players_list[3]->player_hands[4].number = (Number) 12;
         players_list[3]->player_hands[4].suit = (Suit) 1;
+        */
 
+        printf("DEAL CARD!~\n");
         for(int j = 0; j < NUM_PLAYERS; j++)
         {
             sort_hands(players_list[j]->player_hands, LENGTH_HANDS);
@@ -73,10 +68,14 @@ int main(){
         AI_bet_phase1(&round, &players_list[2]);
         AI_bet_phase1(&round, &players_list[3]);
         */
+        int check_fold = 0;
+
+        printf("\nBETTING PHASE 1 STARTS\n");
         int position = 0;
 
         while(round->position_turn  > 0){
             // printf("%d %d", players_list[0].bet_amount, round.call_amount);
+
             if(players_list[position]->type == HUMAN){
                 if(players_list[position]->status > 2) {
                     if (players_list[position]->bet_amount == round->call_amount) {
@@ -90,9 +89,9 @@ int main(){
             else{
                 if(players_list[position]->status > 2) {
                     AI_bet_phase1(round, players_list[position]);
+                    //action_fold(round,players_list[position]);
                 }
             }
-
 
             if(players_list[position]->status == CHECK){
                 printf("%s checks, %d\n", players_list[position]->name, players_list[position]->bet_amount);
@@ -115,100 +114,114 @@ int main(){
 
             // printf("%s: %d - %d\n", players_list[position].name, players_list->bet_amount, players_list->status);
             // printf("Position: %d\n", position);
+
+            check_fold = check_fold_count(round, players_list);
             position++;
             if(position == 4){
                 position = 0;
             }
-
             round->position_turn--;
             waitFor(1);
         }
         printf("\n");
-        printf("BETTING PHASE 1 FINISHED\n");
+        printf("BETTING PHASE 1 ENDS\n");
         printf("Call amount: %d\n", round->call_amount);
         printf("Pot: %d\n", round->pot);
         printf("\n");
 
         // EXCHANGE CARDS PHASE
-        AI_change_cards(deck, players_list, NUM_PLAYERS);
+        if(!check_fold) {
+            printf("CHANGE CARD PHASE!~\n");
+            AI_change_cards(deck, players_list, NUM_PLAYERS);
+        }
 
         // BETTING PHASE 2
-        round->position_turn = 4;
-        while(round->position_turn  > 0){
-            // printf("%d %d", players_list[0].bet_amount, round.call_amount);
-            if(players_list[position]->type == HUMAN){
-                if(players_list[position]->status > 2) {
-                    if (players_list[position]->bet_amount == round->call_amount) {
-                        action_check(round, players_list[position]);
-                    }
-                    else {
-                        action_call(round, players_list[position]);
+        if(!check_fold) {
+            printf("\nBETTING PHASE 2 STARTS\n");
+            position = 0;
+            round->position_turn = round->num_players;
+            while (round->position_turn > 0) {
+                // printf("%d %d", players_list[0].bet_amount, round.call_amount);
+                if (players_list[position]->type == HUMAN) {
+                    if (players_list[position]->status > 2) {
+                        if (players_list[position]->bet_amount == round->call_amount) {
+                            action_check(round, players_list[position]);
+                        }
+                        else {
+                            action_call(round, players_list[position]);
+                        }
                     }
                 }
-            }
-            else{
-                if(players_list[position]->status > 2) {
-                    AI_bet_phase2(round, players_list[position]);
+                else {
+                    if (players_list[position]->status > 2) {
+                        AI_bet_phase2(round, players_list[position]);
+                        //action_fold(round,players_list[position]);
+                    }
                 }
-            }
 
-            if(players_list[position]->status == CHECK){
-                printf("%s checks, %d\n", players_list[position]->name, players_list[position]->bet_amount);
-            }
-            else if(players_list[position]->status == CALL){
-                printf("%s calls, %d\n", players_list[position]->name, players_list[position]->bet_amount);
-            }
-            else if(players_list[position]->status == BET){
-                printf("%s bets, %d\n", players_list[position]->name, players_list[position]->bet_amount);
-            }
-            else if(players_list[position]->status == RAISE){
-                printf("%s raises, %d\n", players_list[position]->name, players_list[position]->bet_amount);
-            }
-            else if(players_list[position]->status == FOLD){
-                printf("%s folds\n", players_list[position]->name);
-            }
-            else if(players_list[position]->status == ALLIN){
-                printf("%s all in, %d\n", players_list[position]->name, players_list[position]->bet_amount);
-            }
+                if (players_list[position]->status == CHECK) {
+                    printf("%s checks, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+                }
+                else if (players_list[position]->status == CALL) {
+                    printf("%s calls, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+                }
+                else if (players_list[position]->status == BET) {
+                    printf("%s bets, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+                }
+                else if (players_list[position]->status == RAISE) {
+                    printf("%s raises, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+                }
+                else if (players_list[position]->status == FOLD) {
+                    printf("%s folds\n", players_list[position]->name);
+                }
+                else if (players_list[position]->status == ALLIN) {
+                    printf("%s all in, %d\n", players_list[position]->name, players_list[position]->bet_amount);
+                }
 
-            // printf("%s: %d - %d\n", players_list[position].name, players_list->bet_amount, players_list->status);
-            // printf("Position: %d\n", position);
-            position++;
-            if(position == 4){
-                position = 0;
-            }
 
-            round->position_turn--;
-            waitFor(1);
+                check_fold = check_fold_count(round, players_list);
+                // printf("%s: %d - %d\n", players_list[position].name, players_list->bet_amount, players_list->status);
+                // printf("Position: %d\n", position);
+                position++;
+                if (position == 4) {
+                    position = 0;
+                }
+
+                round->position_turn--;
+                waitFor(1);
+            }
+            printf("\n");
+            printf("BETTING PHASE 2 ENDS\n");
+            printf("Call amount: %d\n", round->call_amount);
+            printf("Pot: %d\n\n", round->pot);
         }
-        printf("\n");
-        printf("BETTING PHASE 2 FINISHED\n");
-        printf("Call amount: %d\n", round->call_amount);
-        printf("Pot: %d\n", round->pot);
+
 
         // SHOWDOWN PHASE
-        printf("\n");
-        for(int j = 0; j < NUM_PLAYERS; j++)
-        {
-            sort_hands(players_list[j]->player_hands, LENGTH_HANDS);
-            printf("%s:\t", players_list[j]->name);
-            print_cards(players_list[j]->player_hands, LENGTH_HANDS);
+        if(!check_fold) {
+            printf("\n");
+            for (int j = 0; j < NUM_PLAYERS; j++) {
+                sort_hands(players_list[j]->player_hands, LENGTH_HANDS);
+                printf("%s:\t", players_list[j]->name);
+                print_cards(players_list[j]->player_hands, LENGTH_HANDS);
+            }
+            printf("\n");
+
+            printf("---------------------SHOWDOWN---------------------\n\n");
+            int top_rank = showdown(*round, players_list);
+            get_pot(round, players_list, top_rank);
         }
-        printf("\n");
-
-        printf("---------------------SHOWDOWN---------------------\n\n");
-        int top_rank = showdown(*round, players_list);
-        get_pot(round, players_list, top_rank);
-
         for(int j = 0; j < NUM_PLAYERS; j++){
             printf("\n");
             print_player_info(*players_list[j]);
         }
-        ongoing = 0;
+
+        reset_round(round, players_list);
+        printf("\nREMAINING PLAYERS: %d\n", round->remaining_players);
+        printf("Call amount: %d\n", round->call_amount);
+        printf("Pot: %d\n", round->pot);
     }
 
-    printf("Call amount: %d\n", round->call_amount);
-    printf("\nPot: %d\n", round->pot);
 
 /*
     for(int j = 0; j < 1; j++)

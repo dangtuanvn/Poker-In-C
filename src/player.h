@@ -34,7 +34,6 @@ typedef struct {
     Number high_card;
     Number pair_1;
     Number pair_2;
-    int rank;
 } Poker_hands;
 
 /* Struct player with unique variables

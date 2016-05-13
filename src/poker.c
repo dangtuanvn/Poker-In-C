@@ -3,8 +3,6 @@
 #include <time.h>
 #include <string.h>
 #include "poker.h"
-#include "gameround.h"
-#include "player.h"
 
 int showdown(Game_round round, Player ** list) {
     for (int j = 0; j < round.num_players; j++) {
@@ -48,16 +46,13 @@ int showdown(Game_round round, Player ** list) {
             printf("\n");
         }
     }
-    int top_rank = compare_hands(list, NUM_PLAYERS);
+    int top_rank = compare_hands(list, round.num_players);
 
     printf("Player(s) with the best hands:");
 
     for (int j = 0; j < round.num_players; j++) {
-        if(list[j]->status < 2){
-            list[j]->rank = -1;
-        }
-        else if (list[j]->rank == top_rank) {
-            printf(" %s", list[j]->name);
+        if (list[j]->rank == top_rank) {
+            printf(" %s %d %d", list[j]->name, list[j]->rank, list[j]->result.hands);
         }
     }
     printf("\n");
@@ -210,7 +205,15 @@ void AI_bet_phase1(Game_round * round, Player * player){
             }
         }
         else if (player->result.hands == TWO_PAIRS) {
-            if (r <= 2) {
+            if (r == 0){
+                if(player->bet_amount == round->call_amount) {
+                    action_check(round, player);
+                }
+                else{
+                    action_fold(round, player);
+                }
+            }
+            else if (r <= 4) {
                 if(player->bet_amount == round->call_amount) {
                     action_bet(round, player, round->call_amount);
                 }
@@ -228,7 +231,15 @@ void AI_bet_phase1(Game_round * round, Player * player){
             }
         }
         else if (player->result.hands == PAIR) {
-            if (r <= 2) {
+            if (r <= 2){
+                if(player->bet_amount == round->call_amount) {
+                    action_check(round, player);
+                }
+                else{
+                    action_fold(round, player);
+                }
+            }
+            else if (r <= 4) {
                 if(player->bet_amount == round->call_amount) {
                     action_bet(round, player, round->call_amount);
                 }
@@ -297,7 +308,12 @@ void AI_bet_phase1(Game_round * round, Player * player){
                     }
                 }
                 else {
-                    action_fold(round, player);
+                    if(player->bet_amount == round->call_amount) {
+                        action_check(round, player);
+                    }
+                    else{
+                        action_fold(round, player);
+                    }
                 }
             }
             else {
@@ -323,7 +339,12 @@ void AI_bet_phase1(Game_round * round, Player * player){
                     }
                 }
                 else {
-                    action_fold(round, player);
+                    if(player->bet_amount == round->call_amount) {
+                        action_check(round, player);
+                    }
+                    else{
+                        action_fold(round, player);
+                    }
                 }
             }
         }
@@ -391,7 +412,15 @@ void AI_bet_phase2(Game_round * round, Player * player) {
             }
         }
         else if (player->result.hands == TWO_PAIRS) {
-            if (r <= 3) {
+            if (r == 0){
+                if(player->bet_amount == round->call_amount) {
+                    action_check(round, player);
+                }
+                else{
+                    action_fold(round, player);
+                }
+            }
+            else if (r <= 4) {
                 if (player->bet_amount == round->call_amount) {
                     action_bet(round, player, round->call_amount);
                 }
@@ -409,7 +438,15 @@ void AI_bet_phase2(Game_round * round, Player * player) {
             }
         }
         else if (player->result.hands == PAIR) {
-            if (r <= 2) {
+            if (r <= 2){
+                if(player->bet_amount == round->call_amount) {
+                    action_check(round, player);
+                }
+                else{
+                    action_fold(round, player);
+                }
+            }
+            else if (r <= 4) {
                 if (player->bet_amount == round->call_amount) {
                     action_bet(round, player, round->call_amount);
                 }
@@ -455,7 +492,12 @@ void AI_bet_phase2(Game_round * round, Player * player) {
                     }
                 }
                 else{
-                    action_fold(round, player);
+                    if(player->bet_amount == round->call_amount) {
+                        action_check(round, player);
+                    }
+                    else{
+                        action_fold(round, player);
+                    }
                 }
             }
         }
