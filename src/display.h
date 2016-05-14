@@ -61,10 +61,11 @@ void select_card_to_change(int player, int position);
 void process_change_card(Deck * deck, Player ** players);
 void display_chips_rank(Player ** players);
 void display_pot(int amount);
-void display_in_game_stuff(Player ** players, Game_round * game_round, int pos);
+void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * game_round, int pos);
 void reset_select_card();
-
-void update(WINDOW ** seats, Player ** players, Game_round * game_round, int turn);
+void set_cur_up_down(int a);
+int get_cur_up_down();
+void update(WINDOW * input_win,WINDOW ** seats, Player ** players, Game_round * game_round, int turn);
 
 
 #endif //COSC2451_A2_S3500286_S3500291_DISPLAY_H

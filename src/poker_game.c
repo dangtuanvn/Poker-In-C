@@ -45,8 +45,8 @@ int main(int argc, char *argv[]) {
     WINDOW *my_wins[2];
 
     my_wins[0] = newwin(MENU_HEIGHT, MENU_WIDTH, (getmaxy(stdscr) - MENU_HEIGHT)/2 + 7, (getmaxx(stdscr) - MENU_WIDTH)/2);
-    my_wins[1] = newwin(MENU_HEIGHT/2 + 3, MENU_WIDTH/2, getbegy(my_wins[0]) + 1,
-                                  getbegx(my_wins[0]) + MENU_WIDTH/2 - 1);
+    my_wins[1] = newwin(MENU_HEIGHT/2 + 3, MENU_WIDTH/2 + 1, getbegy(my_wins[0]) + 1,
+                                  getbegx(my_wins[0]) + MENU_WIDTH/2 - 3);
     WINDOW *current_win = my_wins[0];
 
     display_title(current_win);
@@ -56,18 +56,17 @@ int main(int argc, char *argv[]) {
 
     while(1) {
         c = wgetch(stdscr);//get mouse ad key event
-
-        mvprintw(32, 3, "keystroke: %i ", c);
-        mvprintw(33, 3, "Stage: %i ,Selection: %i", current_stage.num, current_stage.selection);
-        mvprintw(34, 3, "mode: %i", get_mode());
-
         if(current_stage.num == IN_GAME) // Start game
         {
             if(is_game_start == 0) {
                 is_game_start = 1;
-
+                int check_input0 = 0;
+                int check_input1 = 0;
+                int check_input2 = 0;
                 deck = create_deck();
+                int in = 0;
 
+                WINDOW * input_win = newwin(4, 18, getmaxy(stdscr) - 9, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 30);
                 shuffle_deck(deck, LENGTH_DECK);
 
                 game_round = create_game_round(get_num_players());//create gameround
@@ -107,14 +106,18 @@ int main(int argc, char *argv[]) {
                     players_list[3]->player_hands[3].suit = (Suit) 1;
                     players_list[3]->player_hands[4].number = (Number) 12;
                     players_list[3]->player_hands[4].suit = (Suit) 1;
-
-                    players_list[3]->status = FOLD;*/
+*/
+                    players_list[3]->status = BUSTED;
 
                     //mvprintw(25,3,"DEAL CARD!~\n");
                     for (int j = 1; j < get_num_players(); j++) {
                         sort_hands(players_list[j]->player_hands, LENGTH_HANDS);
                     }
                     // BETTING PHASE 1
+                    attron(COLOR_PAIR(2));
+                    mvprintw(getmaxy(stdscr)/2 + 6, (int) (getmaxx(stdscr) - strlen("BETTING-PHASE-1"))/2, "BETTING-PHASE-1");
+                    attroff(COLOR_PAIR(2));
+
                     // print_player_info(players_list[0]);
 
                     /*
@@ -140,20 +143,63 @@ int main(int argc, char *argv[]) {
                             game_round->position_turn--;
                             continue;
                         }
-                        update(player_seat, players_list, game_round, position);
+                        update(input_win, player_seat, players_list, game_round, position);
                         waitFor(1);
-
-                        mvprintw(2, 3, "%i", game_round->position_turn);
 
                         if (players_list[position]->type == HUMAN) {
                             if (players_list[position]->status > 2) {
-                                if (players_list[position]->bet_amount == game_round->call_amount) {
-                                    action_check(game_round, players_list[position]);
+                                check_input0 = 1;
+                                while (check_input0) {
+                                    in = wgetch(stdscr);
+                                    switch (in) {
+                                        case KEY_MOUSE:
+                                            if (getmouse(&event) == OK && event.bstate & BUTTON1_CLICKED) {
+
+
+                                            }
+                                            check_input0 = 0;
+                                            break;
+                                        case 'z':
+                                            if(players_list[position]->bet_amount == game_round->call_amount){
+                                                action_check(game_round, players_list[position]);
+                                            }
+                                            else{
+                                                action_call(game_round, players_list[position]);
+                                            }
+                                            check_input0 = 0;
+                                            break;
+                                        case 'x':
+                                            if(players_list[position]->bet_amount == game_round->call_amount){
+                                                action_bet(game_round, players_list[position], get_cur_up_down());
+                                            }
+                                            else{
+                                                action_raise(game_round, players_list[position], get_cur_up_down());
+                                            }
+                                            check_input0 = 0;
+                                            break;
+                                        case 'c':
+                                            action_fold(game_round, players_list[position]);
+                                            check_input0 = 0;
+                                            break;
+                                        case KEY_LEFT:
+                                            add_cur_up_down(-get_step_up_down());
+                                            display_in_game_stuff(input_win, players_list, game_round, position);
+                                            break;
+                                        case KEY_RIGHT:
+                                            add_cur_up_down(get_step_up_down());
+                                            display_in_game_stuff(input_win, players_list, game_round, position);
+                                            break;
+                                        case 'q':
+                                            current_stage.num = MAIN_MENU;
+                                            current_win = my_wins[0];
+                                            clear();
+                                            display_title(current_win);
+                                            change_stage(current_win, &current_stage);
+                                            goto stop;
+                                        default:
+                                            break;
+                                    }
                                 }
-                                else {
-                                    action_call(game_round, players_list[position]);
-                                }
-                                //TODO: PLAYER INPUT
                             }
                         }
                         else {
@@ -165,7 +211,7 @@ int main(int argc, char *argv[]) {
 
                         check_fold = check_fold_count(game_round, players_list);
 
-                        update(player_seat, players_list, game_round, position);
+                        update(input_win, player_seat, players_list, game_round, position);
 
                         position++;
                         if (position == get_num_players()) {
@@ -175,16 +221,15 @@ int main(int argc, char *argv[]) {
                     }
 
                     // EXCHANGE CARDS PHASE
+                    attron(COLOR_PAIR(2));
+                    mvprintw(getmaxy(stdscr)/2 + 6, (int) (getmaxx(stdscr) - strlen("EXCHANGE-CARD-PHASE"))/2, "EXCHANGE-CARD-PHASE");
+                    attroff(COLOR_PAIR(2));
                     if (!check_fold) {
                         AI_change_cards(deck, players_list, get_num_players());
 
                         if (players_list[0]->status > 1) {
-
-
-                            refresh();
-                            int check_input = 1;
-                            int in = 0;
-                            while (check_input) {
+                            check_input1 = 1;
+                            while (check_input1) {
                                 in = wgetch(stdscr);
                                 switch (in) {
                                     case KEY_MOUSE:
@@ -192,31 +237,34 @@ int main(int argc, char *argv[]) {
                                             mvprintw(29, 3, "%i , %i", event.x, event.y);
                                             process_change_card(deck, players_list);
                                             display_deck(player_seat[0], *players_list[0]);
-                                            display_player_seat(player_seat, players_list, position);
-                                            display_deck(player_seat[0], *players_list[0]);
-                                            display_chips_rank(players_list);
-                                            check_input = 0;
+                                            check_input0 = 1;
                                         }
                                         break;
-                                    case 49:
+                                    case '1':
                                         select_card_to_change(0, 1);
                                         display_deck(player_seat[0], *players_list[0]);
                                         break;
-                                    case 50:
+                                    case '2':
                                         select_card_to_change(0, 2);
                                         display_deck(player_seat[0], *players_list[0]);
                                         break;
-                                    case 51:
+                                    case '3':
                                         select_card_to_change(0, 3);
                                         display_deck(player_seat[0], *players_list[0]);
                                         break;
-                                    case 52:
+                                    case '4':
                                         select_card_to_change(0, 4);
                                         display_deck(player_seat[0], *players_list[0]);
                                         break;
-                                    case 53:
+                                    case '5':
                                         select_card_to_change(0, 5);
                                         display_deck(player_seat[0], *players_list[0]);
+                                        break;
+                                    case 13://ENTER
+                                    case 343://ENTER
+                                        process_change_card(deck, players_list);
+                                        display_deck(player_seat[0], *players_list[0]);
+                                        check_input1 = 0;
                                         break;
                                     case 'q':
                                         current_stage.num = MAIN_MENU;
@@ -233,6 +281,10 @@ int main(int argc, char *argv[]) {
                     }
 
                     // BETTING PHASE 2
+                    mvprintw(getmaxy(stdscr)/2 + 6, (int) (getmaxx(stdscr) - strlen("EXCHANGE-CARD-PHASE"))/2, "                    ");
+                    attron(COLOR_PAIR(2));
+                    mvprintw(getmaxy(stdscr)/2 + 6, (int) (getmaxx(stdscr) - strlen("BETTING-PHASE-2"))/2, "BETTING-PHASE-2");
+                    attroff(COLOR_PAIR(2));
                     if (!check_fold) {
                         position = 0;
                         game_round->position_turn = game_round->num_players;
@@ -245,11 +297,62 @@ int main(int argc, char *argv[]) {
                                 game_round->position_turn--;
                                 continue;
                             }
-                            update(player_seat, players_list, game_round, position);
+                            update(input_win, player_seat, players_list, game_round, position);
                             waitFor(1);
                             if (players_list[position]->type == HUMAN) {
                                 if (players_list[position]->status > 2) {
-                                    //TODO
+                                    check_input2 = 1;
+                                    while (check_input2) {
+                                        in = wgetch(stdscr);
+                                        switch (in) {
+                                            case KEY_MOUSE:
+                                                if (getmouse(&event) == OK && event.bstate & BUTTON1_CLICKED) {
+
+
+                                                }
+                                                check_input2 = 0;
+                                                break;
+                                            case 'z':
+                                                if(players_list[position]->bet_amount == game_round->call_amount){
+                                                    action_check(game_round, players_list[position]);
+                                                }
+                                                else{
+                                                    action_call(game_round, players_list[position]);
+                                                }
+                                                check_input2 = 0;
+                                                break;
+                                            case 'x':
+                                                if(players_list[position]->bet_amount == game_round->call_amount){
+                                                    action_bet(game_round, players_list[position], get_cur_up_down());
+                                                }
+                                                else{
+                                                    action_raise(game_round, players_list[position], get_cur_up_down());
+                                                }
+                                                check_input2 = 0;
+                                                break;
+                                            case 'c':
+                                                action_fold(game_round, players_list[position]);
+                                                check_input2 = 0;
+                                                break;
+                                            case KEY_LEFT:
+                                                add_cur_up_down(-get_step_up_down());
+                                                display_in_game_stuff(input_win, players_list, game_round, position);
+                                                break;
+                                            case KEY_RIGHT:
+                                                add_cur_up_down(get_step_up_down());
+                                                display_in_game_stuff(input_win, players_list, game_round, position);
+                                                break;
+                                            case 'q':
+                                                current_stage.num = MAIN_MENU;
+                                                current_win = my_wins[0];
+                                                clear();
+                                                display_title(current_win);
+                                                change_stage(current_win, &current_stage);
+                                                goto stop;
+                                            default:
+                                                break;
+                                        }
+                                    }
                                 }
                             }
                             else {
@@ -260,16 +363,14 @@ int main(int argc, char *argv[]) {
                             }
 
                             check_fold = check_fold_count(game_round, players_list);
-                            update(player_seat, players_list, game_round, position);
+                            update(input_win, player_seat, players_list, game_round, position);
                             position++;
                             if (position == get_num_players()) {
                                 position = 0;
                             }
                             game_round->position_turn--;
                         }
-
                     }
-
 
                     // SHOWDOWN PHASE
                     if (!check_fold) {
@@ -281,17 +382,17 @@ int main(int argc, char *argv[]) {
                         get_pot(game_round, players_list, top_rank);
                     }
 
-                    update(player_seat, players_list, game_round, position);
+                    update(input_win, player_seat, players_list, game_round, position);
                     for (int i = 0; i < get_num_players(); i++) {
 
                         display_deck(player_seat[i], *players_list[i]);
                     }
                     waitFor(4);
                     reset_round(game_round, players_list);
-                    stop:
-                    continue;
                 }
             }
+            stop:
+            continue;
         }
         // process the command keystroke
         else{// Menu
@@ -375,11 +476,6 @@ int main(int argc, char *argv[]) {
                         current_win = my_wins[0];
                     }
                     change_stage(current_win, &current_stage);
-                    break;
-                case 410:
-                    clear();
-                    display_menu(current_win, &current_stage);
-                    display_title(current_win);
                     break;
                 case 'q':
                     finish(0);

@@ -18,15 +18,15 @@ Game_round * create_game_round(int num_players){
 
 void free_game_round(Game_round * game_round){
     free(game_round);
-} // TODO: not finished
+}
 
 void place_ante(Game_round * round, Player **list) {
     for(int j = 0; j < round->num_players; j++){
         if(list[j]->status != BUSTED) {
             if(list[j]->chips <= round->ante){
-                withdraw_chips(list[j], list[j]->chips);
                 round->pot += list[j]->chips;
                 list[j]->bet_amount = list[j]->chips;
+                withdraw_chips(list[j], list[j]->chips);
                 list[j]->status = ALLIN;
                 //printf("-----------------------_ALL IN---------------------------------------\n");
             }

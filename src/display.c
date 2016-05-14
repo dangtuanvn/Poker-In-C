@@ -16,8 +16,6 @@ Player_type mode = AI_NORMAL;
 
 //TODO free memory
 char * num_player_title = "NUMBER OF PLAYERS";
-char * bet_title = "BET AMOUNT";
-char * raise_title = "RAISE AMOUNT";
 
 int card_to_change[NUM_PLAYERS][LENGTH_HANDS] = {
         {0,0,0,0,0},
@@ -102,8 +100,13 @@ void display_title(WINDOW * win)
 void display_up_down_menu(WINDOW *win, Stage *stage, int min, int max, int step, char * title)
 {
     wclear(win);
+    wattron(win, COLOR_PAIR(3));
+    wattron(win, A_BOLD);
     int x = 2;
-    int y = (getmaxy(win) - stage->num_selections)/2 + 1;
+    int y = 2;
+    if(stage != NULL) {
+        y = (getmaxy(win) - stage->num_selections) / 2 + 1;
+    }
     max_up_down = max;
     min_up_down = min;
     step_up_down = step;
@@ -113,28 +116,39 @@ void display_up_down_menu(WINDOW *win, Stage *stage, int min, int max, int step,
         wprintw(win, " ");
 
     }
-
-    mvwprintw(win, 1, (int) ((getmaxx(win) - strlen(title)) / 2) + 1, title);
+    mvwprintw(win, 1, (int) ((getmaxx(win) - strlen(title)) / 2), title);
     wattron(win, A_REVERSE);
-    mvwprintw(win, 2, (getmaxx(win) - 10)/2, "<");
-    mvwprintw(win, 2, (getmaxx(win) - 10)/2 + 10, ">");
+    mvwprintw(win, 2, 4, "<");
+    mvwprintw(win, 2, getmaxx(win) - 5, ">");
     wattroff(win, A_REVERSE);
-    mvwprintw(win, 2, (getmaxx(win) - 10)/2 + 5, "%d", cur_up_down);
-
-    for(int i = 0; i < stage->num_selections; ++i)
-    {
-        if(stage->selection == i)
-        {	wattron(win, A_REVERSE);
-            mvwprintw(win, y, x, "%s", SPlay_menu_items[i]);
-            wattroff(win, A_REVERSE);
-        }
-        else
-        {
-            mvwprintw(win, y, x, SPlay_menu_items[i]);
-        }
-        ++y;
+    if(cur_up_down < 10){
+        mvwprintw(win, 2, (getmaxx(win) - 10)/2 + 5, "%d", cur_up_down);
     }
+    else if(cur_up_down < 1000){
+        mvwprintw(win, 2, (getmaxx(win) - 10)/2 + 4, "%d", cur_up_down);
+    }
+    else{
+        mvwprintw(win, 2, (getmaxx(win) - 10)/2 + 3, "%d", cur_up_down);
+    }
+
+
+    if(stage != NULL && stage->num != IN_GAME) {
+        for (int i = 0; i < stage->num_selections; ++i) {
+            if (stage->selection == i) {
+                wattron(win, A_REVERSE);
+                mvwprintw(win, y, x, "%s", SPlay_menu_items[i]);
+                wattroff(win, A_REVERSE);
+            }
+            else {
+                mvwprintw(win, y, x, SPlay_menu_items[i]);
+            }
+            ++y;
+        }
+    }
+    box(win, 0, 0);
+    wrefresh(win);
 }
+
 //numplayer += 1
 void add_cur_up_down(int a)
 {
@@ -147,11 +161,17 @@ void add_cur_up_down(int a)
     {
         cur_up_down = min_up_down;
     }
+    mvprintw(5,3, "%i", cur_up_down);
 }
 
 int get_step_up_down()
 {
     return  step_up_down;
+}
+
+int get_cur_up_down()
+{
+    return  cur_up_down;
 }
 
 //print menu
@@ -526,11 +546,17 @@ void display_player_seat(WINDOW ** seats, Player ** players, int turn)
 
             }
         }
+        else
+        {
+            wclear(seats[i]);
+        }
 
         wattroff(seats[i], COLOR_PAIR(4));
         wattroff(seats[i], COLOR_PAIR(5));
         wattroff(seats[i], COLOR_PAIR(1));
+        box(seats[i],0,0);
         wattroff(seats[i], A_BOLD);
+
         wrefresh(seats[i]);
     }
 }
@@ -582,42 +608,55 @@ void display_chips_rank(Player ** players)
 
 void display_pot(int a)
 {
-    mvprintw(getmaxy(stdscr)/2, getmaxx(stdscr)/2 - 4, "POT");
-    mvprintw(getmaxy(stdscr)/2 + 2, getmaxx(stdscr)/2 - 4, "          ");
-    mvprintw(getmaxy(stdscr)/2 + 2, getmaxx(stdscr)/2 - 4, "%i", a);
+    mvprintw(getmaxy(stdscr)/2, getmaxx(stdscr)/2 - 3, "POT");
+    mvprintw(getmaxy(stdscr)/2 + 2, getmaxx(stdscr)/2 - 3, "          ");
+    mvprintw(getmaxy(stdscr)/2 + 2, getmaxx(stdscr)/2 - 3, "%i", a);
 
 }
 
-void display_in_game_stuff(Player ** players, Game_round * game_round, int pos)
+void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * game_round, int pos)
 {
+
     if(pos == 0 && (players[pos]->bet_amount == game_round->call_amount)) {
         attron(COLOR_PAIR(3));
         attron(A_BOLD);
         mvprintw(2, getmaxx(stdscr) - 20, " QUIT(Q) ");
         mvprintw(4, getmaxx(stdscr) - 20, " SAVE-AND-QUIT(S) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " CHECK(Q) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " BET(W) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(E) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " CHECK(Z) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " BET(X) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(C) ");
+        display_up_down_menu(input_win, NULL, game_round->call_amount, players[pos]->chips, 10 , "CHIPS AMOUNT");
     }
     else if(pos == 0){
         attron(COLOR_PAIR(3));
         attron(A_BOLD);
         mvprintw(2, getmaxx(stdscr) - 20, " QUIT(Q) ");
         mvprintw(4, getmaxx(stdscr) - 20, " SAVE-AND-QUIT(S) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " CALL(Q) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " RAISE(W) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(E) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " CALL(Z) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " RAISE(X) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(C) ");
+        display_up_down_menu(input_win, NULL, game_round->call_amount, players[pos]->chips, 10 , "CHIPS AMOUNT");
     }
     else{
+        for(int i = 0; i < 18; i++)
+        {
+            for(int j = 0; j < 4; j++){
+                mvprintw(getmaxy(stdscr) - 9 + j, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 30 + i, " ");
+            }
+
+        }
+
         mvprintw(2, getmaxx(stdscr) - 20, "         ");
         mvprintw(4, getmaxx(stdscr) - 20, "                      ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, "          ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, "         ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, "           ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, "           ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, "           ");
     }
-        refresh();
-        attroff(A_BOLD);
-        attroff(COLOR_PAIR(3));
+
+
+    refresh();
+    attroff(A_BOLD);
+    attroff(COLOR_PAIR(3));
 }
 
 void reset_select_card()
@@ -629,10 +668,11 @@ void reset_select_card()
     }
 }
 
-void update(WINDOW ** seats, Player ** players, Game_round * game_round, int turn){
+void update(WINDOW * input_win, WINDOW ** seats, Player ** players, Game_round * game_round, int turn){
+    cur_up_down = game_round->call_amount;
     display_chips_rank(players);
     display_pot(game_round->pot);
-    display_in_game_stuff(players, game_round, turn);
+    display_in_game_stuff(input_win, players, game_round, turn);
     display_player_seat(seats, players, turn);
 }
 
