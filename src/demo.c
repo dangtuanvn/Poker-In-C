@@ -84,6 +84,7 @@ int main(){
                     else {
                         action_call(round, players_list[position]);
                     }
+                    //TODO: PLAYER INPUT
                 }
             }
             else{
@@ -133,6 +134,7 @@ int main(){
         if(!check_fold) {
             printf("CHANGE CARD PHASE!~\n");
             AI_change_cards(deck, players_list, NUM_PLAYERS);
+            //TODO: PLAYER INPUT
         }
 
         // BETTING PHASE 2
@@ -150,6 +152,7 @@ int main(){
                         else {
                             action_call(round, players_list[position]);
                         }
+                        //TODO: PLAYER INPUT
                     }
                 }
                 else {

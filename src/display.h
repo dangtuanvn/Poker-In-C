@@ -46,7 +46,8 @@ typedef struct display {
 void change_stage(WINDOW *win, Stage *stage);
 void display_title(WINDOW * win);
 void display_menu(WINDOW *win, Stage *stage);
-void display_player_seat(WINDOW ** seats, Player * players);
+void display_player_seat(WINDOW ** seats, Player ** players, int turn);
+void update_player_info(WINDOW ** seats, Player ** players, int turn);
 void display_deck(WINDOW *win, Player player);
 Stage create_stage();
 int pointed_item(WINDOW * win, int posX, int posY, Stage stage);
@@ -56,9 +57,14 @@ void add_cur_up_down(int a);
 int get_step_up_down();
 Player_type get_mode();
 int get_num_players();
-void select_card_to_change(int position);
-void process_change_card(Deck * deck, Player * players);
+void select_card_to_change(int player, int position);
+void process_change_card(Deck * deck, Player ** players);
+void display_chips_rank(Player ** players);
+void display_pot(int amount);
+void display_in_game_stuff(Player ** players, Game_round * game_round, int pos);
+void reset_select_card();
 
+void update(WINDOW ** seats, Player ** players, Game_round * game_round, int turn);
 
 
 #endif //COSC2451_A2_S3500286_S3500291_DISPLAY_H

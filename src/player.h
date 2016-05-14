@@ -102,4 +102,9 @@ int compare_hands(Player ** list, int length);
 
 void print_player_info(Player player);
 
+void swap_players(Player *x, Player *y);
+void sort_players(Player **a, int length);
+void copy_Player_array(Player **src, Player **dst, int length);
+Player ** clone_Player_array(Player **a, int length);
+
 #endif //COSC2451_A2_S3500286_S3500291_PLAYER_H

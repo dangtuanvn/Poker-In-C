@@ -3,6 +3,8 @@
 #include <ncurses.h>
 #include <string.h>
 #include "display.h"
+#include "player.h"
+#include "gameround.h"
 
 
 int num_players = NUM_PLAYERS;
@@ -17,7 +19,15 @@ char * num_player_title = "NUMBER OF PLAYERS";
 char * bet_title = "BET AMOUNT";
 char * raise_title = "RAISE AMOUNT";
 
-int card_to_change[LENGTH_HANDS] = {0,0,0,0,0};
+int card_to_change[NUM_PLAYERS][LENGTH_HANDS] = {
+        {0,0,0,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0}
+};
+
+
+char * player_status[] = {"BUSTED OUT", "FOLD", "ALL IN", "ACTIVE", "CHECK", "BET", "CALL", "RAISE"};
 
 char * main_menu_items[] = {
         "NEW-GAME",
@@ -359,11 +369,7 @@ void change_stage(WINDOW *win, Stage *stage)
                     stage->selection = 0;
                     num_players = cur_up_down;
                     display_menu(win, stage);
-                    card_to_change[0] = 0;
-                    card_to_change[1] = 0;
-                    card_to_change[2] = 0;
-                    card_to_change[3] = 0;
-                    card_to_change[4] = 0;
+                    reset_select_card();
                     break;
                 case 1:
                     stage->num = NEW_GAME;
@@ -379,15 +385,22 @@ void change_stage(WINDOW *win, Stage *stage)
             break;
     }
 }
-void select_card_to_change(int position)
+void select_card_to_change(int player, int position)
 {
-    if(card_to_change[position - 1] == 1)
-    {
-        card_to_change[position - 1] = 0;
+    int check = 0;
+    for(int i = 0; i < LENGTH_HANDS; i++){
+        if(card_to_change[player][i] == 1){
+            check++;
+        }
     }
-    else
+
+    if(card_to_change[player][position - 1] == 1)
     {
-        card_to_change[position - 1] = 1;
+        card_to_change[player][position - 1] = 0;
+    }
+    else if (check < 3)
+    {
+        card_to_change[player][position - 1] = 1;
     }
 
 }
@@ -426,7 +439,7 @@ void display_deck(WINDOW *win, Player player)
         else if(player.player_hands[x].suit == 2) strcat(number_suit, "\u2663");
         else strcat(number_suit, "\u2660");
 
-        if(strcmp(player.name, "YOU") == 0 && card_to_change[x] == 1)
+        if(player.type == HUMAN && card_to_change[0][x] == 1)
         {
             startY--;
         }
@@ -460,40 +473,70 @@ void display_deck(WINDOW *win, Player player)
     wrefresh(win);
 
 }
-void display_player_seat(WINDOW ** seats, Player * players)
-{
+
+void update_player_info(WINDOW ** seats, Player ** players, int turn){
+
     for(int i = 0; i < num_players; i++)
     {
-        wattron(seats[i], COLOR_PAIR(1));
-
-        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 5, "%s", players[i].name);
-        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 30, "Chips: %i", players[i].chips);
-
         wattron(seats[i], A_BOLD);
         box(seats[i], 0, 0);
-        for(int x = 0; x < LENGTH_HANDS; x++) {
-            int startX = 1 + x * (CARD_WIDTH + 1);
-            int startY = 1;
-            for (int j = 0; j < CARD_HEIGHT; j++) {
-                for (int k = 0; k < CARD_WIDTH; k++) {
-                    if (j == 1) {
-                        wattron(seats[i], COLOR_PAIR(4));
+
+        wattron(seats[i], COLOR_PAIR(1));
+        for(int a = 0; a < CARD_WIDTH * 5 + 6; a++)
+        {
+            mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + a, " ");
+        }
+
+        if(i == turn)
+        {
+            attron(COLOR_PAIR(2));
+        }
+        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 5, "%s", players[i]->name);
+        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 30, "Chips: %i", players[i]->chips);
+        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 15, "[%s]", player_status[players[i]->status]);
+
+        attroff(COLOR_PAIR(2));
+        wattroff(seats[i], COLOR_PAIR(1));
+        wattroff(seats[i], A_BOLD);
+    }
+    refresh();
+}
+
+void display_player_seat(WINDOW ** seats, Player ** players, int turn)
+{
+    for(int i = 1; i < num_players; i++)
+    {
+        update_player_info(seats, players, turn);
+
+        if(players[i]->status != BUSTED) {
+            for (int x = 0; x < LENGTH_HANDS; x++) {
+                int startX = 1 + x * (CARD_WIDTH + 1);
+                int startY = 1;
+                for (int j = 0; j < CARD_HEIGHT; j++) {
+                    for (int k = 0; k < CARD_WIDTH; k++) {
+                        if (j == 1) {
+                            wattron(seats[i], COLOR_PAIR(4));
+                        }
+                        else {
+                            wattron(seats[i], COLOR_PAIR(5));
+                        }
+                        mvwprintw(seats[i], startY + j, startX + k, " ");
                     }
-                    else {
-                        wattron(seats[i], COLOR_PAIR(5));
-                    }
-                    mvwprintw(seats[i], startY + j, startX + k, " ");
                 }
+
             }
         }
+
         wattroff(seats[i], COLOR_PAIR(4));
         wattroff(seats[i], COLOR_PAIR(5));
         wattroff(seats[i], COLOR_PAIR(1));
         wattroff(seats[i], A_BOLD);
         wrefresh(seats[i]);
     }
-
 }
+
+
+
 Player_type get_mode(){
     return mode;
 }
@@ -503,18 +546,93 @@ int get_num_players()
     return num_players;
 }
 
-void process_change_card(Deck * deck, Player * players)
+void process_change_card(Deck * deck, Player ** players)
 {
     for(int i = 0; i < LENGTH_HANDS; i++)
     {
-        if(card_to_change[i] == 1)
+        if(card_to_change[0][i] == 1)
         {
-            change_card(deck, players[0], i);
+            change_card(deck, *players[0], i);
+        }
+    }
+    reset_select_card();
+}
+
+void display_chips_rank(Player ** players)
+{
+    Player ** chips_rank = clone_Player_array(players, num_players);
+    sort_players(chips_rank, num_players);
+
+    int startX = 8;
+    int startY = 3;
+    mvprintw(startY, startX, "%s", "RANKING");
+    mvprintw(startY + 1, startX, "%s", "_______________");
+
+    for(int i = num_players - 1; i >= 0; i--)
+    {
+        if(chips_rank[i]->status == BUSTED)
+        {
+            mvprintw(startY + 2 + num_players - i, startX, "%s\t[%s]", chips_rank[i]->name, player_status[chips_rank[i]->status]);
+            continue;
+        }
+        mvprintw(startY + 2 + num_players - i, startX, "                         ");
+        mvprintw(startY + 2 + num_players - i, startX, "%s\t%i", chips_rank[i]->name, chips_rank[i]->chips);
+    }
+}
+
+void display_pot(int a)
+{
+    mvprintw(getmaxy(stdscr)/2, getmaxx(stdscr)/2 - 4, "POT");
+    mvprintw(getmaxy(stdscr)/2 + 2, getmaxx(stdscr)/2 - 4, "          ");
+    mvprintw(getmaxy(stdscr)/2 + 2, getmaxx(stdscr)/2 - 4, "%i", a);
+
+}
+
+void display_in_game_stuff(Player ** players, Game_round * game_round, int pos)
+{
+    if(pos == 0 && (players[pos]->bet_amount == game_round->call_amount)) {
+        attron(COLOR_PAIR(3));
+        attron(A_BOLD);
+        mvprintw(2, getmaxx(stdscr) - 20, " QUIT(Q) ");
+        mvprintw(4, getmaxx(stdscr) - 20, " SAVE-AND-QUIT(S) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " CHECK(Q) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " BET(W) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(E) ");
+    }
+    else if(pos == 0){
+        attron(COLOR_PAIR(3));
+        attron(A_BOLD);
+        mvprintw(2, getmaxx(stdscr) - 20, " QUIT(Q) ");
+        mvprintw(4, getmaxx(stdscr) - 20, " SAVE-AND-QUIT(S) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " CALL(Q) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " RAISE(W) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(E) ");
+    }
+    else{
+        mvprintw(2, getmaxx(stdscr) - 20, "         ");
+        mvprintw(4, getmaxx(stdscr) - 20, "                      ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, "          ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, "         ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, "           ");
+    }
+        refresh();
+        attroff(A_BOLD);
+        attroff(COLOR_PAIR(3));
+}
+
+void reset_select_card()
+{
+    for(int i = 0; i < NUM_PLAYERS; i++){
+        for(int j = 0; j < LENGTH_HANDS; j++){
+            card_to_change[i][j] = 0;
         }
     }
 }
 
-
-
-
+void update(WINDOW ** seats, Player ** players, Game_round * game_round, int turn){
+    display_chips_rank(players);
+    display_pot(game_round->pot);
+    display_in_game_stuff(players, game_round, turn);
+    display_player_seat(seats, players, turn);
+}
 

@@ -125,6 +125,9 @@ int get_pot(Game_round * round, Player ** list, int top_rank){
     int temp = num_winners;
     for (int i = 0; i < num_winners; i++) {
         for (int j = 0; j < round->num_players; j++) {
+            if(list[j]->status == BUSTED){
+                continue;
+            }
             int winning_chips = list[j]->bet_amount / temp;
             add_chips(round, list[winner_positions[i]], winning_chips);
             total_chips += winning_chips;
@@ -174,7 +177,12 @@ void reset_round(Game_round * round, Player ** list){
     for (int j = 0; j < round->num_players; j++) {
         for(int i = 0; i < LENGTH_HANDS; i++){
             list[j]->player_hands[i].number = (Number) 0;
-            list[j]->rank = 0;
+            if(list[j]->status == BUSTED) {
+                list[j]->rank = -1;
+            }
+            else{
+                list[j]->rank = 0;
+            }
         }
     }
 }
@@ -192,10 +200,9 @@ int check_fold_count(Game_round * round, Player ** list){
             }
         }
     }
-    else{
-        return 0;
-    }
+    return 0;
 }
+
 /* TODO
  * When all players fold.
  */

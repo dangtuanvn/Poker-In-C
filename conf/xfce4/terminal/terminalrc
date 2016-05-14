@@ -1,5 +1,5 @@
 [Configuration]
-ColorPalette=#c7aec092c092;#aaaa00000000;#0000aaaa0000;#aaaa55550000;#00000000aaaa;#aaaa0000aaaa;#357d5d7a5a74;#000000000000;#fdfdf6f6e3e3;#cbcb4b4b1616;#9393a1a1a1a1;#838394949696;#65657b7b8383;#6c6c7171c4c4;#58586e6e7575;#00002b2b3636
+ColorPalette=#c7aec092c092;#aaaa00000000;#0000aaaa0000;#d2637fb62d09;#00000000aaaa;#aaaa0000aaaa;#357d5d7a5a74;#000000000000;#fdfdf6f6e3e3;#cbcb4b4b1616;#9393a1a1a1a1;#838394949696;#65657b7b8383;#6c6c7171c4c4;#58586e6e7575;#00002b2b3636
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBordersDefault=TRUE
@@ -17,7 +17,7 @@ MiscTabCloseMiddleClick=TRUE
 MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
 ColorForeground=#ffabffabffab
-ColorBackground=#fdf6e3
+ColorBackground=#C7C0C0
 ColorCursor=#ffffffffffff
 ColorBold=#000000000000
 ColorBoldUseDefault=FALSE
