@@ -3,8 +3,6 @@
 #include <time.h>
 #include <string.h>
 #include "poker.h"
-#include "player.h"
-#include <ncurses.h>
 
 int showdown(Game_round round, Player **list) {
     for (int j = 0; j < round.num_players; j++) {

@@ -7,7 +7,7 @@
 #define MENU_WIDTH 40
 #define MENU_MAIN_NUM_SELECTIONS  4
 #define MENU_NEW_NUM_SELECTIONS  4
-#define MENU_MODE_NUM_SELECTIONS  3
+#define MENU_MODE_NUM_SELECTIONS  2
 #define MENU_SINGLE_NUM_SELECTIONS  2
 #define TITLE_WIDTH  47
 #define CARD_HEIGHT  5
@@ -30,7 +30,8 @@ enum stage_num {
     SINGLE_PLAYER = 4, /**< Single player menu stage */
     MULTI_PLAYER = 5,  /**< Multi player menu stage */
     MODE = 6, /**< Mode menu stage */
-    IN_GAME = 7 /**< In game menu stage */
+    IN_GAME = 7, /**< In game menu stage */
+    CREDIT = 8 /**< Mode menu stage */
 };
 typedef enum stage_num Stage_Num;
 

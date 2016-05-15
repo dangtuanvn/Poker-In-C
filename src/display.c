@@ -20,7 +20,7 @@ char * player_status[] = {"BUSTED OUT", "FOLD", "ALL IN", "ACTIVE", "CHECK", "BE
 char * main_menu_items[] = {
         "NEW-GAME",
         "LOAD-GAME",
-        "HOW-TO-PLAY",
+        "CREDIT",
         "EXIT"
 };
 
@@ -34,7 +34,15 @@ char * new_game_menu_items[] = {
 char * mode_menu_items[] = {
         "EASY",
         "NORMAL",
-        "CHEATER"
+};
+
+
+char * credit_menu_items[] = {
+        "s3500286 - NguyenThanhDuc",
+        "s3500291 - NguyenDangTuan",
+        "COSC2451-2016A - ProgrammingTechnique",
+        "Lecturer - DenisRinfret",
+        "OK"
 };
 
 char * SPlay_menu_items[] = {
@@ -230,6 +238,15 @@ void display_menu(WINDOW *win, Stage *stage)
         case SINGLE_PLAYER:
             display_up_down_menu(win, stage, 2, 4, 1, num_player_title);
             break;
+        case CREDIT:
+            for(int i = 0; i < 4; ++i)
+            {
+                mvwprintw(win, i + 2, x, credit_menu_items[i]);
+            }
+            wattron(win, A_REVERSE);
+            mvwprintw(win, 7, x, "%s", credit_menu_items[4]);
+            wattroff(win, A_REVERSE);
+            break;
         case IN_GAME:
             clear();
             break;
@@ -315,6 +332,9 @@ void change_stage(WINDOW *win, Stage *stage)
                     display_menu(win, stage);
                     break;
                 case 2:
+                    stage->num = CREDIT;
+                    stage->selection = 0;
+                    stage->num_selections = 0;
                     display_menu(win, stage);
                     break;
                 case 3:
@@ -398,6 +418,19 @@ void change_stage(WINDOW *win, Stage *stage)
                 default:
                     break;
             }
+            break;
+        case CREDIT:
+            switch(stage->selection) {
+                case 0:
+                    stage->num = MAIN_MENU;
+                    stage->selection = 0;
+                    stage->num_selections = MENU_MAIN_NUM_SELECTIONS;
+                    display_menu(win, stage);
+                    break;
+                default:
+                    break;
+            }
+            break;
         default:
             break;
     }
@@ -625,6 +658,11 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
     {
         return;
     }
+
+    mvprintw(2, getmaxx(stdscr) - 20, "         ");
+    mvprintw(4, getmaxx(stdscr) - 20, "                      ");
+    mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 50, "                                                  ");
+
     if(turn == 0 && (players[turn]->bet_amount == game_round->call_amount)) {
         attron(COLOR_PAIR(3));
         attron(A_BOLD);
@@ -656,9 +694,6 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
 
         }
 
-        mvprintw(2, getmaxx(stdscr) - 20, "         ");
-        mvprintw(4, getmaxx(stdscr) - 20, "                      ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 50, "                                                  ");
     }
 
 
