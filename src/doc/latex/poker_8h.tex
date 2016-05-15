@@ -1,0 +1,197 @@
+\hypertarget{poker_8h}{\section{poker.\+h File Reference}
+\label{poker_8h}\index{poker.\+h@{poker.\+h}}
+}
+{\ttfamily \#include \char`\"{}gameround.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{poker_8h_a3edf69ce4bc9a6f28830ea486729ca18}{showdown} (\hyperlink{structGame__round}{Game\+\_\+round} round, \hyperlink{structPlayer}{Player} $\ast$$\ast$list)
+\item 
+void \hyperlink{poker_8h_afe6e53611b8cf8aecf9fdec60bfb41b2}{A\+I\+\_\+change\+\_\+cards} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} $\ast$$\ast$list, int length)
+\item 
+void \hyperlink{poker_8h_a973a8b403f997cd6e75068479aee66c4}{A\+I\+\_\+normal\+\_\+change} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} player)
+\item 
+void \hyperlink{poker_8h_a6c7f1192548e1ceecdee3a39b832296a}{A\+I\+\_\+easy\+\_\+change} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} player)
+\item 
+void \hyperlink{poker_8h_a439782d6603bbb2ea8c5696ac682fb6c}{A\+I\+\_\+bet\+\_\+phase1} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{poker_8h_aff114d0403fcbd598cefad9903289032}{A\+I\+\_\+bet\+\_\+phase2} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{poker_8h_a8dc13a3e657626c19c41dc56a0227d54}{A\+I\+\_\+normal\+\_\+bet\+\_\+phase1} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{poker_8h_a6492b5d75d3fb4069a85cfbd69530dc9}{A\+I\+\_\+normal\+\_\+bet\+\_\+phase2} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{poker_8h_a21f3055947871c6f2561bfa1823c0d5b}{A\+I\+\_\+easy\+\_\+bet\+\_\+phase1} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{poker_8h_a63cca9d38d22a9ec6c4c2c376291b405}{A\+I\+\_\+easy\+\_\+bet\+\_\+phase2} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{poker_8h_a7d0f9059803a9f5e356aec7bc2cf0301}{wait\+For} (unsigned int secs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{poker_8h_a439782d6603bbb2ea8c5696ac682fb6c}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+bet\+\_\+phase1@{A\+I\+\_\+bet\+\_\+phase1}}
+\index{A\+I\+\_\+bet\+\_\+phase1@{A\+I\+\_\+bet\+\_\+phase1}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+bet\+\_\+phase1}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+bet\+\_\+phase1 (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a439782d6603bbb2ea8c5696ac682fb6c}
+Determine the A\+I level and call the appropriate A\+I to bet in phase 1 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the A\+I player \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_aff114d0403fcbd598cefad9903289032}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+bet\+\_\+phase2@{A\+I\+\_\+bet\+\_\+phase2}}
+\index{A\+I\+\_\+bet\+\_\+phase2@{A\+I\+\_\+bet\+\_\+phase2}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+bet\+\_\+phase2}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+bet\+\_\+phase2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_aff114d0403fcbd598cefad9903289032}
+Determine the A\+I level and call the appropriate A\+I to bet in phase 2 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the A\+I player \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_afe6e53611b8cf8aecf9fdec60bfb41b2}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+change\+\_\+cards@{A\+I\+\_\+change\+\_\+cards}}
+\index{A\+I\+\_\+change\+\_\+cards@{A\+I\+\_\+change\+\_\+cards}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+change\+\_\+cards}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+change\+\_\+cards (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player} $\ast$$\ast$}]{list, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_afe6e53611b8cf8aecf9fdec60bfb41b2}
+Determine the A\+I level and call the appropriate A\+I to change cards 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck used to deal card \\
+\hline
+{\em list} & is the players list \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_a21f3055947871c6f2561bfa1823c0d5b}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+easy\+\_\+bet\+\_\+phase1@{A\+I\+\_\+easy\+\_\+bet\+\_\+phase1}}
+\index{A\+I\+\_\+easy\+\_\+bet\+\_\+phase1@{A\+I\+\_\+easy\+\_\+bet\+\_\+phase1}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+easy\+\_\+bet\+\_\+phase1}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+easy\+\_\+bet\+\_\+phase1 (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a21f3055947871c6f2561bfa1823c0d5b}
+A\+I level Easy bet phase 1 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the A\+I player \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_a63cca9d38d22a9ec6c4c2c376291b405}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+easy\+\_\+bet\+\_\+phase2@{A\+I\+\_\+easy\+\_\+bet\+\_\+phase2}}
+\index{A\+I\+\_\+easy\+\_\+bet\+\_\+phase2@{A\+I\+\_\+easy\+\_\+bet\+\_\+phase2}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+easy\+\_\+bet\+\_\+phase2}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+easy\+\_\+bet\+\_\+phase2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a63cca9d38d22a9ec6c4c2c376291b405}
+A\+I level Easy bet phase 2 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the A\+I player \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_a6c7f1192548e1ceecdee3a39b832296a}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+easy\+\_\+change@{A\+I\+\_\+easy\+\_\+change}}
+\index{A\+I\+\_\+easy\+\_\+change@{A\+I\+\_\+easy\+\_\+change}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+easy\+\_\+change}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+easy\+\_\+change (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a6c7f1192548e1ceecdee3a39b832296a}
+A\+I level Easy change cards 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck used to deal card \\
+\hline
+{\em player} & is the A\+I player \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_a8dc13a3e657626c19c41dc56a0227d54}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+normal\+\_\+bet\+\_\+phase1@{A\+I\+\_\+normal\+\_\+bet\+\_\+phase1}}
+\index{A\+I\+\_\+normal\+\_\+bet\+\_\+phase1@{A\+I\+\_\+normal\+\_\+bet\+\_\+phase1}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+normal\+\_\+bet\+\_\+phase1}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+normal\+\_\+bet\+\_\+phase1 (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a8dc13a3e657626c19c41dc56a0227d54}
+A\+I level Normal bet phase 1 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the A\+I player \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_a6492b5d75d3fb4069a85cfbd69530dc9}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+normal\+\_\+bet\+\_\+phase2@{A\+I\+\_\+normal\+\_\+bet\+\_\+phase2}}
+\index{A\+I\+\_\+normal\+\_\+bet\+\_\+phase2@{A\+I\+\_\+normal\+\_\+bet\+\_\+phase2}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+normal\+\_\+bet\+\_\+phase2}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+normal\+\_\+bet\+\_\+phase2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a6492b5d75d3fb4069a85cfbd69530dc9}
+A\+I level Normal bet phase 2 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the A\+I player \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_a973a8b403f997cd6e75068479aee66c4}{\index{poker.\+h@{poker.\+h}!A\+I\+\_\+normal\+\_\+change@{A\+I\+\_\+normal\+\_\+change}}
+\index{A\+I\+\_\+normal\+\_\+change@{A\+I\+\_\+normal\+\_\+change}!poker.\+h@{poker.\+h}}
+\subsubsection[{A\+I\+\_\+normal\+\_\+change}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+\_\+normal\+\_\+change (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a973a8b403f997cd6e75068479aee66c4}
+A\+I level Normal change cards 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck used to deal card \\
+\hline
+{\em player} & is the A\+I player \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_a3edf69ce4bc9a6f28830ea486729ca18}{\index{poker.\+h@{poker.\+h}!showdown@{showdown}}
+\index{showdown@{showdown}!poker.\+h@{poker.\+h}}
+\subsubsection[{showdown}]{\setlength{\rightskip}{0pt plus 5cm}int showdown (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round}}]{round, }
+\item[{{\bf Player} $\ast$$\ast$}]{list}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a3edf69ce4bc9a6f28830ea486729ca18}
+Determine the hands of each player, then pick the best hands 
+\begin{DoxyParams}{Parameters}
+{\em list} & is the list of players \\
+\hline
+{\em round} & is the game round \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker_8h_a7d0f9059803a9f5e356aec7bc2cf0301}{\index{poker.\+h@{poker.\+h}!wait\+For@{wait\+For}}
+\index{wait\+For@{wait\+For}!poker.\+h@{poker.\+h}}
+\subsubsection[{wait\+For}]{\setlength{\rightskip}{0pt plus 5cm}void wait\+For (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{secs}
+\end{DoxyParamCaption}
+)}}\label{poker_8h_a7d0f9059803a9f5e356aec7bc2cf0301}
+Tell the program to wait for a number of seconds 
+\begin{DoxyParams}{Parameters}
+{\em secs} & is the seconds to be waited for \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,131 @@
+\hypertarget{card_8h}{\section{card.\+h File Reference}
+\label{card_8h}\index{card.\+h@{card.\+h}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structCard}{Card}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{card_8h_adbdde44f981e5f6df2c75332ea3f9220}{numbers} \hyperlink{card_8h_a0764905e1a892d668acfcc35d5a79d36}{Number}
+\item 
+typedef enum \hyperlink{card_8h_abc74dd8af2e20c22dba9736d18c34a41}{suits} \hyperlink{card_8h_a69f3804e9f1171f60c185d5a5f9725e2}{Suit}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{card_8h_adbdde44f981e5f6df2c75332ea3f9220}{numbers} \{ \hyperlink{card_8h_adbdde44f981e5f6df2c75332ea3f9220a701917e3b6bc2c89c9e13f090c6627be}{J\+A\+C\+K} = 11, 
+\hyperlink{card_8h_adbdde44f981e5f6df2c75332ea3f9220a58561257be7e2f96f82c0fdb51d7f964}{Q\+U\+E\+E\+N} = 12, 
+\hyperlink{card_8h_adbdde44f981e5f6df2c75332ea3f9220a157524408d6f0fc4b7dc5e52f3dd3b80}{K\+I\+N\+G} = 13, 
+\hyperlink{card_8h_adbdde44f981e5f6df2c75332ea3f9220a7c6322d06ffff6c8d3bf3c0b3ea3210e}{A\+C\+E} = 14
+ \}
+\item 
+enum \hyperlink{card_8h_abc74dd8af2e20c22dba9736d18c34a41}{suits} \{ \hyperlink{card_8h_abc74dd8af2e20c22dba9736d18c34a41a2dc2f5c8b096c26695b79f60d735dd90}{H\+E\+A\+R\+T}, 
+\hyperlink{card_8h_abc74dd8af2e20c22dba9736d18c34a41a714f2cc5c292a305e2da3c03bd63916a}{D\+I\+A\+M\+O\+N\+D}, 
+\hyperlink{card_8h_abc74dd8af2e20c22dba9736d18c34a41ac25cb3585b367833c9129f36fb70ed2e}{C\+L\+U\+B}, 
+\hyperlink{card_8h_abc74dd8af2e20c22dba9736d18c34a41a2808784edc7a2b2e5a53e8ac7b625a3d}{S\+P\+A\+D\+E}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{card_8h_a385450517ba64a364ec3f711091411ca}{swap} (\hyperlink{structCard}{Card} $\ast$x, \hyperlink{structCard}{Card} $\ast$y)
+\item 
+void \hyperlink{card_8h_afceb6f342197f386df0275a04ac62001}{print\+\_\+cards} (\hyperlink{structCard}{Card} $\ast$a, int length)
+\item 
+void \hyperlink{card_8h_a22d33ec267ff5f3614e07236be7715d2}{sort\+\_\+hands} (\hyperlink{structCard}{Card} $\ast$hands, int length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{card_8h_a0764905e1a892d668acfcc35d5a79d36}{\index{card.\+h@{card.\+h}!Number@{Number}}
+\index{Number@{Number}!card.\+h@{card.\+h}}
+\subsubsection[{Number}]{\setlength{\rightskip}{0pt plus 5cm}typedef enum {\bf numbers} {\bf Number}}}\label{card_8h_a0764905e1a892d668acfcc35d5a79d36}
+\hypertarget{card_8h_a69f3804e9f1171f60c185d5a5f9725e2}{\index{card.\+h@{card.\+h}!Suit@{Suit}}
+\index{Suit@{Suit}!card.\+h@{card.\+h}}
+\subsubsection[{Suit}]{\setlength{\rightskip}{0pt plus 5cm}typedef enum {\bf suits} {\bf Suit}}}\label{card_8h_a69f3804e9f1171f60c185d5a5f9725e2}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{card_8h_adbdde44f981e5f6df2c75332ea3f9220}{\index{card.\+h@{card.\+h}!numbers@{numbers}}
+\index{numbers@{numbers}!card.\+h@{card.\+h}}
+\subsubsection[{numbers}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf numbers}}}\label{card_8h_adbdde44f981e5f6df2c75332ea3f9220}
+Define card numbers \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{J\+A\+C\+K@{J\+A\+C\+K}!card.\+h@{card.\+h}}\index{card.\+h@{card.\+h}!J\+A\+C\+K@{J\+A\+C\+K}}\item[{\em 
+\hypertarget{card_8h_adbdde44f981e5f6df2c75332ea3f9220a701917e3b6bc2c89c9e13f090c6627be}{J\+A\+C\+K}\label{card_8h_adbdde44f981e5f6df2c75332ea3f9220a701917e3b6bc2c89c9e13f090c6627be}
+}]Jack \index{Q\+U\+E\+E\+N@{Q\+U\+E\+E\+N}!card.\+h@{card.\+h}}\index{card.\+h@{card.\+h}!Q\+U\+E\+E\+N@{Q\+U\+E\+E\+N}}\item[{\em 
+\hypertarget{card_8h_adbdde44f981e5f6df2c75332ea3f9220a58561257be7e2f96f82c0fdb51d7f964}{Q\+U\+E\+E\+N}\label{card_8h_adbdde44f981e5f6df2c75332ea3f9220a58561257be7e2f96f82c0fdb51d7f964}
+}]Queen \index{K\+I\+N\+G@{K\+I\+N\+G}!card.\+h@{card.\+h}}\index{card.\+h@{card.\+h}!K\+I\+N\+G@{K\+I\+N\+G}}\item[{\em 
+\hypertarget{card_8h_adbdde44f981e5f6df2c75332ea3f9220a157524408d6f0fc4b7dc5e52f3dd3b80}{K\+I\+N\+G}\label{card_8h_adbdde44f981e5f6df2c75332ea3f9220a157524408d6f0fc4b7dc5e52f3dd3b80}
+}]King \index{A\+C\+E@{A\+C\+E}!card.\+h@{card.\+h}}\index{card.\+h@{card.\+h}!A\+C\+E@{A\+C\+E}}\item[{\em 
+\hypertarget{card_8h_adbdde44f981e5f6df2c75332ea3f9220a7c6322d06ffff6c8d3bf3c0b3ea3210e}{A\+C\+E}\label{card_8h_adbdde44f981e5f6df2c75332ea3f9220a7c6322d06ffff6c8d3bf3c0b3ea3210e}
+}]Ace \end{description}
+\end{Desc}
+\hypertarget{card_8h_abc74dd8af2e20c22dba9736d18c34a41}{\index{card.\+h@{card.\+h}!suits@{suits}}
+\index{suits@{suits}!card.\+h@{card.\+h}}
+\subsubsection[{suits}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf suits}}}\label{card_8h_abc74dd8af2e20c22dba9736d18c34a41}
+Define card suits \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{H\+E\+A\+R\+T@{H\+E\+A\+R\+T}!card.\+h@{card.\+h}}\index{card.\+h@{card.\+h}!H\+E\+A\+R\+T@{H\+E\+A\+R\+T}}\item[{\em 
+\hypertarget{card_8h_abc74dd8af2e20c22dba9736d18c34a41a2dc2f5c8b096c26695b79f60d735dd90}{H\+E\+A\+R\+T}\label{card_8h_abc74dd8af2e20c22dba9736d18c34a41a2dc2f5c8b096c26695b79f60d735dd90}
+}]\index{D\+I\+A\+M\+O\+N\+D@{D\+I\+A\+M\+O\+N\+D}!card.\+h@{card.\+h}}\index{card.\+h@{card.\+h}!D\+I\+A\+M\+O\+N\+D@{D\+I\+A\+M\+O\+N\+D}}\item[{\em 
+\hypertarget{card_8h_abc74dd8af2e20c22dba9736d18c34a41a714f2cc5c292a305e2da3c03bd63916a}{D\+I\+A\+M\+O\+N\+D}\label{card_8h_abc74dd8af2e20c22dba9736d18c34a41a714f2cc5c292a305e2da3c03bd63916a}
+}]\index{C\+L\+U\+B@{C\+L\+U\+B}!card.\+h@{card.\+h}}\index{card.\+h@{card.\+h}!C\+L\+U\+B@{C\+L\+U\+B}}\item[{\em 
+\hypertarget{card_8h_abc74dd8af2e20c22dba9736d18c34a41ac25cb3585b367833c9129f36fb70ed2e}{C\+L\+U\+B}\label{card_8h_abc74dd8af2e20c22dba9736d18c34a41ac25cb3585b367833c9129f36fb70ed2e}
+}]\index{S\+P\+A\+D\+E@{S\+P\+A\+D\+E}!card.\+h@{card.\+h}}\index{card.\+h@{card.\+h}!S\+P\+A\+D\+E@{S\+P\+A\+D\+E}}\item[{\em 
+\hypertarget{card_8h_abc74dd8af2e20c22dba9736d18c34a41a2808784edc7a2b2e5a53e8ac7b625a3d}{S\+P\+A\+D\+E}\label{card_8h_abc74dd8af2e20c22dba9736d18c34a41a2808784edc7a2b2e5a53e8ac7b625a3d}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{card_8h_afceb6f342197f386df0275a04ac62001}{\index{card.\+h@{card.\+h}!print\+\_\+cards@{print\+\_\+cards}}
+\index{print\+\_\+cards@{print\+\_\+cards}!card.\+h@{card.\+h}}
+\subsubsection[{print\+\_\+cards}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+cards (
+\begin{DoxyParamCaption}
+\item[{{\bf Card} $\ast$}]{a, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{card_8h_afceb6f342197f386df0275a04ac62001}
+Print out the cards in a deck or hands 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$a} & is the cards to be printed on the screen \\
+\hline
+{\em length} & is the number of cards to be printed \\
+\hline
+\end{DoxyParams}
+\hypertarget{card_8h_a22d33ec267ff5f3614e07236be7715d2}{\index{card.\+h@{card.\+h}!sort\+\_\+hands@{sort\+\_\+hands}}
+\index{sort\+\_\+hands@{sort\+\_\+hands}!card.\+h@{card.\+h}}
+\subsubsection[{sort\+\_\+hands}]{\setlength{\rightskip}{0pt plus 5cm}void sort\+\_\+hands (
+\begin{DoxyParamCaption}
+\item[{{\bf Card} $\ast$}]{hands, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{card_8h_a22d33ec267ff5f3614e07236be7715d2}
+Sort the cards in the hands of a player 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$hands} & is the cards in the hands to be sorted \\
+\hline
+{\em length} & is the number of cards, which is the length of the array \\
+\hline
+\end{DoxyParams}
+\hypertarget{card_8h_a385450517ba64a364ec3f711091411ca}{\index{card.\+h@{card.\+h}!swap@{swap}}
+\index{swap@{swap}!card.\+h@{card.\+h}}
+\subsubsection[{swap}]{\setlength{\rightskip}{0pt plus 5cm}void swap (
+\begin{DoxyParamCaption}
+\item[{{\bf Card} $\ast$}]{x, }
+\item[{{\bf Card} $\ast$}]{y}
+\end{DoxyParamCaption}
+)}}\label{card_8h_a385450517ba64a364ec3f711091411ca}
+Swap the position of the cards 
+\begin{DoxyParams}{Parameters}
+{\em x} & is the first card to be swapped \\
+\hline
+{\em y} & is the second card to be swapped with the first card \\
+\hline
+\end{DoxyParams}

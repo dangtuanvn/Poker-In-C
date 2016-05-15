@@ -1,0 +1,274 @@
+\hypertarget{gameround_8c}{\section{gameround.\+c File Reference}
+\label{gameround_8c}\index{gameround.\+c@{gameround.\+c}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}gameround.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}player.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structGame__round}{Game\+\_\+round} $\ast$ \hyperlink{gameround_8c_a08e54141e996343c825b420c65bd3be3}{create\+\_\+game\+\_\+round} (int \hyperlink{display_8c_af732655d138393c1fb49a0da38413560}{num\+\_\+players})
+\item 
+void \hyperlink{gameround_8c_af8ea6cab32da919ebb3f86f5f6149541}{free\+\_\+game\+\_\+round} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$\hyperlink{poker__game_8c_ad1eadf93d58fb192373f758b986e6912}{game\+\_\+round})
+\item 
+void \hyperlink{gameround_8c_a232b2fba829ca5ff155ba664a7fa0523}{place\+\_\+ante} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$$\ast$list)
+\item 
+void \hyperlink{gameround_8c_a89884fcaea43c596135963560ca649a8}{add\+\_\+chips} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player, int chips\+To\+Add)
+\item 
+void \hyperlink{gameround_8c_ade79d465a193e537ce26b6c3fdbc8281}{withdraw\+\_\+chips} (\hyperlink{structPlayer}{Player} $\ast$player, int chips\+To\+Withdraw)
+\item 
+void \hyperlink{gameround_8c_a9db367d203c3e2dd72dba4cd11a74e5b}{action\+\_\+bet} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player, int chips)
+\item 
+void \hyperlink{gameround_8c_a860639627b1dd87f3b73426c22b75e07}{action\+\_\+call} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{gameround_8c_a7b65e8c10cf91cc6e40900a76a6c36ed}{action\+\_\+raise} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player, int chips)
+\item 
+void \hyperlink{gameround_8c_acdd46dbe718affc9ef76da7d7229b613}{action\+\_\+all\+In} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{gameround_8c_aa1e48c5ae6d10f2e9e0baeb89355fc10}{action\+\_\+fold} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{gameround_8c_ac35748313f750791ec13e29c808d7e1f}{action\+\_\+check} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+int \hyperlink{gameround_8c_a7ccaaf0e799b2e6321bd6e61dd93fc00}{get\+\_\+pot} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$$\ast$list, int top\+\_\+rank)
+\item 
+int \hyperlink{gameround_8c_a4fa3736f2469e7bd8dfba4dbeeb6d53b}{check\+\_\+num\+\_\+busted\+\_\+players} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$$\ast$list)
+\item 
+void \hyperlink{gameround_8c_a764f805a2e1ae6639df339ccbd70a6fe}{reset\+\_\+round} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$$\ast$list)
+\item 
+int \hyperlink{gameround_8c_abea84519c687a61b66e64e8b728bb738}{check\+\_\+fold\+\_\+count} (\hyperlink{structGame__round}{Game\+\_\+round} $\ast$round, \hyperlink{structPlayer}{Player} $\ast$$\ast$list)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{gameround_8c_acdd46dbe718affc9ef76da7d7229b613}{\index{gameround.\+c@{gameround.\+c}!action\+\_\+all\+In@{action\+\_\+all\+In}}
+\index{action\+\_\+all\+In@{action\+\_\+all\+In}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{action\+\_\+all\+In}]{\setlength{\rightskip}{0pt plus 5cm}void action\+\_\+all\+In (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_acdd46dbe718affc9ef76da7d7229b613}
+Bet all the available chips 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the player \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a9db367d203c3e2dd72dba4cd11a74e5b}{\index{gameround.\+c@{gameround.\+c}!action\+\_\+bet@{action\+\_\+bet}}
+\index{action\+\_\+bet@{action\+\_\+bet}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{action\+\_\+bet}]{\setlength{\rightskip}{0pt plus 5cm}void action\+\_\+bet (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player, }
+\item[{int}]{chips}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a9db367d203c3e2dd72dba4cd11a74e5b}
+Bet a number of chips 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the player \\
+\hline
+{\em chips} & is the number of chips to be bet \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a860639627b1dd87f3b73426c22b75e07}{\index{gameround.\+c@{gameround.\+c}!action\+\_\+call@{action\+\_\+call}}
+\index{action\+\_\+call@{action\+\_\+call}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{action\+\_\+call}]{\setlength{\rightskip}{0pt plus 5cm}void action\+\_\+call (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a860639627b1dd87f3b73426c22b75e07}
+Bet the same amount of chips as other playeres to stay in the round 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the player \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_ac35748313f750791ec13e29c808d7e1f}{\index{gameround.\+c@{gameround.\+c}!action\+\_\+check@{action\+\_\+check}}
+\index{action\+\_\+check@{action\+\_\+check}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{action\+\_\+check}]{\setlength{\rightskip}{0pt plus 5cm}void action\+\_\+check (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_ac35748313f750791ec13e29c808d7e1f}
+Pass the turn to another player without betting 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the player \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_aa1e48c5ae6d10f2e9e0baeb89355fc10}{\index{gameround.\+c@{gameround.\+c}!action\+\_\+fold@{action\+\_\+fold}}
+\index{action\+\_\+fold@{action\+\_\+fold}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{action\+\_\+fold}]{\setlength{\rightskip}{0pt plus 5cm}void action\+\_\+fold (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_aa1e48c5ae6d10f2e9e0baeb89355fc10}
+Skip the round 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the player \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a7b65e8c10cf91cc6e40900a76a6c36ed}{\index{gameround.\+c@{gameround.\+c}!action\+\_\+raise@{action\+\_\+raise}}
+\index{action\+\_\+raise@{action\+\_\+raise}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{action\+\_\+raise}]{\setlength{\rightskip}{0pt plus 5cm}void action\+\_\+raise (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player, }
+\item[{int}]{chips}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a7b65e8c10cf91cc6e40900a76a6c36ed}
+Raise the betting amount 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the player \\
+\hline
+{\em chips} & is the number of chips to be bet \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a89884fcaea43c596135963560ca649a8}{\index{gameround.\+c@{gameround.\+c}!add\+\_\+chips@{add\+\_\+chips}}
+\index{add\+\_\+chips@{add\+\_\+chips}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{add\+\_\+chips}]{\setlength{\rightskip}{0pt plus 5cm}void add\+\_\+chips (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$}]{player, }
+\item[{int}]{chips\+To\+Add}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a89884fcaea43c596135963560ca649a8}
+Add chips to a player 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the player \\
+\hline
+{\em chips\+To\+Add} & is the number of chips to added to the player \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_abea84519c687a61b66e64e8b728bb738}{\index{gameround.\+c@{gameround.\+c}!check\+\_\+fold\+\_\+count@{check\+\_\+fold\+\_\+count}}
+\index{check\+\_\+fold\+\_\+count@{check\+\_\+fold\+\_\+count}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{check\+\_\+fold\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int check\+\_\+fold\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$$\ast$}]{list}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_abea84519c687a61b66e64e8b728bb738}
+Check the number of folded players 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em list} & is the players list \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a4fa3736f2469e7bd8dfba4dbeeb6d53b}{\index{gameround.\+c@{gameround.\+c}!check\+\_\+num\+\_\+busted\+\_\+players@{check\+\_\+num\+\_\+busted\+\_\+players}}
+\index{check\+\_\+num\+\_\+busted\+\_\+players@{check\+\_\+num\+\_\+busted\+\_\+players}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{check\+\_\+num\+\_\+busted\+\_\+players}]{\setlength{\rightskip}{0pt plus 5cm}int check\+\_\+num\+\_\+busted\+\_\+players (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$$\ast$}]{list}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a4fa3736f2469e7bd8dfba4dbeeb6d53b}
+Check number of busted players 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em list} & is the players list \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a08e54141e996343c825b420c65bd3be3}{\index{gameround.\+c@{gameround.\+c}!create\+\_\+game\+\_\+round@{create\+\_\+game\+\_\+round}}
+\index{create\+\_\+game\+\_\+round@{create\+\_\+game\+\_\+round}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{create\+\_\+game\+\_\+round}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+\_\+round}$\ast$ create\+\_\+game\+\_\+round (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+\_\+players}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a08e54141e996343c825b420c65bd3be3}
+Create a game round 
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+players} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_af8ea6cab32da919ebb3f86f5f6149541}{\index{gameround.\+c@{gameround.\+c}!free\+\_\+game\+\_\+round@{free\+\_\+game\+\_\+round}}
+\index{free\+\_\+game\+\_\+round@{free\+\_\+game\+\_\+round}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{free\+\_\+game\+\_\+round}]{\setlength{\rightskip}{0pt plus 5cm}void free\+\_\+game\+\_\+round (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{game\+\_\+round}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_af8ea6cab32da919ebb3f86f5f6149541}
+Free the allocated resources for game round 
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+round} & is the round to be freed \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a7ccaaf0e799b2e6321bd6e61dd93fc00}{\index{gameround.\+c@{gameround.\+c}!get\+\_\+pot@{get\+\_\+pot}}
+\index{get\+\_\+pot@{get\+\_\+pot}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{get\+\_\+pot}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+pot (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$$\ast$}]{list, }
+\item[{int}]{winner\+\_\+position}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a7ccaaf0e799b2e6321bd6e61dd93fc00}
+Divide the pot to the winners 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em list} & is the players list \\
+\hline
+{\em winner\+\_\+position} & is the position of the winner \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a232b2fba829ca5ff155ba664a7fa0523}{\index{gameround.\+c@{gameround.\+c}!place\+\_\+ante@{place\+\_\+ante}}
+\index{place\+\_\+ante@{place\+\_\+ante}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{place\+\_\+ante}]{\setlength{\rightskip}{0pt plus 5cm}void place\+\_\+ante (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$$\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a232b2fba829ca5ff155ba664a7fa0523}
+Force all players to place ante at the start of a round 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em player} & is the list of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_a764f805a2e1ae6639df339ccbd70a6fe}{\index{gameround.\+c@{gameround.\+c}!reset\+\_\+round@{reset\+\_\+round}}
+\index{reset\+\_\+round@{reset\+\_\+round}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{reset\+\_\+round}]{\setlength{\rightskip}{0pt plus 5cm}void reset\+\_\+round (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+\_\+round} $\ast$}]{round, }
+\item[{{\bf Player} $\ast$$\ast$}]{list}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_a764f805a2e1ae6639df339ccbd70a6fe}
+Reset the round to start a new round 
+\begin{DoxyParams}{Parameters}
+{\em round} & is the game round \\
+\hline
+{\em list} & is the players list \\
+\hline
+\end{DoxyParams}
+\hypertarget{gameround_8c_ade79d465a193e537ce26b6c3fdbc8281}{\index{gameround.\+c@{gameround.\+c}!withdraw\+\_\+chips@{withdraw\+\_\+chips}}
+\index{withdraw\+\_\+chips@{withdraw\+\_\+chips}!gameround.\+c@{gameround.\+c}}
+\subsubsection[{withdraw\+\_\+chips}]{\setlength{\rightskip}{0pt plus 5cm}void withdraw\+\_\+chips (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$}]{player, }
+\item[{int}]{chips\+To\+Withdraw}
+\end{DoxyParamCaption}
+)}}\label{gameround_8c_ade79d465a193e537ce26b6c3fdbc8281}
+Withdraw chips from a player 
+\begin{DoxyParams}{Parameters}
+{\em player} & is the player \\
+\hline
+{\em chips\+To\+Withdraw} & is the number of chips to be withdrew \\
+\hline
+\end{DoxyParams}

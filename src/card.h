@@ -34,13 +34,13 @@ typedef struct {
 void swap(Card * x, Card * y);
 
 /** Print out the cards in a deck or hands
- * @param a is the cards to be printed on the screen
+ * @param *a is the cards to be printed on the screen
  * @param length is the number of cards to be printed
  */
 void print_cards(Card * a, int length);
 
 /** Sort the cards in the hands of a player
- * @param hands is the cards in the hands to be sorted
+ * @param *hands is the cards in the hands to be sorted
  * @param length is the number of cards, which is the length of the array
  */
 void sort_hands(Card * hands, int length);

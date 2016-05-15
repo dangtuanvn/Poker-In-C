@@ -102,31 +102,31 @@ void check_pairs(Player * player);
  */
 int compare_hands(Player ** list, int length);
 
-/**< Print the player info
+/** Print the player info
  * @param player is the player to be printed
  */
 void print_player_info(Player player);
 
-/**< Swap the players
+/** Swap the players
  * @param x is the first player to be swapped
  * @param y is the second player to be swapped
  */
 void swap_players(Player *x, Player *y);
 
-/**< Sort the player ranking based on their chips
+/** Sort the player ranking based on their chips
  * @param a is the player list
  * @param length is the number of players
  */
 void sort_players(Player **a, int length);
 
-/**< Copy an array of players
+/** Copy an array of players
  * @param src is the array to be copied
  * @param dst is the array to be pasted to
  * @param length is the number of players
  */
 void copy_Player_array(Player **src, Player **dst, int length);
 
-/**< Clone an array of players
+/** Clone an array of players
  * @param a is the array to be cloned
  * @param length is the number of players
  */

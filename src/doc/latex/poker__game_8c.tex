@@ -1,0 +1,137 @@
+\hypertarget{poker__game_8c}{\section{poker\+\_\+game.\+c File Reference}
+\label{poker__game_8c}\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+}
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$ncurses.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$locale.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}display.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{poker__game_8c_a6393176035d306c6e434354f8599ae37}{S\+T\+A\+R\+T\+\_\+\+Y\+\_\+\+P\+H\+A\+S\+E}~-\/3
+\item 
+\#define \hyperlink{poker__game_8c_aebedec06fea29646bb2c354d9f5ebf64}{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+H\+E\+I\+G\+H\+T}~4
+\item 
+\#define \hyperlink{poker__game_8c_ab8c2ac696fc6baf9160c7780bde954dc}{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+W\+I\+D\+T\+H}~18
+\item 
+\#define \hyperlink{poker__game_8c_a96d13532625730eddbdf008e03926fc8}{W\+A\+I\+T\+I\+N\+G\+\_\+\+T\+I\+M\+E}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{poker__game_8c_a30f66bea5e97b371842144d115c05139}{set\+\_\+up\+\_\+player\+\_\+seat} (int \hyperlink{display_8c_af732655d138393c1fb49a0da38413560}{num\+\_\+players})
+\item 
+void \hyperlink{poker__game_8c_af926a7059c4332b4a839193d03f4ccdb}{free\+\_\+win} (W\+I\+N\+D\+O\+W $\ast$$\ast$win, int length)
+\item 
+int \hyperlink{poker__game_8c_aa938943b228f3ac24968e768b505ae83}{mouse\+\_\+in\+\_\+game} (int pos\+Y, int pos\+X, int phase, int turn)
+\item 
+int \hyperlink{poker__game_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structDeck}{Deck} $\ast$ \hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}
+\item 
+\hyperlink{structPlayer}{Player} $\ast$$\ast$ \hyperlink{poker__game_8c_a27aad5f0986cd7b969a8c1cb1acbd60d}{players\+\_\+list}
+\item 
+W\+I\+N\+D\+O\+W $\ast$$\ast$ \hyperlink{poker__game_8c_a2305cc59b7f227d5a6f266d4d9fbc42f}{player\+\_\+seat}
+\item 
+\hyperlink{structGame__round}{Game\+\_\+round} $\ast$ \hyperlink{poker__game_8c_ad1eadf93d58fb192373f758b986e6912}{game\+\_\+round}
+\item 
+W\+I\+N\+D\+O\+W $\ast$ \hyperlink{poker__game_8c_a0991dabc1e7dd9543c3b86222036f408}{my\+\_\+wins} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{poker__game_8c_aebedec06fea29646bb2c354d9f5ebf64}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+H\+E\+I\+G\+H\+T@{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+H\+E\+I\+G\+H\+T}}
+\index{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+H\+E\+I\+G\+H\+T@{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+H\+E\+I\+G\+H\+T}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+H\+E\+I\+G\+H\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+H\+E\+I\+G\+H\+T~4}}\label{poker__game_8c_aebedec06fea29646bb2c354d9f5ebf64}
+\hypertarget{poker__game_8c_ab8c2ac696fc6baf9160c7780bde954dc}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+W\+I\+D\+T\+H@{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+W\+I\+D\+T\+H}}
+\index{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+W\+I\+D\+T\+H@{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+W\+I\+D\+T\+H}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+W\+I\+D\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+N\+P\+U\+T\+\_\+\+W\+I\+N\+\_\+\+W\+I\+D\+T\+H~18}}\label{poker__game_8c_ab8c2ac696fc6baf9160c7780bde954dc}
+\hypertarget{poker__game_8c_a6393176035d306c6e434354f8599ae37}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!S\+T\+A\+R\+T\+\_\+\+Y\+\_\+\+P\+H\+A\+S\+E@{S\+T\+A\+R\+T\+\_\+\+Y\+\_\+\+P\+H\+A\+S\+E}}
+\index{S\+T\+A\+R\+T\+\_\+\+Y\+\_\+\+P\+H\+A\+S\+E@{S\+T\+A\+R\+T\+\_\+\+Y\+\_\+\+P\+H\+A\+S\+E}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{S\+T\+A\+R\+T\+\_\+\+Y\+\_\+\+P\+H\+A\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+R\+T\+\_\+\+Y\+\_\+\+P\+H\+A\+S\+E~-\/3}}\label{poker__game_8c_a6393176035d306c6e434354f8599ae37}
+\hypertarget{poker__game_8c_a96d13532625730eddbdf008e03926fc8}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!W\+A\+I\+T\+I\+N\+G\+\_\+\+T\+I\+M\+E@{W\+A\+I\+T\+I\+N\+G\+\_\+\+T\+I\+M\+E}}
+\index{W\+A\+I\+T\+I\+N\+G\+\_\+\+T\+I\+M\+E@{W\+A\+I\+T\+I\+N\+G\+\_\+\+T\+I\+M\+E}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{W\+A\+I\+T\+I\+N\+G\+\_\+\+T\+I\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+A\+I\+T\+I\+N\+G\+\_\+\+T\+I\+M\+E~2}}\label{poker__game_8c_a96d13532625730eddbdf008e03926fc8}
+
+
+\subsection{Function Documentation}
+\hypertarget{poker__game_8c_af926a7059c4332b4a839193d03f4ccdb}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!free\+\_\+win@{free\+\_\+win}}
+\index{free\+\_\+win@{free\+\_\+win}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{free\+\_\+win}]{\setlength{\rightskip}{0pt plus 5cm}void free\+\_\+win (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$$\ast$}]{win, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{poker__game_8c_af926a7059c4332b4a839193d03f4ccdb}
+Free memory for created windows 
+\begin{DoxyParams}{Parameters}
+{\em win} & is an array holding many windows \\
+\hline
+{\em length} & is the length of win array \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker__game_8c_a0ddf1224851353fc92bfbff6f499fa97}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!main@{main}}
+\index{main@{main}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{poker__game_8c_a0ddf1224851353fc92bfbff6f499fa97}
+\hypertarget{poker__game_8c_aa938943b228f3ac24968e768b505ae83}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!mouse\+\_\+in\+\_\+game@{mouse\+\_\+in\+\_\+game}}
+\index{mouse\+\_\+in\+\_\+game@{mouse\+\_\+in\+\_\+game}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{mouse\+\_\+in\+\_\+game}]{\setlength{\rightskip}{0pt plus 5cm}int mouse\+\_\+in\+\_\+game (
+\begin{DoxyParamCaption}
+\item[{int}]{pos\+Y, }
+\item[{int}]{pos\+X, }
+\item[{int}]{phase, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{poker__game_8c_aa938943b228f3ac24968e768b505ae83}
+Manage in game mouse event 
+\begin{DoxyParams}{Parameters}
+{\em pos\+Y} & is the Y coordinate of the mouse event \\
+\hline
+{\em pos\+X} & is the X coordinate of the mouse event \\
+\hline
+{\em phase} & is the current phase of the game \\
+\hline
+{\em turn} & is the current player's turn \\
+\hline
+\end{DoxyParams}
+\hypertarget{poker__game_8c_a30f66bea5e97b371842144d115c05139}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!set\+\_\+up\+\_\+player\+\_\+seat@{set\+\_\+up\+\_\+player\+\_\+seat}}
+\index{set\+\_\+up\+\_\+player\+\_\+seat@{set\+\_\+up\+\_\+player\+\_\+seat}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{set\+\_\+up\+\_\+player\+\_\+seat}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+up\+\_\+player\+\_\+seat (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+\_\+players}
+\end{DoxyParamCaption}
+)}}\label{poker__game_8c_a30f66bea5e97b371842144d115c05139}
+Set up player seat position based on number of players 
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+players} & is the number of players \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!deck@{deck}}
+\index{deck@{deck}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{deck}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Deck}$\ast$ deck}}\label{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}
+\hypertarget{poker__game_8c_ad1eadf93d58fb192373f758b986e6912}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!game\+\_\+round@{game\+\_\+round}}
+\index{game\+\_\+round@{game\+\_\+round}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{game\+\_\+round}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+\_\+round}$\ast$ game\+\_\+round}}\label{poker__game_8c_ad1eadf93d58fb192373f758b986e6912}
+\hypertarget{poker__game_8c_a0991dabc1e7dd9543c3b86222036f408}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!my\+\_\+wins@{my\+\_\+wins}}
+\index{my\+\_\+wins@{my\+\_\+wins}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{my\+\_\+wins}]{\setlength{\rightskip}{0pt plus 5cm}W\+I\+N\+D\+O\+W$\ast$ my\+\_\+wins\mbox{[}3\mbox{]}}}\label{poker__game_8c_a0991dabc1e7dd9543c3b86222036f408}
+\hypertarget{poker__game_8c_a2305cc59b7f227d5a6f266d4d9fbc42f}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!player\+\_\+seat@{player\+\_\+seat}}
+\index{player\+\_\+seat@{player\+\_\+seat}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{player\+\_\+seat}]{\setlength{\rightskip}{0pt plus 5cm}W\+I\+N\+D\+O\+W$\ast$$\ast$ player\+\_\+seat}}\label{poker__game_8c_a2305cc59b7f227d5a6f266d4d9fbc42f}
+\hypertarget{poker__game_8c_a27aad5f0986cd7b969a8c1cb1acbd60d}{\index{poker\+\_\+game.\+c@{poker\+\_\+game.\+c}!players\+\_\+list@{players\+\_\+list}}
+\index{players\+\_\+list@{players\+\_\+list}!poker\+\_\+game.\+c@{poker\+\_\+game.\+c}}
+\subsubsection[{players\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$$\ast$ players\+\_\+list}}\label{poker__game_8c_a27aad5f0986cd7b969a8c1cb1acbd60d}

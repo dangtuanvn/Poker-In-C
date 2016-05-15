@@ -1,0 +1,52 @@
+\hypertarget{deck_8c}{\section{deck.\+c File Reference}
+\label{deck_8c}\index{deck.\+c@{deck.\+c}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}deck.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structDeck}{Deck} $\ast$ \hyperlink{deck_8c_a3e3e4107fd0be8ca2ba414830bf679c1}{create\+\_\+deck} ()
+\item 
+void \hyperlink{deck_8c_a512743a9005b66c8d84c8c38113a0f5f}{free\+\_\+deck} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck})
+\item 
+void \hyperlink{deck_8c_a494b250c2d924d2159462b1aba70dfdc}{shuffle\+\_\+deck} (\hyperlink{structDeck}{Deck} $\ast$a, int length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{deck_8c_a3e3e4107fd0be8ca2ba414830bf679c1}{\index{deck.\+c@{deck.\+c}!create\+\_\+deck@{create\+\_\+deck}}
+\index{create\+\_\+deck@{create\+\_\+deck}!deck.\+c@{deck.\+c}}
+\subsubsection[{create\+\_\+deck}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Deck}$\ast$ create\+\_\+deck (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{deck_8c_a3e3e4107fd0be8ca2ba414830bf679c1}
+Create a deck of 52 cards with 13 numbers and 4 suits Return a \hyperlink{structDeck}{Deck} \hypertarget{deck_8c_a512743a9005b66c8d84c8c38113a0f5f}{\index{deck.\+c@{deck.\+c}!free\+\_\+deck@{free\+\_\+deck}}
+\index{free\+\_\+deck@{free\+\_\+deck}!deck.\+c@{deck.\+c}}
+\subsubsection[{free\+\_\+deck}]{\setlength{\rightskip}{0pt plus 5cm}void free\+\_\+deck (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck}
+\end{DoxyParamCaption}
+)}}\label{deck_8c_a512743a9005b66c8d84c8c38113a0f5f}
+Free the resources allocated for a deck of card 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck to be released \\
+\hline
+\end{DoxyParams}
+\hypertarget{deck_8c_a494b250c2d924d2159462b1aba70dfdc}{\index{deck.\+c@{deck.\+c}!shuffle\+\_\+deck@{shuffle\+\_\+deck}}
+\index{shuffle\+\_\+deck@{shuffle\+\_\+deck}!deck.\+c@{deck.\+c}}
+\subsubsection[{shuffle\+\_\+deck}]{\setlength{\rightskip}{0pt plus 5cm}void shuffle\+\_\+deck (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{deck_8c_a494b250c2d924d2159462b1aba70dfdc}
+Shuffle a deck of cards Fisher and Yates algorithm 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck to be shuffled \\
+\hline
+{\em length} & is the number of cards in the deck, which is the length of the array \\
+\hline
+\end{DoxyParams}

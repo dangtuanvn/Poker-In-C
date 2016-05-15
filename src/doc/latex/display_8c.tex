@@ -1,0 +1,468 @@
+\hypertarget{display_8c}{\section{display.\+c File Reference}
+\label{display_8c}\index{display.\+c@{display.\+c}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$ncurses.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}display.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} \hyperlink{display_8c_aa4295126704c2c9bc3391943d6330b32}{create\+\_\+stage} ()
+\item 
+void \hyperlink{display_8c_a20f91c866557ae6af943885b0a466f91}{display\+\_\+title} ()
+\item 
+void \hyperlink{display_8c_a4aaeba2004c833c04c74c87169c3b8ae}{display\+\_\+up\+\_\+down\+\_\+menu} (W\+I\+N\+D\+O\+W $\ast$win, \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} $\ast$stage, int min, int max, int step, char $\ast$\hyperlink{display_8c_a4f4a676d30b613564b9a46fbe9b7f46a}{title})
+\item 
+void \hyperlink{display_8c_a239ec60406d711d84c9539ec9b737c44}{add\+\_\+cur\+\_\+up\+\_\+down} (int a)
+\item 
+int \hyperlink{display_8c_a7f451f308ebc9dad21228e322082924a}{get\+\_\+step\+\_\+up\+\_\+down} ()
+\item 
+int \hyperlink{display_8c_afa0eb3c52999a07ed0606c634bb64063}{get\+\_\+cur\+\_\+up\+\_\+down} ()
+\item 
+void \hyperlink{display_8c_aead63679faaf0b71b5982779183516a3}{display\+\_\+menu} (W\+I\+N\+D\+O\+W $\ast$win, \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} $\ast$stage)
+\item 
+int \hyperlink{display_8c_a239cf26c0be6d3b637b3c95ff576629a}{pointed\+\_\+item} (W\+I\+N\+D\+O\+W $\ast$win, int pos\+X, int pos\+Y, \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} stage)
+\item 
+void \hyperlink{display_8c_a893861c2ad36af0cb26b5851142d1a56}{change\+\_\+stage} (W\+I\+N\+D\+O\+W $\ast$win, \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} $\ast$stage)
+\item 
+void \hyperlink{display_8c_aaff4d89bfb730f299418af1d1e23849c}{select\+\_\+card\+\_\+to\+\_\+change} (int position)
+\item 
+void \hyperlink{display_8c_a7fb4c7f5305c32696f515715b08914a4}{display\+\_\+deck} (W\+I\+N\+D\+O\+W $\ast$win, \hyperlink{structPlayer}{Player} player)
+\item 
+void \hyperlink{display_8c_a3773b910144291192883ce6acaee6658}{update\+\_\+player\+\_\+info} (W\+I\+N\+D\+O\+W $\ast$$\ast$seats, \hyperlink{structPlayer}{Player} $\ast$$\ast$players, int turn)
+\item 
+void \hyperlink{display_8c_a73610a39f5246b1d4570b566187a2a47}{display\+\_\+player\+\_\+seat} (W\+I\+N\+D\+O\+W $\ast$$\ast$seats, \hyperlink{structPlayer}{Player} $\ast$$\ast$players, int turn)
+\item 
+\hyperlink{player_8h_a18f0f8cbac879377978628626293120d}{Player\+\_\+type} \hyperlink{display_8c_ae0391cd9d734e7bc4fea9b366264499e}{get\+\_\+mode} ()
+\item 
+int \hyperlink{display_8c_ac2caac5abb0b587ba5bafa393cbdd86f}{get\+\_\+num\+\_\+players} ()
+\item 
+void \hyperlink{display_8c_ad6246c292cefe0290516c22409351aff}{process\+\_\+change\+\_\+card} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} $\ast$$\ast$players)
+\item 
+void \hyperlink{display_8c_a819f57dd2611908e3320f1127793c298}{display\+\_\+chips\+\_\+rank} (\hyperlink{structPlayer}{Player} $\ast$$\ast$players)
+\item 
+void \hyperlink{display_8c_a02f65e9b08f92cd903a8c9ecdc4b4647}{display\+\_\+pot} (int a)
+\item 
+void \hyperlink{display_8c_a48efc8e255b1b34c0a215f172531b419}{display\+\_\+in\+\_\+game\+\_\+stuff} (W\+I\+N\+D\+O\+W $\ast$input\+\_\+win, \hyperlink{structPlayer}{Player} $\ast$$\ast$players, \hyperlink{structGame__round}{Game\+\_\+round} $\ast$\hyperlink{poker__game_8c_ad1eadf93d58fb192373f758b986e6912}{game\+\_\+round}, int turn)
+\item 
+void \hyperlink{display_8c_a924eaab8d0227d87ead4fe250425776b}{reset\+\_\+select\+\_\+card} ()
+\item 
+void \hyperlink{display_8c_abf5f022c60fdf8042b0879493dc55d26}{update} (W\+I\+N\+D\+O\+W $\ast$input\+\_\+win, W\+I\+N\+D\+O\+W $\ast$$\ast$seats, \hyperlink{structPlayer}{Player} $\ast$$\ast$players, \hyperlink{structGame__round}{Game\+\_\+round} $\ast$\hyperlink{poker__game_8c_ad1eadf93d58fb192373f758b986e6912}{game\+\_\+round}, int turn)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{display_8c_af732655d138393c1fb49a0da38413560}{num\+\_\+players} = 4
+\item 
+int \hyperlink{display_8c_a427b391624d6a0878124a561b98b9dac}{cur\+\_\+up\+\_\+down} = 0
+\item 
+int \hyperlink{display_8c_a525b9f794569bc22cd0cae5d99414540}{max\+\_\+up\+\_\+down} = 10
+\item 
+int \hyperlink{display_8c_a664a43b1e31ba3baa4b86fffcc6dec7a}{min\+\_\+up\+\_\+down} = 1
+\item 
+int \hyperlink{display_8c_a40de622e8c3864d54d1eb8033d97b6b3}{step\+\_\+up\+\_\+down} = 1
+\item 
+\hyperlink{player_8h_a18f0f8cbac879377978628626293120d}{Player\+\_\+type} \hyperlink{display_8c_ab8a32c40c10bdcd4c3d667f7fa27b2cc}{mode} = \hyperlink{player_8h_a5d6b3fe01985f28925beacd034916872a44740f43eaf7355a2ac4b8ef7d3fd61c}{A\+I\+\_\+\+N\+O\+R\+M\+A\+L}
+\item 
+char $\ast$ \hyperlink{display_8c_ab65d693fe8aca8338f56bd0b98e40c42}{num\+\_\+player\+\_\+title} = \char`\"{}N\+U\+M\+B\+E\+R O\+F P\+L\+A\+Y\+E\+R\+S\char`\"{}
+\item 
+int \hyperlink{display_8c_ae0866b4462152332c34a3835e6800dcf}{card\+\_\+to\+\_\+change} \mbox{[}\hyperlink{player_8h_ac43b9f60af1c865bcb914655636dd1d3}{L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S}\mbox{]} = \{0,0,0,0,0\}
+\item 
+char $\ast$ \hyperlink{display_8c_a560e61f00d1222cb708235e0180ff882}{player\+\_\+status} \mbox{[}$\,$\mbox{]} = \{\char`\"{}B\+U\+S\+T\+E\+D O\+U\+T\char`\"{}, \char`\"{}\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a4c06ebc69df9afd471c3044ba969a17f}{F\+O\+L\+D}\char`\"{}, \char`\"{}A\+L\+L I\+N\char`\"{}, \char`\"{}\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a33cf1d8ef1d06ee698a7fabf40eb3a7f}{A\+C\+T\+I\+V\+E}\char`\"{}, \char`\"{}\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959aed65b7dfe470f4e500b15f7074bb7fa2}{C\+H\+E\+C\+K}\char`\"{}, \char`\"{}\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a6e37681e9042d59bf8a6a11e4e6c9a35}{B\+E\+T}\char`\"{}, \char`\"{}\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959abd0ebc08c262bab82a1882256d2d66e8}{C\+A\+L\+L}\char`\"{}, \char`\"{}\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959ae9ec39715b515cb7a00034bced1c1ad4}{R\+A\+I\+S\+E}\char`\"{}\}
+\item 
+char $\ast$ \hyperlink{display_8c_a38026f6fa6e905bf157c7837e3e68815}{main\+\_\+menu\+\_\+items} \mbox{[}$\,$\mbox{]}
+\item 
+char $\ast$ \hyperlink{display_8c_a63da794588f81cec9672fc65446f305b}{new\+\_\+game\+\_\+menu\+\_\+items} \mbox{[}$\,$\mbox{]}
+\item 
+char $\ast$ \hyperlink{display_8c_a6a01455516c88051fea5a2c03a5bf7e0}{mode\+\_\+menu\+\_\+items} \mbox{[}$\,$\mbox{]}
+\item 
+char $\ast$ \hyperlink{display_8c_a460c78a2c731d95afd87f69d4478cc47}{S\+Play\+\_\+menu\+\_\+items} \mbox{[}$\,$\mbox{]}
+\item 
+char $\ast$ \hyperlink{display_8c_a4f4a676d30b613564b9a46fbe9b7f46a}{title} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{display_8c_a239ec60406d711d84c9539ec9b737c44}{\index{display.\+c@{display.\+c}!add\+\_\+cur\+\_\+up\+\_\+down@{add\+\_\+cur\+\_\+up\+\_\+down}}
+\index{add\+\_\+cur\+\_\+up\+\_\+down@{add\+\_\+cur\+\_\+up\+\_\+down}!display.\+c@{display.\+c}}
+\subsubsection[{add\+\_\+cur\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}void add\+\_\+cur\+\_\+up\+\_\+down (
+\begin{DoxyParamCaption}
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a239ec60406d711d84c9539ec9b737c44}
+Change the current value of the up down menu 
+\begin{DoxyParams}{Parameters}
+{\em a} & is the value to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_a893861c2ad36af0cb26b5851142d1a56}{\index{display.\+c@{display.\+c}!change\+\_\+stage@{change\+\_\+stage}}
+\index{change\+\_\+stage@{change\+\_\+stage}!display.\+c@{display.\+c}}
+\subsubsection[{change\+\_\+stage}]{\setlength{\rightskip}{0pt plus 5cm}void change\+\_\+stage (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{{\bf Stage} $\ast$}]{stage}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a893861c2ad36af0cb26b5851142d1a56}
+Change the stage of the game 
+\begin{DoxyParams}{Parameters}
+{\em win} & is the window to be drawn on \\
+\hline
+{\em stage} & is the next stage to change to \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_aa4295126704c2c9bc3391943d6330b32}{\index{display.\+c@{display.\+c}!create\+\_\+stage@{create\+\_\+stage}}
+\index{create\+\_\+stage@{create\+\_\+stage}!display.\+c@{display.\+c}}
+\subsubsection[{create\+\_\+stage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Stage} create\+\_\+stage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8c_aa4295126704c2c9bc3391943d6330b32}
+Create game stage \hypertarget{display_8c_a819f57dd2611908e3320f1127793c298}{\index{display.\+c@{display.\+c}!display\+\_\+chips\+\_\+rank@{display\+\_\+chips\+\_\+rank}}
+\index{display\+\_\+chips\+\_\+rank@{display\+\_\+chips\+\_\+rank}!display.\+c@{display.\+c}}
+\subsubsection[{display\+\_\+chips\+\_\+rank}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+chips\+\_\+rank (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{players}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a819f57dd2611908e3320f1127793c298}
+Display the rank of players based on their chips 
+\begin{DoxyParams}{Parameters}
+{\em players} & is an array holding all players \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_a7fb4c7f5305c32696f515715b08914a4}{\index{display.\+c@{display.\+c}!display\+\_\+deck@{display\+\_\+deck}}
+\index{display\+\_\+deck@{display\+\_\+deck}!display.\+c@{display.\+c}}
+\subsubsection[{display\+\_\+deck}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+deck (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a7fb4c7f5305c32696f515715b08914a4}
+Display deck of a specific player 
+\begin{DoxyParams}{Parameters}
+{\em win} & is a window of player whose deck need to be displayed \\
+\hline
+{\em player} & is a player whose deck need to be displayed \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_a48efc8e255b1b34c0a215f172531b419}{\index{display.\+c@{display.\+c}!display\+\_\+in\+\_\+game\+\_\+stuff@{display\+\_\+in\+\_\+game\+\_\+stuff}}
+\index{display\+\_\+in\+\_\+game\+\_\+stuff@{display\+\_\+in\+\_\+game\+\_\+stuff}!display.\+c@{display.\+c}}
+\subsubsection[{display\+\_\+in\+\_\+game\+\_\+stuff}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+in\+\_\+game\+\_\+stuff (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{input\+\_\+win, }
+\item[{{\bf Player} $\ast$$\ast$}]{players, }
+\item[{{\bf Game\+\_\+round} $\ast$}]{game\+\_\+round, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a48efc8e255b1b34c0a215f172531b419}
+Display game stuff such as button and input menu 
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+win} & is input window \\
+\hline
+{\em players} & is an array holding all players \\
+\hline
+{\em game\+\_\+round} & is current game round \\
+\hline
+{\em turn} & is the current position turn of the game \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_aead63679faaf0b71b5982779183516a3}{\index{display.\+c@{display.\+c}!display\+\_\+menu@{display\+\_\+menu}}
+\index{display\+\_\+menu@{display\+\_\+menu}!display.\+c@{display.\+c}}
+\subsubsection[{display\+\_\+menu}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+menu (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{{\bf Stage} $\ast$}]{stage}
+\end{DoxyParamCaption}
+)}}\label{display_8c_aead63679faaf0b71b5982779183516a3}
+Display game menu 
+\begin{DoxyParams}{Parameters}
+{\em win} & is the window to be drawn on \\
+\hline
+{\em stage} & is the current stage of the game \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_a73610a39f5246b1d4570b566187a2a47}{\index{display.\+c@{display.\+c}!display\+\_\+player\+\_\+seat@{display\+\_\+player\+\_\+seat}}
+\index{display\+\_\+player\+\_\+seat@{display\+\_\+player\+\_\+seat}!display.\+c@{display.\+c}}
+\subsubsection[{display\+\_\+player\+\_\+seat}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+player\+\_\+seat (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$$\ast$}]{seats, }
+\item[{{\bf Player} $\ast$$\ast$}]{players, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a73610a39f5246b1d4570b566187a2a47}
+Display player seat 
+\begin{DoxyParams}{Parameters}
+{\em seats} & is an array holding all players' seat, each seat is a window \\
+\hline
+{\em players} & is an array holding all player \\
+\hline
+{\em turn} & is the current turn of the game \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_a02f65e9b08f92cd903a8c9ecdc4b4647}{\index{display.\+c@{display.\+c}!display\+\_\+pot@{display\+\_\+pot}}
+\index{display\+\_\+pot@{display\+\_\+pot}!display.\+c@{display.\+c}}
+\subsubsection[{display\+\_\+pot}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+pot (
+\begin{DoxyParamCaption}
+\item[{int}]{amount}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a02f65e9b08f92cd903a8c9ecdc4b4647}
+Display the pot of the game 
+\begin{DoxyParams}{Parameters}
+{\em amount} & is the amount to be displayed \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_a20f91c866557ae6af943885b0a466f91}{\index{display.\+c@{display.\+c}!display\+\_\+title@{display\+\_\+title}}
+\index{display\+\_\+title@{display\+\_\+title}!display.\+c@{display.\+c}}
+\subsubsection[{display\+\_\+title}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a20f91c866557ae6af943885b0a466f91}
+Display the game title \hypertarget{display_8c_a4aaeba2004c833c04c74c87169c3b8ae}{\index{display.\+c@{display.\+c}!display\+\_\+up\+\_\+down\+\_\+menu@{display\+\_\+up\+\_\+down\+\_\+menu}}
+\index{display\+\_\+up\+\_\+down\+\_\+menu@{display\+\_\+up\+\_\+down\+\_\+menu}!display.\+c@{display.\+c}}
+\subsubsection[{display\+\_\+up\+\_\+down\+\_\+menu}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+up\+\_\+down\+\_\+menu (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{{\bf Stage} $\ast$}]{stage, }
+\item[{int}]{min, }
+\item[{int}]{max, }
+\item[{int}]{step, }
+\item[{char $\ast$}]{title}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a4aaeba2004c833c04c74c87169c3b8ae}
+Display input menu that have increase and decrease function 
+\begin{DoxyParams}{Parameters}
+{\em win} & is a window that need to work on \\
+\hline
+{\em stage} & is the game stage \\
+\hline
+{\em min} & is the minimum value \\
+\hline
+{\em max} & is maximum value \\
+\hline
+{\em step} & is increase and decrease value \\
+\hline
+{\em title} & is title of the menu \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_afa0eb3c52999a07ed0606c634bb64063}{\index{display.\+c@{display.\+c}!get\+\_\+cur\+\_\+up\+\_\+down@{get\+\_\+cur\+\_\+up\+\_\+down}}
+\index{get\+\_\+cur\+\_\+up\+\_\+down@{get\+\_\+cur\+\_\+up\+\_\+down}!display.\+c@{display.\+c}}
+\subsubsection[{get\+\_\+cur\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+cur\+\_\+up\+\_\+down (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8c_afa0eb3c52999a07ed0606c634bb64063}
+Get the current value in the up down menu \hypertarget{display_8c_ae0391cd9d734e7bc4fea9b366264499e}{\index{display.\+c@{display.\+c}!get\+\_\+mode@{get\+\_\+mode}}
+\index{get\+\_\+mode@{get\+\_\+mode}!display.\+c@{display.\+c}}
+\subsubsection[{get\+\_\+mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+\_\+type} get\+\_\+mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8c_ae0391cd9d734e7bc4fea9b366264499e}
+Get the mode of the game \hypertarget{display_8c_ac2caac5abb0b587ba5bafa393cbdd86f}{\index{display.\+c@{display.\+c}!get\+\_\+num\+\_\+players@{get\+\_\+num\+\_\+players}}
+\index{get\+\_\+num\+\_\+players@{get\+\_\+num\+\_\+players}!display.\+c@{display.\+c}}
+\subsubsection[{get\+\_\+num\+\_\+players}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+num\+\_\+players (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8c_ac2caac5abb0b587ba5bafa393cbdd86f}
+Get the number of players of the game \hypertarget{display_8c_a7f451f308ebc9dad21228e322082924a}{\index{display.\+c@{display.\+c}!get\+\_\+step\+\_\+up\+\_\+down@{get\+\_\+step\+\_\+up\+\_\+down}}
+\index{get\+\_\+step\+\_\+up\+\_\+down@{get\+\_\+step\+\_\+up\+\_\+down}!display.\+c@{display.\+c}}
+\subsubsection[{get\+\_\+step\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+step\+\_\+up\+\_\+down (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a7f451f308ebc9dad21228e322082924a}
+Get the step of up down menu \hypertarget{display_8c_a239cf26c0be6d3b637b3c95ff576629a}{\index{display.\+c@{display.\+c}!pointed\+\_\+item@{pointed\+\_\+item}}
+\index{pointed\+\_\+item@{pointed\+\_\+item}!display.\+c@{display.\+c}}
+\subsubsection[{pointed\+\_\+item}]{\setlength{\rightskip}{0pt plus 5cm}int pointed\+\_\+item (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{int}]{pos\+X, }
+\item[{int}]{pos\+Y, }
+\item[{{\bf Stage}}]{stage}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a239cf26c0be6d3b637b3c95ff576629a}
+Return the current chosen item in a window using mouse 
+\begin{DoxyParams}{Parameters}
+{\em win} & is a window that need to work on \\
+\hline
+{\em pos\+X} & is the X coordinate of mouse event \\
+\hline
+{\em pos\+Y} & is the Y coordinate of the mouse event \\
+\hline
+{\em stage} & is the game stage \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_ad6246c292cefe0290516c22409351aff}{\index{display.\+c@{display.\+c}!process\+\_\+change\+\_\+card@{process\+\_\+change\+\_\+card}}
+\index{process\+\_\+change\+\_\+card@{process\+\_\+change\+\_\+card}!display.\+c@{display.\+c}}
+\subsubsection[{process\+\_\+change\+\_\+card}]{\setlength{\rightskip}{0pt plus 5cm}void process\+\_\+change\+\_\+card (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player} $\ast$$\ast$}]{players}
+\end{DoxyParamCaption}
+)}}\label{display_8c_ad6246c292cefe0290516c22409351aff}
+Change the card of players 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the main deck of the poker game \\
+\hline
+{\em players} & is an array holding all players \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_a924eaab8d0227d87ead4fe250425776b}{\index{display.\+c@{display.\+c}!reset\+\_\+select\+\_\+card@{reset\+\_\+select\+\_\+card}}
+\index{reset\+\_\+select\+\_\+card@{reset\+\_\+select\+\_\+card}!display.\+c@{display.\+c}}
+\subsubsection[{reset\+\_\+select\+\_\+card}]{\setlength{\rightskip}{0pt plus 5cm}void reset\+\_\+select\+\_\+card (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a924eaab8d0227d87ead4fe250425776b}
+Reset the temporary array holding selected card to change of player \hypertarget{display_8c_aaff4d89bfb730f299418af1d1e23849c}{\index{display.\+c@{display.\+c}!select\+\_\+card\+\_\+to\+\_\+change@{select\+\_\+card\+\_\+to\+\_\+change}}
+\index{select\+\_\+card\+\_\+to\+\_\+change@{select\+\_\+card\+\_\+to\+\_\+change}!display.\+c@{display.\+c}}
+\subsubsection[{select\+\_\+card\+\_\+to\+\_\+change}]{\setlength{\rightskip}{0pt plus 5cm}void select\+\_\+card\+\_\+to\+\_\+change (
+\begin{DoxyParamCaption}
+\item[{int}]{position}
+\end{DoxyParamCaption}
+)}}\label{display_8c_aaff4d89bfb730f299418af1d1e23849c}
+Change the display of the selected card using card position 
+\begin{DoxyParams}{Parameters}
+{\em position} & is the position of the card \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_abf5f022c60fdf8042b0879493dc55d26}{\index{display.\+c@{display.\+c}!update@{update}}
+\index{update@{update}!display.\+c@{display.\+c}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void update (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{input\+\_\+win, }
+\item[{W\+I\+N\+D\+O\+W $\ast$$\ast$}]{seats, }
+\item[{{\bf Player} $\ast$$\ast$}]{players, }
+\item[{{\bf Game\+\_\+round} $\ast$}]{game\+\_\+round, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{display_8c_abf5f022c60fdf8042b0879493dc55d26}
+Update the display of all information of players 
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+win} & is input window \\
+\hline
+{\em seats} & is an array hold all players' seat, each seat is a window \\
+\hline
+{\em players} & is an array holding all players \\
+\hline
+{\em game\+\_\+round} & is current game round \\
+\hline
+{\em turn} & is the current position turn of the game \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8c_a3773b910144291192883ce6acaee6658}{\index{display.\+c@{display.\+c}!update\+\_\+player\+\_\+info@{update\+\_\+player\+\_\+info}}
+\index{update\+\_\+player\+\_\+info@{update\+\_\+player\+\_\+info}!display.\+c@{display.\+c}}
+\subsubsection[{update\+\_\+player\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}void update\+\_\+player\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$$\ast$}]{seats, }
+\item[{{\bf Player} $\ast$$\ast$}]{players, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{display_8c_a3773b910144291192883ce6acaee6658}
+Update the display of player information 
+\begin{DoxyParams}{Parameters}
+{\em seats} & is an array holding all players' seat, each seat is a window \\
+\hline
+{\em players} & is an array holding all player \\
+\hline
+{\em turn} & is the current turn of the game \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{display_8c_ae0866b4462152332c34a3835e6800dcf}{\index{display.\+c@{display.\+c}!card\+\_\+to\+\_\+change@{card\+\_\+to\+\_\+change}}
+\index{card\+\_\+to\+\_\+change@{card\+\_\+to\+\_\+change}!display.\+c@{display.\+c}}
+\subsubsection[{card\+\_\+to\+\_\+change}]{\setlength{\rightskip}{0pt plus 5cm}int card\+\_\+to\+\_\+change\mbox{[}{\bf L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S}\mbox{]} = \{0,0,0,0,0\}}}\label{display_8c_ae0866b4462152332c34a3835e6800dcf}
+\hypertarget{display_8c_a427b391624d6a0878124a561b98b9dac}{\index{display.\+c@{display.\+c}!cur\+\_\+up\+\_\+down@{cur\+\_\+up\+\_\+down}}
+\index{cur\+\_\+up\+\_\+down@{cur\+\_\+up\+\_\+down}!display.\+c@{display.\+c}}
+\subsubsection[{cur\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}int cur\+\_\+up\+\_\+down = 0}}\label{display_8c_a427b391624d6a0878124a561b98b9dac}
+\hypertarget{display_8c_a38026f6fa6e905bf157c7837e3e68815}{\index{display.\+c@{display.\+c}!main\+\_\+menu\+\_\+items@{main\+\_\+menu\+\_\+items}}
+\index{main\+\_\+menu\+\_\+items@{main\+\_\+menu\+\_\+items}!display.\+c@{display.\+c}}
+\subsubsection[{main\+\_\+menu\+\_\+items}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ main\+\_\+menu\+\_\+items\mbox{[}$\,$\mbox{]}}}\label{display_8c_a38026f6fa6e905bf157c7837e3e68815}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"NEW-GAME"},
+        \textcolor{stringliteral}{"LOAD-GAME"},
+        \textcolor{stringliteral}{"HOW-TO-PLAY"},
+        \textcolor{stringliteral}{"EXIT"}
+\}
+\end{DoxyCode}
+\hypertarget{display_8c_a525b9f794569bc22cd0cae5d99414540}{\index{display.\+c@{display.\+c}!max\+\_\+up\+\_\+down@{max\+\_\+up\+\_\+down}}
+\index{max\+\_\+up\+\_\+down@{max\+\_\+up\+\_\+down}!display.\+c@{display.\+c}}
+\subsubsection[{max\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}int max\+\_\+up\+\_\+down = 10}}\label{display_8c_a525b9f794569bc22cd0cae5d99414540}
+\hypertarget{display_8c_a664a43b1e31ba3baa4b86fffcc6dec7a}{\index{display.\+c@{display.\+c}!min\+\_\+up\+\_\+down@{min\+\_\+up\+\_\+down}}
+\index{min\+\_\+up\+\_\+down@{min\+\_\+up\+\_\+down}!display.\+c@{display.\+c}}
+\subsubsection[{min\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}int min\+\_\+up\+\_\+down = 1}}\label{display_8c_a664a43b1e31ba3baa4b86fffcc6dec7a}
+\hypertarget{display_8c_ab8a32c40c10bdcd4c3d667f7fa27b2cc}{\index{display.\+c@{display.\+c}!mode@{mode}}
+\index{mode@{mode}!display.\+c@{display.\+c}}
+\subsubsection[{mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+\_\+type} mode = {\bf A\+I\+\_\+\+N\+O\+R\+M\+A\+L}}}\label{display_8c_ab8a32c40c10bdcd4c3d667f7fa27b2cc}
+\hypertarget{display_8c_a6a01455516c88051fea5a2c03a5bf7e0}{\index{display.\+c@{display.\+c}!mode\+\_\+menu\+\_\+items@{mode\+\_\+menu\+\_\+items}}
+\index{mode\+\_\+menu\+\_\+items@{mode\+\_\+menu\+\_\+items}!display.\+c@{display.\+c}}
+\subsubsection[{mode\+\_\+menu\+\_\+items}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ mode\+\_\+menu\+\_\+items\mbox{[}$\,$\mbox{]}}}\label{display_8c_a6a01455516c88051fea5a2c03a5bf7e0}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"EASY"},
+        \textcolor{stringliteral}{"NORMAL"},
+        \textcolor{stringliteral}{"CHEATER"}
+\}
+\end{DoxyCode}
+\hypertarget{display_8c_a63da794588f81cec9672fc65446f305b}{\index{display.\+c@{display.\+c}!new\+\_\+game\+\_\+menu\+\_\+items@{new\+\_\+game\+\_\+menu\+\_\+items}}
+\index{new\+\_\+game\+\_\+menu\+\_\+items@{new\+\_\+game\+\_\+menu\+\_\+items}!display.\+c@{display.\+c}}
+\subsubsection[{new\+\_\+game\+\_\+menu\+\_\+items}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ new\+\_\+game\+\_\+menu\+\_\+items\mbox{[}$\,$\mbox{]}}}\label{display_8c_a63da794588f81cec9672fc65446f305b}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"SINGLE-PLAYER"},
+        \textcolor{stringliteral}{"MULTI-PLAYER"},
+        \textcolor{stringliteral}{"MODE"},
+        \textcolor{stringliteral}{"BACK"}
+\}
+\end{DoxyCode}
+\hypertarget{display_8c_ab65d693fe8aca8338f56bd0b98e40c42}{\index{display.\+c@{display.\+c}!num\+\_\+player\+\_\+title@{num\+\_\+player\+\_\+title}}
+\index{num\+\_\+player\+\_\+title@{num\+\_\+player\+\_\+title}!display.\+c@{display.\+c}}
+\subsubsection[{num\+\_\+player\+\_\+title}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ num\+\_\+player\+\_\+title = \char`\"{}N\+U\+M\+B\+E\+R O\+F P\+L\+A\+Y\+E\+R\+S\char`\"{}}}\label{display_8c_ab65d693fe8aca8338f56bd0b98e40c42}
+\hypertarget{display_8c_af732655d138393c1fb49a0da38413560}{\index{display.\+c@{display.\+c}!num\+\_\+players@{num\+\_\+players}}
+\index{num\+\_\+players@{num\+\_\+players}!display.\+c@{display.\+c}}
+\subsubsection[{num\+\_\+players}]{\setlength{\rightskip}{0pt plus 5cm}int num\+\_\+players = 4}}\label{display_8c_af732655d138393c1fb49a0da38413560}
+\hypertarget{display_8c_a560e61f00d1222cb708235e0180ff882}{\index{display.\+c@{display.\+c}!player\+\_\+status@{player\+\_\+status}}
+\index{player\+\_\+status@{player\+\_\+status}!display.\+c@{display.\+c}}
+\subsubsection[{player\+\_\+status}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ player\+\_\+status\mbox{[}$\,$\mbox{]} = \{\char`\"{}B\+U\+S\+T\+E\+D O\+U\+T\char`\"{}, \char`\"{}{\bf F\+O\+L\+D}\char`\"{}, \char`\"{}A\+L\+L I\+N\char`\"{}, \char`\"{}{\bf A\+C\+T\+I\+V\+E}\char`\"{}, \char`\"{}{\bf C\+H\+E\+C\+K}\char`\"{}, \char`\"{}{\bf B\+E\+T}\char`\"{}, \char`\"{}{\bf C\+A\+L\+L}\char`\"{}, \char`\"{}{\bf R\+A\+I\+S\+E}\char`\"{}\}}}\label{display_8c_a560e61f00d1222cb708235e0180ff882}
+\hypertarget{display_8c_a460c78a2c731d95afd87f69d4478cc47}{\index{display.\+c@{display.\+c}!S\+Play\+\_\+menu\+\_\+items@{S\+Play\+\_\+menu\+\_\+items}}
+\index{S\+Play\+\_\+menu\+\_\+items@{S\+Play\+\_\+menu\+\_\+items}!display.\+c@{display.\+c}}
+\subsubsection[{S\+Play\+\_\+menu\+\_\+items}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ S\+Play\+\_\+menu\+\_\+items\mbox{[}$\,$\mbox{]}}}\label{display_8c_a460c78a2c731d95afd87f69d4478cc47}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"OK"},
+        \textcolor{stringliteral}{"CANCEL"}
+\}
+\end{DoxyCode}
+\hypertarget{display_8c_a40de622e8c3864d54d1eb8033d97b6b3}{\index{display.\+c@{display.\+c}!step\+\_\+up\+\_\+down@{step\+\_\+up\+\_\+down}}
+\index{step\+\_\+up\+\_\+down@{step\+\_\+up\+\_\+down}!display.\+c@{display.\+c}}
+\subsubsection[{step\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}int step\+\_\+up\+\_\+down = 1}}\label{display_8c_a40de622e8c3864d54d1eb8033d97b6b3}
+\hypertarget{display_8c_a4f4a676d30b613564b9a46fbe9b7f46a}{\index{display.\+c@{display.\+c}!title@{title}}
+\index{title@{title}!display.\+c@{display.\+c}}
+\subsubsection[{title}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ title\mbox{[}$\,$\mbox{]}}}\label{display_8c_a4f4a676d30b613564b9a46fbe9b7f46a}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+        \textcolor{stringliteral}{"..\_\_\_\_\_. .\_\_\_\_\_\_. ..     \_. ..\_\_\_\_\_\_. ..\_\_\_\_\_\_."},
+        \textcolor{stringliteral}{"||     | ||     | ||   \_/   ||        ||      |"},
+        \textcolor{stringliteral}{"||     | ||     | || \_/     ||        ||      |"},
+        \textcolor{stringliteral}{"||\_\_\_\_\_| ||     | ||/       ||\_\_\_\_\_\_. ||\_\_\_\_\_\_|"},
+        \textcolor{stringliteral}{"||       ||     | ||\(\backslash\)\(\backslash\)\_      ||        ||\(\backslash\)\(\backslash\)\_   "},
+        \textcolor{stringliteral}{"||       ||     | ||  \(\backslash\)\(\backslash\)\_    ||        ||  \(\backslash\)\(\backslash\)\_ "},
+        \textcolor{stringliteral}{"||       ||\_\_\_\_\_| ||    \(\backslash\)\(\backslash\)\_. ||\_\_\_\_\_\_. ||    \(\backslash\)\(\backslash\)\_."},
+        \textcolor{stringliteral}{"\(\backslash\)n"},
+        \textcolor{stringliteral}{"..\_\_\_.    ..\_\_\_   ..\_\_\_\_.     .     ..    ..   .\(\backslash\)n"},
+        \textcolor{stringliteral}{"||        ||   \(\backslash\)\(\backslash\)  ||    |    //\(\backslash\)\(\backslash\)    ||   /||   /\(\backslash\)n"},
+        \textcolor{stringliteral}{"||\_\_\_. == ||    | ||\_\_\_\_|   //\_\_\(\backslash\)\(\backslash\)   ||  / ||  /\(\backslash\)n"},
+        \textcolor{stringliteral}{"     |    ||    | ||\(\backslash\)\(\backslash\)\_     //----\(\backslash\)\(\backslash\)  || /  || /\(\backslash\)n"},
+        \textcolor{stringliteral}{".\_\_\_\_|    ||\_\_\_/  ||  \(\backslash\)\(\backslash\)\_. //      \(\backslash\)\(\backslash\) ||/   ||/"}
+\}
+\end{DoxyCode}

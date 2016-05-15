@@ -1,0 +1,487 @@
+\hypertarget{display_8h}{\section{display.\+h File Reference}
+\label{display_8h}\index{display.\+h@{display.\+h}}
+}
+{\ttfamily \#include \char`\"{}poker.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structdisplay}{display}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{display_8h_aaa3f89d08a9fcf0af415b012b8138ebf}{M\+E\+N\+U\+\_\+\+H\+E\+I\+G\+H\+T}~10
+\item 
+\#define \hyperlink{display_8h_ae64f028be3d52d84433789a433ba4034}{M\+E\+N\+U\+\_\+\+W\+I\+D\+T\+H}~40
+\item 
+\#define \hyperlink{display_8h_a53bb3685d97c073b7d35997379a63492}{M\+E\+N\+U\+\_\+\+M\+A\+I\+N\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}~4
+\item 
+\#define \hyperlink{display_8h_a395b3bdc4a686d90c59145e3e4cc986f}{M\+E\+N\+U\+\_\+\+N\+E\+W\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}~4
+\item 
+\#define \hyperlink{display_8h_a5bf04f23f331ff52be91ed3bb8d63cfd}{M\+E\+N\+U\+\_\+\+M\+O\+D\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}~3
+\item 
+\#define \hyperlink{display_8h_a38b5b375d0bdbe26d6f6ae30a8537665}{M\+E\+N\+U\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}~2
+\item 
+\#define \hyperlink{display_8h_a9e21b4de91cb50d48bca8482cbd710a0}{T\+I\+T\+L\+E\+\_\+\+W\+I\+D\+T\+H}~47
+\item 
+\#define \hyperlink{display_8h_a1112bc16f788ef03ff4165abfa648d28}{C\+A\+R\+D\+\_\+\+H\+E\+I\+G\+H\+T}~5
+\item 
+\#define \hyperlink{display_8h_ad6ff324701f28fdcd04a8408f68a3f6c}{C\+A\+R\+D\+\_\+\+W\+I\+D\+T\+H}~8
+\item 
+\#define \hyperlink{display_8h_aaf0a8a7c174a18e545c5ab170d245d9f}{M\+Y\+C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+T\+E}~0
+\item 
+\#define \hyperlink{display_8h_a8ca020267d4c108a98f27c791448e4ef}{M\+Y\+C\+O\+L\+O\+R\+\_\+\+R\+E\+D}~1
+\item 
+\#define \hyperlink{display_8h_ae842a6a1a69f16a8a57b34f4a5028139}{M\+Y\+C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+E\+N}~2
+\item 
+\#define \hyperlink{display_8h_aba0e3af5d7a9f266cfa589b73e7e32cc}{M\+Y\+C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+O\+W}~3
+\item 
+\#define \hyperlink{display_8h_a114afcd198c292aa95e751f85cb34d59}{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E}~4
+\item 
+\#define \hyperlink{display_8h_a8016b5b4f6d1836c89e408c3e0ac9d9d}{M\+Y\+C\+O\+L\+O\+R\+\_\+\+M\+A\+G\+N\+E\+T\+A}~5
+\item 
+\#define \hyperlink{display_8h_a8f007e0a8be7dcf7152ce0b2493a5cb7}{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+C\+K}~7
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48}{stage\+\_\+num} \hyperlink{display_8h_a3e669e78aeefe7165ede3f6e91e639b2}{Stage\+\_\+\+Num}
+\item 
+typedef struct \hyperlink{structdisplay}{display} \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48}{stage\+\_\+num} \{ \\*
+\hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ac22743f1fc74de09544ecc9bab74a17b}{M\+A\+I\+N\+\_\+\+M\+E\+N\+U} = 0, 
+\hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ac9e8468c9768465a565bc176a753e261}{N\+E\+W\+\_\+\+G\+A\+M\+E} = 1, 
+\hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ad869eda6d5a5ef8172f11a102c96a11b}{L\+O\+A\+D\+\_\+\+G\+A\+M\+E} = 2, 
+\hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48adbe7a18eb1c314e0fd76f09e02d84846}{H\+O\+W\+\_\+\+T\+O\+\_\+\+P\+L\+A\+Y} = 3, 
+\\*
+\hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ae0c9d3e5c71ae4b23a63b36eaac2f918}{S\+I\+N\+G\+L\+E\+\_\+\+P\+L\+A\+Y\+E\+R} = 4, 
+\hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48af64ffcc804f85cc65366369011db5768}{M\+U\+L\+T\+I\+\_\+\+P\+L\+A\+Y\+E\+R} = 5, 
+\hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48a865d4bfdc2dd5f698e4558474765cba8}{M\+O\+D\+E} = 6, 
+\hyperlink{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48a87ff207aee31a9e4007c3dba3fe84893}{I\+N\+\_\+\+G\+A\+M\+E} = 7
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{display_8h_a893861c2ad36af0cb26b5851142d1a56}{change\+\_\+stage} (W\+I\+N\+D\+O\+W $\ast$win, \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} $\ast$stage)
+\item 
+void \hyperlink{display_8h_a20f91c866557ae6af943885b0a466f91}{display\+\_\+title} ()
+\item 
+void \hyperlink{display_8h_aead63679faaf0b71b5982779183516a3}{display\+\_\+menu} (W\+I\+N\+D\+O\+W $\ast$win, \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} $\ast$stage)
+\item 
+void \hyperlink{display_8h_a73610a39f5246b1d4570b566187a2a47}{display\+\_\+player\+\_\+seat} (W\+I\+N\+D\+O\+W $\ast$$\ast$seats, \hyperlink{structPlayer}{Player} $\ast$$\ast$players, int turn)
+\item 
+void \hyperlink{display_8h_a3773b910144291192883ce6acaee6658}{update\+\_\+player\+\_\+info} (W\+I\+N\+D\+O\+W $\ast$$\ast$seats, \hyperlink{structPlayer}{Player} $\ast$$\ast$players, int turn)
+\item 
+void \hyperlink{display_8h_a7fb4c7f5305c32696f515715b08914a4}{display\+\_\+deck} (W\+I\+N\+D\+O\+W $\ast$win, \hyperlink{structPlayer}{Player} player)
+\item 
+\hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} \hyperlink{display_8h_aa4295126704c2c9bc3391943d6330b32}{create\+\_\+stage} ()
+\item 
+int \hyperlink{display_8h_a239cf26c0be6d3b637b3c95ff576629a}{pointed\+\_\+item} (W\+I\+N\+D\+O\+W $\ast$win, int pos\+X, int pos\+Y, \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} stage)
+\item 
+void \hyperlink{display_8h_a4aaeba2004c833c04c74c87169c3b8ae}{display\+\_\+up\+\_\+down\+\_\+menu} (W\+I\+N\+D\+O\+W $\ast$win, \hyperlink{display_8h_af5421e2f5e47e6146c561199043912f7}{Stage} $\ast$stage, int min, int max, int step, char $\ast$\hyperlink{display_8c_a4f4a676d30b613564b9a46fbe9b7f46a}{title})
+\item 
+void \hyperlink{display_8h_a239ec60406d711d84c9539ec9b737c44}{add\+\_\+cur\+\_\+up\+\_\+down} (int a)
+\item 
+int \hyperlink{display_8h_a7f451f308ebc9dad21228e322082924a}{get\+\_\+step\+\_\+up\+\_\+down} ()
+\item 
+\hyperlink{player_8h_a18f0f8cbac879377978628626293120d}{Player\+\_\+type} \hyperlink{display_8h_ae0391cd9d734e7bc4fea9b366264499e}{get\+\_\+mode} ()
+\item 
+int \hyperlink{display_8h_ac2caac5abb0b587ba5bafa393cbdd86f}{get\+\_\+num\+\_\+players} ()
+\item 
+void \hyperlink{display_8h_aaff4d89bfb730f299418af1d1e23849c}{select\+\_\+card\+\_\+to\+\_\+change} (int position)
+\item 
+void \hyperlink{display_8h_ad6246c292cefe0290516c22409351aff}{process\+\_\+change\+\_\+card} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} $\ast$$\ast$players)
+\item 
+void \hyperlink{display_8h_a819f57dd2611908e3320f1127793c298}{display\+\_\+chips\+\_\+rank} (\hyperlink{structPlayer}{Player} $\ast$$\ast$players)
+\item 
+void \hyperlink{display_8h_afd77e1643b4786727dafffb0698df510}{display\+\_\+pot} (int amount)
+\item 
+void \hyperlink{display_8h_a48efc8e255b1b34c0a215f172531b419}{display\+\_\+in\+\_\+game\+\_\+stuff} (W\+I\+N\+D\+O\+W $\ast$input\+\_\+win, \hyperlink{structPlayer}{Player} $\ast$$\ast$players, \hyperlink{structGame__round}{Game\+\_\+round} $\ast$\hyperlink{poker__game_8c_ad1eadf93d58fb192373f758b986e6912}{game\+\_\+round}, int turn)
+\item 
+void \hyperlink{display_8h_a924eaab8d0227d87ead4fe250425776b}{reset\+\_\+select\+\_\+card} ()
+\item 
+int \hyperlink{display_8h_afa0eb3c52999a07ed0606c634bb64063}{get\+\_\+cur\+\_\+up\+\_\+down} ()
+\item 
+void \hyperlink{display_8h_abf5f022c60fdf8042b0879493dc55d26}{update} (W\+I\+N\+D\+O\+W $\ast$input\+\_\+win, W\+I\+N\+D\+O\+W $\ast$$\ast$seats, \hyperlink{structPlayer}{Player} $\ast$$\ast$players, \hyperlink{structGame__round}{Game\+\_\+round} $\ast$\hyperlink{poker__game_8c_ad1eadf93d58fb192373f758b986e6912}{game\+\_\+round}, int turn)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{display_8h_a1112bc16f788ef03ff4165abfa648d28}{\index{display.\+h@{display.\+h}!C\+A\+R\+D\+\_\+\+H\+E\+I\+G\+H\+T@{C\+A\+R\+D\+\_\+\+H\+E\+I\+G\+H\+T}}
+\index{C\+A\+R\+D\+\_\+\+H\+E\+I\+G\+H\+T@{C\+A\+R\+D\+\_\+\+H\+E\+I\+G\+H\+T}!display.\+h@{display.\+h}}
+\subsubsection[{C\+A\+R\+D\+\_\+\+H\+E\+I\+G\+H\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+R\+D\+\_\+\+H\+E\+I\+G\+H\+T~5}}\label{display_8h_a1112bc16f788ef03ff4165abfa648d28}
+\hypertarget{display_8h_ad6ff324701f28fdcd04a8408f68a3f6c}{\index{display.\+h@{display.\+h}!C\+A\+R\+D\+\_\+\+W\+I\+D\+T\+H@{C\+A\+R\+D\+\_\+\+W\+I\+D\+T\+H}}
+\index{C\+A\+R\+D\+\_\+\+W\+I\+D\+T\+H@{C\+A\+R\+D\+\_\+\+W\+I\+D\+T\+H}!display.\+h@{display.\+h}}
+\subsubsection[{C\+A\+R\+D\+\_\+\+W\+I\+D\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+R\+D\+\_\+\+W\+I\+D\+T\+H~8}}\label{display_8h_ad6ff324701f28fdcd04a8408f68a3f6c}
+\hypertarget{display_8h_aaa3f89d08a9fcf0af415b012b8138ebf}{\index{display.\+h@{display.\+h}!M\+E\+N\+U\+\_\+\+H\+E\+I\+G\+H\+T@{M\+E\+N\+U\+\_\+\+H\+E\+I\+G\+H\+T}}
+\index{M\+E\+N\+U\+\_\+\+H\+E\+I\+G\+H\+T@{M\+E\+N\+U\+\_\+\+H\+E\+I\+G\+H\+T}!display.\+h@{display.\+h}}
+\subsubsection[{M\+E\+N\+U\+\_\+\+H\+E\+I\+G\+H\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+N\+U\+\_\+\+H\+E\+I\+G\+H\+T~10}}\label{display_8h_aaa3f89d08a9fcf0af415b012b8138ebf}
+\hypertarget{display_8h_a53bb3685d97c073b7d35997379a63492}{\index{display.\+h@{display.\+h}!M\+E\+N\+U\+\_\+\+M\+A\+I\+N\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S@{M\+E\+N\+U\+\_\+\+M\+A\+I\+N\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}}
+\index{M\+E\+N\+U\+\_\+\+M\+A\+I\+N\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S@{M\+E\+N\+U\+\_\+\+M\+A\+I\+N\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}!display.\+h@{display.\+h}}
+\subsubsection[{M\+E\+N\+U\+\_\+\+M\+A\+I\+N\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+N\+U\+\_\+\+M\+A\+I\+N\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S~4}}\label{display_8h_a53bb3685d97c073b7d35997379a63492}
+\hypertarget{display_8h_a5bf04f23f331ff52be91ed3bb8d63cfd}{\index{display.\+h@{display.\+h}!M\+E\+N\+U\+\_\+\+M\+O\+D\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S@{M\+E\+N\+U\+\_\+\+M\+O\+D\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}}
+\index{M\+E\+N\+U\+\_\+\+M\+O\+D\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S@{M\+E\+N\+U\+\_\+\+M\+O\+D\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}!display.\+h@{display.\+h}}
+\subsubsection[{M\+E\+N\+U\+\_\+\+M\+O\+D\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+N\+U\+\_\+\+M\+O\+D\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S~3}}\label{display_8h_a5bf04f23f331ff52be91ed3bb8d63cfd}
+\hypertarget{display_8h_a395b3bdc4a686d90c59145e3e4cc986f}{\index{display.\+h@{display.\+h}!M\+E\+N\+U\+\_\+\+N\+E\+W\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S@{M\+E\+N\+U\+\_\+\+N\+E\+W\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}}
+\index{M\+E\+N\+U\+\_\+\+N\+E\+W\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S@{M\+E\+N\+U\+\_\+\+N\+E\+W\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}!display.\+h@{display.\+h}}
+\subsubsection[{M\+E\+N\+U\+\_\+\+N\+E\+W\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+N\+U\+\_\+\+N\+E\+W\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S~4}}\label{display_8h_a395b3bdc4a686d90c59145e3e4cc986f}
+\hypertarget{display_8h_a38b5b375d0bdbe26d6f6ae30a8537665}{\index{display.\+h@{display.\+h}!M\+E\+N\+U\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S@{M\+E\+N\+U\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}}
+\index{M\+E\+N\+U\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S@{M\+E\+N\+U\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}!display.\+h@{display.\+h}}
+\subsubsection[{M\+E\+N\+U\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+N\+U\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+N\+U\+M\+\_\+\+S\+E\+L\+E\+C\+T\+I\+O\+N\+S~2}}\label{display_8h_a38b5b375d0bdbe26d6f6ae30a8537665}
+\hypertarget{display_8h_ae64f028be3d52d84433789a433ba4034}{\index{display.\+h@{display.\+h}!M\+E\+N\+U\+\_\+\+W\+I\+D\+T\+H@{M\+E\+N\+U\+\_\+\+W\+I\+D\+T\+H}}
+\index{M\+E\+N\+U\+\_\+\+W\+I\+D\+T\+H@{M\+E\+N\+U\+\_\+\+W\+I\+D\+T\+H}!display.\+h@{display.\+h}}
+\subsubsection[{M\+E\+N\+U\+\_\+\+W\+I\+D\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+N\+U\+\_\+\+W\+I\+D\+T\+H~40}}\label{display_8h_ae64f028be3d52d84433789a433ba4034}
+\hypertarget{display_8h_a8f007e0a8be7dcf7152ce0b2493a5cb7}{\index{display.\+h@{display.\+h}!M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+C\+K@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+C\+K}}
+\index{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+C\+K@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+C\+K}!display.\+h@{display.\+h}}
+\subsubsection[{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+C\+K}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+C\+K~7}}\label{display_8h_a8f007e0a8be7dcf7152ce0b2493a5cb7}
+\hypertarget{display_8h_a114afcd198c292aa95e751f85cb34d59}{\index{display.\+h@{display.\+h}!M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E}}
+\index{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E}!display.\+h@{display.\+h}}
+\subsubsection[{M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E~4}}\label{display_8h_a114afcd198c292aa95e751f85cb34d59}
+\hypertarget{display_8h_ae842a6a1a69f16a8a57b34f4a5028139}{\index{display.\+h@{display.\+h}!M\+Y\+C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+E\+N@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+E\+N}}
+\index{M\+Y\+C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+E\+N@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+E\+N}!display.\+h@{display.\+h}}
+\subsubsection[{M\+Y\+C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+E\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+E\+N~2}}\label{display_8h_ae842a6a1a69f16a8a57b34f4a5028139}
+\hypertarget{display_8h_a8016b5b4f6d1836c89e408c3e0ac9d9d}{\index{display.\+h@{display.\+h}!M\+Y\+C\+O\+L\+O\+R\+\_\+\+M\+A\+G\+N\+E\+T\+A@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+M\+A\+G\+N\+E\+T\+A}}
+\index{M\+Y\+C\+O\+L\+O\+R\+\_\+\+M\+A\+G\+N\+E\+T\+A@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+M\+A\+G\+N\+E\+T\+A}!display.\+h@{display.\+h}}
+\subsubsection[{M\+Y\+C\+O\+L\+O\+R\+\_\+\+M\+A\+G\+N\+E\+T\+A}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+C\+O\+L\+O\+R\+\_\+\+M\+A\+G\+N\+E\+T\+A~5}}\label{display_8h_a8016b5b4f6d1836c89e408c3e0ac9d9d}
+\hypertarget{display_8h_a8ca020267d4c108a98f27c791448e4ef}{\index{display.\+h@{display.\+h}!M\+Y\+C\+O\+L\+O\+R\+\_\+\+R\+E\+D@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+R\+E\+D}}
+\index{M\+Y\+C\+O\+L\+O\+R\+\_\+\+R\+E\+D@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+R\+E\+D}!display.\+h@{display.\+h}}
+\subsubsection[{M\+Y\+C\+O\+L\+O\+R\+\_\+\+R\+E\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+C\+O\+L\+O\+R\+\_\+\+R\+E\+D~1}}\label{display_8h_a8ca020267d4c108a98f27c791448e4ef}
+\hypertarget{display_8h_aaf0a8a7c174a18e545c5ab170d245d9f}{\index{display.\+h@{display.\+h}!M\+Y\+C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+T\+E@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+T\+E}}
+\index{M\+Y\+C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+T\+E@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+T\+E}!display.\+h@{display.\+h}}
+\subsubsection[{M\+Y\+C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+T\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+T\+E~0}}\label{display_8h_aaf0a8a7c174a18e545c5ab170d245d9f}
+\hypertarget{display_8h_aba0e3af5d7a9f266cfa589b73e7e32cc}{\index{display.\+h@{display.\+h}!M\+Y\+C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+O\+W@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+O\+W}}
+\index{M\+Y\+C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+O\+W@{M\+Y\+C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+O\+W}!display.\+h@{display.\+h}}
+\subsubsection[{M\+Y\+C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+O\+W}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+O\+W~3}}\label{display_8h_aba0e3af5d7a9f266cfa589b73e7e32cc}
+\hypertarget{display_8h_a9e21b4de91cb50d48bca8482cbd710a0}{\index{display.\+h@{display.\+h}!T\+I\+T\+L\+E\+\_\+\+W\+I\+D\+T\+H@{T\+I\+T\+L\+E\+\_\+\+W\+I\+D\+T\+H}}
+\index{T\+I\+T\+L\+E\+\_\+\+W\+I\+D\+T\+H@{T\+I\+T\+L\+E\+\_\+\+W\+I\+D\+T\+H}!display.\+h@{display.\+h}}
+\subsubsection[{T\+I\+T\+L\+E\+\_\+\+W\+I\+D\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+I\+T\+L\+E\+\_\+\+W\+I\+D\+T\+H~47}}\label{display_8h_a9e21b4de91cb50d48bca8482cbd710a0}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{display_8h_af5421e2f5e47e6146c561199043912f7}{\index{display.\+h@{display.\+h}!Stage@{Stage}}
+\index{Stage@{Stage}!display.\+h@{display.\+h}}
+\subsubsection[{Stage}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf display}  {\bf Stage}}}\label{display_8h_af5421e2f5e47e6146c561199043912f7}
+\hypertarget{display_8h_a3e669e78aeefe7165ede3f6e91e639b2}{\index{display.\+h@{display.\+h}!Stage\+\_\+\+Num@{Stage\+\_\+\+Num}}
+\index{Stage\+\_\+\+Num@{Stage\+\_\+\+Num}!display.\+h@{display.\+h}}
+\subsubsection[{Stage\+\_\+\+Num}]{\setlength{\rightskip}{0pt plus 5cm}typedef enum {\bf stage\+\_\+num} {\bf Stage\+\_\+\+Num}}}\label{display_8h_a3e669e78aeefe7165ede3f6e91e639b2}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48}{\index{display.\+h@{display.\+h}!stage\+\_\+num@{stage\+\_\+num}}
+\index{stage\+\_\+num@{stage\+\_\+num}!display.\+h@{display.\+h}}
+\subsubsection[{stage\+\_\+num}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf stage\+\_\+num}}}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48}
+Define stage numbers \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{M\+A\+I\+N\+\_\+\+M\+E\+N\+U@{M\+A\+I\+N\+\_\+\+M\+E\+N\+U}!display.\+h@{display.\+h}}\index{display.\+h@{display.\+h}!M\+A\+I\+N\+\_\+\+M\+E\+N\+U@{M\+A\+I\+N\+\_\+\+M\+E\+N\+U}}\item[{\em 
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ac22743f1fc74de09544ecc9bab74a17b}{M\+A\+I\+N\+\_\+\+M\+E\+N\+U}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ac22743f1fc74de09544ecc9bab74a17b}
+}]Main menu stage \index{N\+E\+W\+\_\+\+G\+A\+M\+E@{N\+E\+W\+\_\+\+G\+A\+M\+E}!display.\+h@{display.\+h}}\index{display.\+h@{display.\+h}!N\+E\+W\+\_\+\+G\+A\+M\+E@{N\+E\+W\+\_\+\+G\+A\+M\+E}}\item[{\em 
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ac9e8468c9768465a565bc176a753e261}{N\+E\+W\+\_\+\+G\+A\+M\+E}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ac9e8468c9768465a565bc176a753e261}
+}]New game menu stage \index{L\+O\+A\+D\+\_\+\+G\+A\+M\+E@{L\+O\+A\+D\+\_\+\+G\+A\+M\+E}!display.\+h@{display.\+h}}\index{display.\+h@{display.\+h}!L\+O\+A\+D\+\_\+\+G\+A\+M\+E@{L\+O\+A\+D\+\_\+\+G\+A\+M\+E}}\item[{\em 
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ad869eda6d5a5ef8172f11a102c96a11b}{L\+O\+A\+D\+\_\+\+G\+A\+M\+E}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ad869eda6d5a5ef8172f11a102c96a11b}
+}]Load game menu stage \index{H\+O\+W\+\_\+\+T\+O\+\_\+\+P\+L\+A\+Y@{H\+O\+W\+\_\+\+T\+O\+\_\+\+P\+L\+A\+Y}!display.\+h@{display.\+h}}\index{display.\+h@{display.\+h}!H\+O\+W\+\_\+\+T\+O\+\_\+\+P\+L\+A\+Y@{H\+O\+W\+\_\+\+T\+O\+\_\+\+P\+L\+A\+Y}}\item[{\em 
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48adbe7a18eb1c314e0fd76f09e02d84846}{H\+O\+W\+\_\+\+T\+O\+\_\+\+P\+L\+A\+Y}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48adbe7a18eb1c314e0fd76f09e02d84846}
+}]How to play menu stage \index{S\+I\+N\+G\+L\+E\+\_\+\+P\+L\+A\+Y\+E\+R@{S\+I\+N\+G\+L\+E\+\_\+\+P\+L\+A\+Y\+E\+R}!display.\+h@{display.\+h}}\index{display.\+h@{display.\+h}!S\+I\+N\+G\+L\+E\+\_\+\+P\+L\+A\+Y\+E\+R@{S\+I\+N\+G\+L\+E\+\_\+\+P\+L\+A\+Y\+E\+R}}\item[{\em 
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ae0c9d3e5c71ae4b23a63b36eaac2f918}{S\+I\+N\+G\+L\+E\+\_\+\+P\+L\+A\+Y\+E\+R}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48ae0c9d3e5c71ae4b23a63b36eaac2f918}
+}]Single player menu stage \index{M\+U\+L\+T\+I\+\_\+\+P\+L\+A\+Y\+E\+R@{M\+U\+L\+T\+I\+\_\+\+P\+L\+A\+Y\+E\+R}!display.\+h@{display.\+h}}\index{display.\+h@{display.\+h}!M\+U\+L\+T\+I\+\_\+\+P\+L\+A\+Y\+E\+R@{M\+U\+L\+T\+I\+\_\+\+P\+L\+A\+Y\+E\+R}}\item[{\em 
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48af64ffcc804f85cc65366369011db5768}{M\+U\+L\+T\+I\+\_\+\+P\+L\+A\+Y\+E\+R}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48af64ffcc804f85cc65366369011db5768}
+}]Multi player menu stage \index{M\+O\+D\+E@{M\+O\+D\+E}!display.\+h@{display.\+h}}\index{display.\+h@{display.\+h}!M\+O\+D\+E@{M\+O\+D\+E}}\item[{\em 
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48a865d4bfdc2dd5f698e4558474765cba8}{M\+O\+D\+E}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48a865d4bfdc2dd5f698e4558474765cba8}
+}]Mode menu stage \index{I\+N\+\_\+\+G\+A\+M\+E@{I\+N\+\_\+\+G\+A\+M\+E}!display.\+h@{display.\+h}}\index{display.\+h@{display.\+h}!I\+N\+\_\+\+G\+A\+M\+E@{I\+N\+\_\+\+G\+A\+M\+E}}\item[{\em 
+\hypertarget{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48a87ff207aee31a9e4007c3dba3fe84893}{I\+N\+\_\+\+G\+A\+M\+E}\label{display_8h_aa770c36d6dcfc0e9bf826c246c5a6f48a87ff207aee31a9e4007c3dba3fe84893}
+}]In game menu stage \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{display_8h_a239ec60406d711d84c9539ec9b737c44}{\index{display.\+h@{display.\+h}!add\+\_\+cur\+\_\+up\+\_\+down@{add\+\_\+cur\+\_\+up\+\_\+down}}
+\index{add\+\_\+cur\+\_\+up\+\_\+down@{add\+\_\+cur\+\_\+up\+\_\+down}!display.\+h@{display.\+h}}
+\subsubsection[{add\+\_\+cur\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}void add\+\_\+cur\+\_\+up\+\_\+down (
+\begin{DoxyParamCaption}
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a239ec60406d711d84c9539ec9b737c44}
+Change the current value of the up down menu 
+\begin{DoxyParams}{Parameters}
+{\em a} & is the value to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_a893861c2ad36af0cb26b5851142d1a56}{\index{display.\+h@{display.\+h}!change\+\_\+stage@{change\+\_\+stage}}
+\index{change\+\_\+stage@{change\+\_\+stage}!display.\+h@{display.\+h}}
+\subsubsection[{change\+\_\+stage}]{\setlength{\rightskip}{0pt plus 5cm}void change\+\_\+stage (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{{\bf Stage} $\ast$}]{stage}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a893861c2ad36af0cb26b5851142d1a56}
+Change the stage of the game 
+\begin{DoxyParams}{Parameters}
+{\em win} & is the window to be drawn on \\
+\hline
+{\em stage} & is the next stage to change to \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_aa4295126704c2c9bc3391943d6330b32}{\index{display.\+h@{display.\+h}!create\+\_\+stage@{create\+\_\+stage}}
+\index{create\+\_\+stage@{create\+\_\+stage}!display.\+h@{display.\+h}}
+\subsubsection[{create\+\_\+stage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Stage} create\+\_\+stage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8h_aa4295126704c2c9bc3391943d6330b32}
+Create game stage \hypertarget{display_8h_a819f57dd2611908e3320f1127793c298}{\index{display.\+h@{display.\+h}!display\+\_\+chips\+\_\+rank@{display\+\_\+chips\+\_\+rank}}
+\index{display\+\_\+chips\+\_\+rank@{display\+\_\+chips\+\_\+rank}!display.\+h@{display.\+h}}
+\subsubsection[{display\+\_\+chips\+\_\+rank}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+chips\+\_\+rank (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{players}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a819f57dd2611908e3320f1127793c298}
+Display the rank of players based on their chips 
+\begin{DoxyParams}{Parameters}
+{\em players} & is an array holding all players \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_a7fb4c7f5305c32696f515715b08914a4}{\index{display.\+h@{display.\+h}!display\+\_\+deck@{display\+\_\+deck}}
+\index{display\+\_\+deck@{display\+\_\+deck}!display.\+h@{display.\+h}}
+\subsubsection[{display\+\_\+deck}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+deck (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a7fb4c7f5305c32696f515715b08914a4}
+Display deck of a specific player 
+\begin{DoxyParams}{Parameters}
+{\em win} & is a window of player whose deck need to be displayed \\
+\hline
+{\em player} & is a player whose deck need to be displayed \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_a48efc8e255b1b34c0a215f172531b419}{\index{display.\+h@{display.\+h}!display\+\_\+in\+\_\+game\+\_\+stuff@{display\+\_\+in\+\_\+game\+\_\+stuff}}
+\index{display\+\_\+in\+\_\+game\+\_\+stuff@{display\+\_\+in\+\_\+game\+\_\+stuff}!display.\+h@{display.\+h}}
+\subsubsection[{display\+\_\+in\+\_\+game\+\_\+stuff}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+in\+\_\+game\+\_\+stuff (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{input\+\_\+win, }
+\item[{{\bf Player} $\ast$$\ast$}]{players, }
+\item[{{\bf Game\+\_\+round} $\ast$}]{game\+\_\+round, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a48efc8e255b1b34c0a215f172531b419}
+Display game stuff such as button and input menu 
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+win} & is input window \\
+\hline
+{\em players} & is an array holding all players \\
+\hline
+{\em game\+\_\+round} & is current game round \\
+\hline
+{\em turn} & is the current position turn of the game \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_aead63679faaf0b71b5982779183516a3}{\index{display.\+h@{display.\+h}!display\+\_\+menu@{display\+\_\+menu}}
+\index{display\+\_\+menu@{display\+\_\+menu}!display.\+h@{display.\+h}}
+\subsubsection[{display\+\_\+menu}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+menu (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{{\bf Stage} $\ast$}]{stage}
+\end{DoxyParamCaption}
+)}}\label{display_8h_aead63679faaf0b71b5982779183516a3}
+Display game menu 
+\begin{DoxyParams}{Parameters}
+{\em win} & is the window to be drawn on \\
+\hline
+{\em stage} & is the current stage of the game \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_a73610a39f5246b1d4570b566187a2a47}{\index{display.\+h@{display.\+h}!display\+\_\+player\+\_\+seat@{display\+\_\+player\+\_\+seat}}
+\index{display\+\_\+player\+\_\+seat@{display\+\_\+player\+\_\+seat}!display.\+h@{display.\+h}}
+\subsubsection[{display\+\_\+player\+\_\+seat}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+player\+\_\+seat (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$$\ast$}]{seats, }
+\item[{{\bf Player} $\ast$$\ast$}]{players, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a73610a39f5246b1d4570b566187a2a47}
+Display player seat 
+\begin{DoxyParams}{Parameters}
+{\em seats} & is an array holding all players' seat, each seat is a window \\
+\hline
+{\em players} & is an array holding all player \\
+\hline
+{\em turn} & is the current turn of the game \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_afd77e1643b4786727dafffb0698df510}{\index{display.\+h@{display.\+h}!display\+\_\+pot@{display\+\_\+pot}}
+\index{display\+\_\+pot@{display\+\_\+pot}!display.\+h@{display.\+h}}
+\subsubsection[{display\+\_\+pot}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+pot (
+\begin{DoxyParamCaption}
+\item[{int}]{amount}
+\end{DoxyParamCaption}
+)}}\label{display_8h_afd77e1643b4786727dafffb0698df510}
+Display the pot of the game 
+\begin{DoxyParams}{Parameters}
+{\em amount} & is the amount to be displayed \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_a20f91c866557ae6af943885b0a466f91}{\index{display.\+h@{display.\+h}!display\+\_\+title@{display\+\_\+title}}
+\index{display\+\_\+title@{display\+\_\+title}!display.\+h@{display.\+h}}
+\subsubsection[{display\+\_\+title}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a20f91c866557ae6af943885b0a466f91}
+Display the game title \hypertarget{display_8h_a4aaeba2004c833c04c74c87169c3b8ae}{\index{display.\+h@{display.\+h}!display\+\_\+up\+\_\+down\+\_\+menu@{display\+\_\+up\+\_\+down\+\_\+menu}}
+\index{display\+\_\+up\+\_\+down\+\_\+menu@{display\+\_\+up\+\_\+down\+\_\+menu}!display.\+h@{display.\+h}}
+\subsubsection[{display\+\_\+up\+\_\+down\+\_\+menu}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+up\+\_\+down\+\_\+menu (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{{\bf Stage} $\ast$}]{stage, }
+\item[{int}]{min, }
+\item[{int}]{max, }
+\item[{int}]{step, }
+\item[{char $\ast$}]{title}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a4aaeba2004c833c04c74c87169c3b8ae}
+Display input menu that have increase and decrease function 
+\begin{DoxyParams}{Parameters}
+{\em win} & is a window that need to work on \\
+\hline
+{\em stage} & is the game stage \\
+\hline
+{\em min} & is the minimum value \\
+\hline
+{\em max} & is maximum value \\
+\hline
+{\em step} & is increase and decrease value \\
+\hline
+{\em title} & is title of the menu \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_afa0eb3c52999a07ed0606c634bb64063}{\index{display.\+h@{display.\+h}!get\+\_\+cur\+\_\+up\+\_\+down@{get\+\_\+cur\+\_\+up\+\_\+down}}
+\index{get\+\_\+cur\+\_\+up\+\_\+down@{get\+\_\+cur\+\_\+up\+\_\+down}!display.\+h@{display.\+h}}
+\subsubsection[{get\+\_\+cur\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+cur\+\_\+up\+\_\+down (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8h_afa0eb3c52999a07ed0606c634bb64063}
+Get the current value in the up down menu \hypertarget{display_8h_ae0391cd9d734e7bc4fea9b366264499e}{\index{display.\+h@{display.\+h}!get\+\_\+mode@{get\+\_\+mode}}
+\index{get\+\_\+mode@{get\+\_\+mode}!display.\+h@{display.\+h}}
+\subsubsection[{get\+\_\+mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+\_\+type} get\+\_\+mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8h_ae0391cd9d734e7bc4fea9b366264499e}
+Get the mode of the game \hypertarget{display_8h_ac2caac5abb0b587ba5bafa393cbdd86f}{\index{display.\+h@{display.\+h}!get\+\_\+num\+\_\+players@{get\+\_\+num\+\_\+players}}
+\index{get\+\_\+num\+\_\+players@{get\+\_\+num\+\_\+players}!display.\+h@{display.\+h}}
+\subsubsection[{get\+\_\+num\+\_\+players}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+num\+\_\+players (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8h_ac2caac5abb0b587ba5bafa393cbdd86f}
+Get the number of players of the game \hypertarget{display_8h_a7f451f308ebc9dad21228e322082924a}{\index{display.\+h@{display.\+h}!get\+\_\+step\+\_\+up\+\_\+down@{get\+\_\+step\+\_\+up\+\_\+down}}
+\index{get\+\_\+step\+\_\+up\+\_\+down@{get\+\_\+step\+\_\+up\+\_\+down}!display.\+h@{display.\+h}}
+\subsubsection[{get\+\_\+step\+\_\+up\+\_\+down}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+step\+\_\+up\+\_\+down (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a7f451f308ebc9dad21228e322082924a}
+Get the step of up down menu \hypertarget{display_8h_a239cf26c0be6d3b637b3c95ff576629a}{\index{display.\+h@{display.\+h}!pointed\+\_\+item@{pointed\+\_\+item}}
+\index{pointed\+\_\+item@{pointed\+\_\+item}!display.\+h@{display.\+h}}
+\subsubsection[{pointed\+\_\+item}]{\setlength{\rightskip}{0pt plus 5cm}int pointed\+\_\+item (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{win, }
+\item[{int}]{pos\+X, }
+\item[{int}]{pos\+Y, }
+\item[{{\bf Stage}}]{stage}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a239cf26c0be6d3b637b3c95ff576629a}
+Return the current chosen item in a window using mouse 
+\begin{DoxyParams}{Parameters}
+{\em win} & is a window that need to work on \\
+\hline
+{\em pos\+X} & is the X coordinate of mouse event \\
+\hline
+{\em pos\+Y} & is the Y coordinate of the mouse event \\
+\hline
+{\em stage} & is the game stage \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_ad6246c292cefe0290516c22409351aff}{\index{display.\+h@{display.\+h}!process\+\_\+change\+\_\+card@{process\+\_\+change\+\_\+card}}
+\index{process\+\_\+change\+\_\+card@{process\+\_\+change\+\_\+card}!display.\+h@{display.\+h}}
+\subsubsection[{process\+\_\+change\+\_\+card}]{\setlength{\rightskip}{0pt plus 5cm}void process\+\_\+change\+\_\+card (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player} $\ast$$\ast$}]{players}
+\end{DoxyParamCaption}
+)}}\label{display_8h_ad6246c292cefe0290516c22409351aff}
+Change the card of players 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the main deck of the poker game \\
+\hline
+{\em players} & is an array holding all players \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_a924eaab8d0227d87ead4fe250425776b}{\index{display.\+h@{display.\+h}!reset\+\_\+select\+\_\+card@{reset\+\_\+select\+\_\+card}}
+\index{reset\+\_\+select\+\_\+card@{reset\+\_\+select\+\_\+card}!display.\+h@{display.\+h}}
+\subsubsection[{reset\+\_\+select\+\_\+card}]{\setlength{\rightskip}{0pt plus 5cm}void reset\+\_\+select\+\_\+card (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a924eaab8d0227d87ead4fe250425776b}
+Reset the temporary array holding selected card to change of player \hypertarget{display_8h_aaff4d89bfb730f299418af1d1e23849c}{\index{display.\+h@{display.\+h}!select\+\_\+card\+\_\+to\+\_\+change@{select\+\_\+card\+\_\+to\+\_\+change}}
+\index{select\+\_\+card\+\_\+to\+\_\+change@{select\+\_\+card\+\_\+to\+\_\+change}!display.\+h@{display.\+h}}
+\subsubsection[{select\+\_\+card\+\_\+to\+\_\+change}]{\setlength{\rightskip}{0pt plus 5cm}void select\+\_\+card\+\_\+to\+\_\+change (
+\begin{DoxyParamCaption}
+\item[{int}]{position}
+\end{DoxyParamCaption}
+)}}\label{display_8h_aaff4d89bfb730f299418af1d1e23849c}
+Change the display of the selected card using card position 
+\begin{DoxyParams}{Parameters}
+{\em position} & is the position of the card \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_abf5f022c60fdf8042b0879493dc55d26}{\index{display.\+h@{display.\+h}!update@{update}}
+\index{update@{update}!display.\+h@{display.\+h}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void update (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$}]{input\+\_\+win, }
+\item[{W\+I\+N\+D\+O\+W $\ast$$\ast$}]{seats, }
+\item[{{\bf Player} $\ast$$\ast$}]{players, }
+\item[{{\bf Game\+\_\+round} $\ast$}]{game\+\_\+round, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{display_8h_abf5f022c60fdf8042b0879493dc55d26}
+Update the display of all information of players 
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+win} & is input window \\
+\hline
+{\em seats} & is an array hold all players' seat, each seat is a window \\
+\hline
+{\em players} & is an array holding all players \\
+\hline
+{\em game\+\_\+round} & is current game round \\
+\hline
+{\em turn} & is the current position turn of the game \\
+\hline
+\end{DoxyParams}
+\hypertarget{display_8h_a3773b910144291192883ce6acaee6658}{\index{display.\+h@{display.\+h}!update\+\_\+player\+\_\+info@{update\+\_\+player\+\_\+info}}
+\index{update\+\_\+player\+\_\+info@{update\+\_\+player\+\_\+info}!display.\+h@{display.\+h}}
+\subsubsection[{update\+\_\+player\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}void update\+\_\+player\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{W\+I\+N\+D\+O\+W $\ast$$\ast$}]{seats, }
+\item[{{\bf Player} $\ast$$\ast$}]{players, }
+\item[{int}]{turn}
+\end{DoxyParamCaption}
+)}}\label{display_8h_a3773b910144291192883ce6acaee6658}
+Update the display of player information 
+\begin{DoxyParams}{Parameters}
+{\em seats} & is an array holding all players' seat, each seat is a window \\
+\hline
+{\em players} & is an array holding all player \\
+\hline
+{\em turn} & is the current turn of the game \\
+\hline
+\end{DoxyParams}

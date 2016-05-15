@@ -1,0 +1,234 @@
+\hypertarget{player_8c}{\section{player.\+c File Reference}
+\label{player_8c}\index{player.\+c@{player.\+c}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}player.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structPlayer}{Player} $\ast$ \hyperlink{player_8c_acca440fdfa4cb730ff4a6df78553b494}{create\+\_\+player} (int length\+\_\+hands)
+\item 
+\hyperlink{structPlayer}{Player} $\ast$$\ast$ \hyperlink{player_8c_ab9efbaad5388c680c45dc1f69d7977ab}{create\+\_\+players\+\_\+list} (int \hyperlink{display_8c_af732655d138393c1fb49a0da38413560}{num\+\_\+players}, int length\+\_\+hands, \hyperlink{player_8h_a18f0f8cbac879377978628626293120d}{Player\+\_\+type} \hyperlink{display_8c_ab8a32c40c10bdcd4c3d667f7fa27b2cc}{mode})
+\item 
+void \hyperlink{player_8c_a14bfdfa212f96e6f4c06f27e5efbffd3}{free\+\_\+players\+\_\+list} (\hyperlink{structPlayer}{Player} $\ast$$\ast$list, int \hyperlink{display_8c_af732655d138393c1fb49a0da38413560}{num\+\_\+players})
+\item 
+void \hyperlink{player_8c_af6fc01a054b4f877a85e26997f6b6496}{change\+\_\+card} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} target, int position\+\_\+card)
+\item 
+void \hyperlink{player_8c_ad6ba4dbd8313b9f97683c0c8edad123c}{deal\+\_\+card} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} target, int length\+\_\+hands)
+\item 
+void \hyperlink{player_8c_ab3ab09620c74df82e3722040196221fd}{check\+\_\+straight\+\_\+flush} (\hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{player_8c_a4fd38fc8890dc6263b3452db0a25e5d6}{check\+\_\+pairs} (\hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+int \hyperlink{player_8c_ad05cf5d7fd90ca9bbc5dcd5fa134bf48}{compare\+\_\+hands} (\hyperlink{structPlayer}{Player} $\ast$$\ast$list, int length)
+\item 
+void \hyperlink{player_8c_a7067382ee222f6994bd8e36c3fb30e65}{print\+\_\+player\+\_\+info} (\hyperlink{structPlayer}{Player} player)
+\item 
+void \hyperlink{player_8c_a3149b725d01ce6b0b87ca8040f17e76f}{swap\+\_\+players} (\hyperlink{structPlayer}{Player} $\ast$x, \hyperlink{structPlayer}{Player} $\ast$y)
+\item 
+void \hyperlink{player_8c_a16afd8f0fa6d8d94d03a1046f46dc283}{sort\+\_\+players} (\hyperlink{structPlayer}{Player} $\ast$$\ast$a, int length)
+\item 
+void \hyperlink{player_8c_a0e2476ead816cc8c648d1e00d1972153}{copy\+\_\+\+Player\+\_\+array} (\hyperlink{structPlayer}{Player} $\ast$$\ast$src, \hyperlink{structPlayer}{Player} $\ast$$\ast$dst, int length)
+\item 
+\hyperlink{structPlayer}{Player} $\ast$$\ast$ \hyperlink{player_8c_a43706b366090e8f8b69e03669c7baa70}{clone\+\_\+\+Player\+\_\+array} (\hyperlink{structPlayer}{Player} $\ast$$\ast$a, int length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{player_8c_af6fc01a054b4f877a85e26997f6b6496}{\index{player.\+c@{player.\+c}!change\+\_\+card@{change\+\_\+card}}
+\index{change\+\_\+card@{change\+\_\+card}!player.\+c@{player.\+c}}
+\subsubsection[{change\+\_\+card}]{\setlength{\rightskip}{0pt plus 5cm}void change\+\_\+card (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player}}]{target, }
+\item[{int}]{position\+\_\+card}
+\end{DoxyParamCaption}
+)}}\label{player_8c_af6fc01a054b4f877a85e26997f6b6496}
+Change the card that the player wishes to change in change phase 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck used to deal cards \\
+\hline
+{\em target} & is the player who wishes to change card \\
+\hline
+{\em position\+\_\+card} & is the position of the card in the player's hand \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_a4fd38fc8890dc6263b3452db0a25e5d6}{\index{player.\+c@{player.\+c}!check\+\_\+pairs@{check\+\_\+pairs}}
+\index{check\+\_\+pairs@{check\+\_\+pairs}!player.\+c@{player.\+c}}
+\subsubsection[{check\+\_\+pairs}]{\setlength{\rightskip}{0pt plus 5cm}void check\+\_\+pairs (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{player_8c_a4fd38fc8890dc6263b3452db0a25e5d6}
+Check the cards of a player for pair, three of a kind, four of a kind, full house The cards musts be already sorted 
+\begin{DoxyParams}{Parameters}
+{\em player} & is the player to be checked \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_ab3ab09620c74df82e3722040196221fd}{\index{player.\+c@{player.\+c}!check\+\_\+straight\+\_\+flush@{check\+\_\+straight\+\_\+flush}}
+\index{check\+\_\+straight\+\_\+flush@{check\+\_\+straight\+\_\+flush}!player.\+c@{player.\+c}}
+\subsubsection[{check\+\_\+straight\+\_\+flush}]{\setlength{\rightskip}{0pt plus 5cm}void check\+\_\+straight\+\_\+flush (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{player_8c_ab3ab09620c74df82e3722040196221fd}
+Check the cards of a player for straight, flush, straight flush or royal flush The cards musts be already sorted 
+\begin{DoxyParams}{Parameters}
+{\em player} & is the player to be checked \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_a43706b366090e8f8b69e03669c7baa70}{\index{player.\+c@{player.\+c}!clone\+\_\+\+Player\+\_\+array@{clone\+\_\+\+Player\+\_\+array}}
+\index{clone\+\_\+\+Player\+\_\+array@{clone\+\_\+\+Player\+\_\+array}!player.\+c@{player.\+c}}
+\subsubsection[{clone\+\_\+\+Player\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$$\ast$ clone\+\_\+\+Player\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{a, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{player_8c_a43706b366090e8f8b69e03669c7baa70}
+Clone an array of players 
+\begin{DoxyParams}{Parameters}
+{\em a} & is the array to be cloned \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_ad05cf5d7fd90ca9bbc5dcd5fa134bf48}{\index{player.\+c@{player.\+c}!compare\+\_\+hands@{compare\+\_\+hands}}
+\index{compare\+\_\+hands@{compare\+\_\+hands}!player.\+c@{player.\+c}}
+\subsubsection[{compare\+\_\+hands}]{\setlength{\rightskip}{0pt plus 5cm}int compare\+\_\+hands (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{list, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{player_8c_ad05cf5d7fd90ca9bbc5dcd5fa134bf48}
+Compare a list of hands and choose the player with the best hands The hands should already be checked with check\+\_\+straight\+\_\+flush and check\+\_\+pairs 
+\begin{DoxyParams}{Parameters}
+{\em list} & is the list of the player \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_a0e2476ead816cc8c648d1e00d1972153}{\index{player.\+c@{player.\+c}!copy\+\_\+\+Player\+\_\+array@{copy\+\_\+\+Player\+\_\+array}}
+\index{copy\+\_\+\+Player\+\_\+array@{copy\+\_\+\+Player\+\_\+array}!player.\+c@{player.\+c}}
+\subsubsection[{copy\+\_\+\+Player\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}void copy\+\_\+\+Player\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{src, }
+\item[{{\bf Player} $\ast$$\ast$}]{dst, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{player_8c_a0e2476ead816cc8c648d1e00d1972153}
+Copy an array of players 
+\begin{DoxyParams}{Parameters}
+{\em src} & is the array to be copied \\
+\hline
+{\em dst} & is the array to be pasted to \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_acca440fdfa4cb730ff4a6df78553b494}{\index{player.\+c@{player.\+c}!create\+\_\+player@{create\+\_\+player}}
+\index{create\+\_\+player@{create\+\_\+player}!player.\+c@{player.\+c}}
+\subsubsection[{create\+\_\+player}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$ create\+\_\+player (
+\begin{DoxyParamCaption}
+\item[{int}]{length\+\_\+hands}
+\end{DoxyParamCaption}
+)}}\label{player_8c_acca440fdfa4cb730ff4a6df78553b494}
+Create a player 
+\begin{DoxyParams}{Parameters}
+{\em length\+\_\+hands} & is the number of cards in the player's hands \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_ab9efbaad5388c680c45dc1f69d7977ab}{\index{player.\+c@{player.\+c}!create\+\_\+players\+\_\+list@{create\+\_\+players\+\_\+list}}
+\index{create\+\_\+players\+\_\+list@{create\+\_\+players\+\_\+list}!player.\+c@{player.\+c}}
+\subsubsection[{create\+\_\+players\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$$\ast$ create\+\_\+players\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+\_\+players, }
+\item[{int}]{length\+\_\+hands, }
+\item[{{\bf Player\+\_\+type}}]{mode}
+\end{DoxyParamCaption}
+)}}\label{player_8c_ab9efbaad5388c680c45dc1f69d7977ab}
+Create a list of players 
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+players} & is the number of players \\
+\hline
+{\em length\+\_\+hands} & is the number of cards in each player's hands \\
+\hline
+{\em mode} & is the player's type \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_ad6ba4dbd8313b9f97683c0c8edad123c}{\index{player.\+c@{player.\+c}!deal\+\_\+card@{deal\+\_\+card}}
+\index{deal\+\_\+card@{deal\+\_\+card}!player.\+c@{player.\+c}}
+\subsubsection[{deal\+\_\+card}]{\setlength{\rightskip}{0pt plus 5cm}void deal\+\_\+card (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player}}]{target, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{player_8c_ad6ba4dbd8313b9f97683c0c8edad123c}
+Deal a card to a player 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck used to deal the card \\
+\hline
+{\em target} & is the player to receive the card \\
+\hline
+{\em n} & is the number of card to give out \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_a14bfdfa212f96e6f4c06f27e5efbffd3}{\index{player.\+c@{player.\+c}!free\+\_\+players\+\_\+list@{free\+\_\+players\+\_\+list}}
+\index{free\+\_\+players\+\_\+list@{free\+\_\+players\+\_\+list}!player.\+c@{player.\+c}}
+\subsubsection[{free\+\_\+players\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}void free\+\_\+players\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{list, }
+\item[{int}]{num\+\_\+players}
+\end{DoxyParamCaption}
+)}}\label{player_8c_a14bfdfa212f96e6f4c06f27e5efbffd3}
+Free the resources allocated for each player and the player list 
+\begin{DoxyParams}{Parameters}
+{\em list} & is the list of players \\
+\hline
+{\em num\+\_\+players} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_a7067382ee222f6994bd8e36c3fb30e65}{\index{player.\+c@{player.\+c}!print\+\_\+player\+\_\+info@{print\+\_\+player\+\_\+info}}
+\index{print\+\_\+player\+\_\+info@{print\+\_\+player\+\_\+info}!player.\+c@{player.\+c}}
+\subsubsection[{print\+\_\+player\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+player\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}}\label{player_8c_a7067382ee222f6994bd8e36c3fb30e65}
+Print the player info 
+\begin{DoxyParams}{Parameters}
+{\em player} & is the player to be printed \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_a16afd8f0fa6d8d94d03a1046f46dc283}{\index{player.\+c@{player.\+c}!sort\+\_\+players@{sort\+\_\+players}}
+\index{sort\+\_\+players@{sort\+\_\+players}!player.\+c@{player.\+c}}
+\subsubsection[{sort\+\_\+players}]{\setlength{\rightskip}{0pt plus 5cm}void sort\+\_\+players (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{a, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{player_8c_a16afd8f0fa6d8d94d03a1046f46dc283}
+Sort the player ranking based on their chips 
+\begin{DoxyParams}{Parameters}
+{\em a} & is the player list \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8c_a3149b725d01ce6b0b87ca8040f17e76f}{\index{player.\+c@{player.\+c}!swap\+\_\+players@{swap\+\_\+players}}
+\index{swap\+\_\+players@{swap\+\_\+players}!player.\+c@{player.\+c}}
+\subsubsection[{swap\+\_\+players}]{\setlength{\rightskip}{0pt plus 5cm}void swap\+\_\+players (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$}]{x, }
+\item[{{\bf Player} $\ast$}]{y}
+\end{DoxyParamCaption}
+)}}\label{player_8c_a3149b725d01ce6b0b87ca8040f17e76f}
+Swap the players 
+\begin{DoxyParams}{Parameters}
+{\em x} & is the first player to be swapped \\
+\hline
+{\em y} & is the second player to be swapped \\
+\hline
+\end{DoxyParams}

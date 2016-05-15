@@ -5,6 +5,7 @@
 
 /** Determine the hands of each player, then pick the best hands
  * @param list is the list of players
+ * @param round is the game round
  */
 int showdown(Game_round round, Player ** list);
 

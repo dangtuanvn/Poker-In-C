@@ -1,0 +1,66 @@
+\hypertarget{deck_8h}{\section{deck.\+h File Reference}
+\label{deck_8h}\index{deck.\+h@{deck.\+h}}
+}
+{\ttfamily \#include \char`\"{}card.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structDeck}{Deck}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{deck_8h_a0d45bf58200acfbe25ff8823d709733c}{L\+E\+N\+G\+T\+H\+\_\+\+D\+E\+C\+K}~52
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structDeck}{Deck} $\ast$ \hyperlink{deck_8h_a3e3e4107fd0be8ca2ba414830bf679c1}{create\+\_\+deck} ()
+\item 
+void \hyperlink{deck_8h_a512743a9005b66c8d84c8c38113a0f5f}{free\+\_\+deck} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck})
+\item 
+void \hyperlink{deck_8h_a01a577d8c78d3272c405e422329d9617}{shuffle\+\_\+deck} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, int length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{deck_8h_a0d45bf58200acfbe25ff8823d709733c}{\index{deck.\+h@{deck.\+h}!L\+E\+N\+G\+T\+H\+\_\+\+D\+E\+C\+K@{L\+E\+N\+G\+T\+H\+\_\+\+D\+E\+C\+K}}
+\index{L\+E\+N\+G\+T\+H\+\_\+\+D\+E\+C\+K@{L\+E\+N\+G\+T\+H\+\_\+\+D\+E\+C\+K}!deck.\+h@{deck.\+h}}
+\subsubsection[{L\+E\+N\+G\+T\+H\+\_\+\+D\+E\+C\+K}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+E\+N\+G\+T\+H\+\_\+\+D\+E\+C\+K~52}}\label{deck_8h_a0d45bf58200acfbe25ff8823d709733c}
+
+
+\subsection{Function Documentation}
+\hypertarget{deck_8h_a3e3e4107fd0be8ca2ba414830bf679c1}{\index{deck.\+h@{deck.\+h}!create\+\_\+deck@{create\+\_\+deck}}
+\index{create\+\_\+deck@{create\+\_\+deck}!deck.\+h@{deck.\+h}}
+\subsubsection[{create\+\_\+deck}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Deck}$\ast$ create\+\_\+deck (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{deck_8h_a3e3e4107fd0be8ca2ba414830bf679c1}
+Create a deck of 52 cards with 13 numbers and 4 suits Return a \hyperlink{structDeck}{Deck} \hypertarget{deck_8h_a512743a9005b66c8d84c8c38113a0f5f}{\index{deck.\+h@{deck.\+h}!free\+\_\+deck@{free\+\_\+deck}}
+\index{free\+\_\+deck@{free\+\_\+deck}!deck.\+h@{deck.\+h}}
+\subsubsection[{free\+\_\+deck}]{\setlength{\rightskip}{0pt plus 5cm}void free\+\_\+deck (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck}
+\end{DoxyParamCaption}
+)}}\label{deck_8h_a512743a9005b66c8d84c8c38113a0f5f}
+Free the resources allocated for a deck of card 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck to be released \\
+\hline
+\end{DoxyParams}
+\hypertarget{deck_8h_a01a577d8c78d3272c405e422329d9617}{\index{deck.\+h@{deck.\+h}!shuffle\+\_\+deck@{shuffle\+\_\+deck}}
+\index{shuffle\+\_\+deck@{shuffle\+\_\+deck}!deck.\+h@{deck.\+h}}
+\subsubsection[{shuffle\+\_\+deck}]{\setlength{\rightskip}{0pt plus 5cm}void shuffle\+\_\+deck (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{deck_8h_a01a577d8c78d3272c405e422329d9617}
+Shuffle a deck of cards Fisher and Yates algorithm 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck to be shuffled \\
+\hline
+{\em length} & is the number of cards in the deck, which is the length of the array \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,382 @@
+\hypertarget{player_8h}{\section{player.\+h File Reference}
+\label{player_8h}\index{player.\+h@{player.\+h}}
+}
+{\ttfamily \#include \char`\"{}deck.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structPoker__hands}{Poker\+\_\+hands}
+\item 
+struct \hyperlink{structPlayer}{Player}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{player_8h_a32aeffb076efaee76df7ecca477d6dc7}{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+C\+H\+I\+P\+S}~3000
+\item 
+\#define \hyperlink{player_8h_ac43b9f60af1c865bcb914655636dd1d3}{L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S}~5
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959}{status} \hyperlink{player_8h_ad56becc6de6903936d4070a4216142dc}{Status}
+\item 
+typedef enum \hyperlink{player_8h_a5d6b3fe01985f28925beacd034916872}{player\+\_\+type} \hyperlink{player_8h_a18f0f8cbac879377978628626293120d}{Player\+\_\+type}
+\item 
+typedef enum \hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26}{hands\+\_\+type} \hyperlink{player_8h_a59d630254d7ef6acd907142c9a263a00}{Hands\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959}{status} \{ \\*
+\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a7343c7ae1fb5d13750e8d514481041cc}{B\+U\+S\+T\+E\+D}, 
+\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a4c06ebc69df9afd471c3044ba969a17f}{F\+O\+L\+D}, 
+\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959af3d93fdae5f458ab57530c6b8da773aa}{A\+L\+L\+I\+N}, 
+\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a33cf1d8ef1d06ee698a7fabf40eb3a7f}{A\+C\+T\+I\+V\+E}, 
+\\*
+\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959aed65b7dfe470f4e500b15f7074bb7fa2}{C\+H\+E\+C\+K}, 
+\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a6e37681e9042d59bf8a6a11e4e6c9a35}{B\+E\+T}, 
+\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959abd0ebc08c262bab82a1882256d2d66e8}{C\+A\+L\+L}, 
+\hyperlink{player_8h_a015eb90e0de9f16e87bd149d4b9ce959ae9ec39715b515cb7a00034bced1c1ad4}{R\+A\+I\+S\+E}
+ \}
+\item 
+enum \hyperlink{player_8h_a5d6b3fe01985f28925beacd034916872}{player\+\_\+type} \{ \hyperlink{player_8h_a5d6b3fe01985f28925beacd034916872a0dc065753255b5a2a3f9d78a855f778c}{A\+I\+\_\+\+E\+A\+S\+Y}, 
+\hyperlink{player_8h_a5d6b3fe01985f28925beacd034916872a44740f43eaf7355a2ac4b8ef7d3fd61c}{A\+I\+\_\+\+N\+O\+R\+M\+A\+L}, 
+\hyperlink{player_8h_a5d6b3fe01985f28925beacd034916872acc1abc57ec69590a9f7760a285d7e505}{A\+I\+\_\+\+C\+H\+E\+A\+T\+E\+R}, 
+\hyperlink{player_8h_a5d6b3fe01985f28925beacd034916872a940986bc09be03368f47c617cadb96bf}{H\+U\+M\+A\+N}
+ \}
+\item 
+enum \hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26}{hands\+\_\+type} \{ \\*
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a4bf7cb8b4e29b3d26d3ab1fa1bbfdd13}{H\+I\+G\+H\+\_\+\+C\+A\+R\+D}, 
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a360fa17489dc77903b0bcf1d91ae47bb}{P\+A\+I\+R}, 
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26aa8469319b94da849cc0619b0fcc10873}{T\+W\+O\+\_\+\+P\+A\+I\+R\+S}, 
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a95bce95773a363c23cd8131c557a8291}{T\+H\+R\+E\+E\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D}, 
+\\*
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a08707fd429345dc72f3d7b0cc867ef05}{S\+T\+R\+A\+I\+G\+H\+T}, 
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a365b228f1c799ff897f963650ec33dd9}{F\+L\+U\+S\+H}, 
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a49fbc484dfc6768f0937c39462def32d}{F\+U\+L\+L\+\_\+\+H\+O\+U\+S\+E}, 
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a850cb6627e3c9162f1721e5fd4187fb0}{F\+O\+U\+R\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D}, 
+\\*
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a02768de5a629b299fc73da4b03833b0a}{S\+T\+R\+A\+I\+G\+H\+T\+\_\+\+F\+L\+U\+S\+H}, 
+\hyperlink{player_8h_a76714ac0ca62066fc8a2f3644b200e26a92847e8d4d3f9773fd0ee844ffd9f9d7}{R\+O\+Y\+A\+L\+\_\+\+F\+L\+U\+S\+H}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structPlayer}{Player} $\ast$ \hyperlink{player_8h_acca440fdfa4cb730ff4a6df78553b494}{create\+\_\+player} (int length\+\_\+hands)
+\item 
+\hyperlink{structPlayer}{Player} $\ast$$\ast$ \hyperlink{player_8h_ab9efbaad5388c680c45dc1f69d7977ab}{create\+\_\+players\+\_\+list} (int \hyperlink{display_8c_af732655d138393c1fb49a0da38413560}{num\+\_\+players}, int length\+\_\+hands, \hyperlink{player_8h_a18f0f8cbac879377978628626293120d}{Player\+\_\+type} \hyperlink{display_8c_ab8a32c40c10bdcd4c3d667f7fa27b2cc}{mode})
+\item 
+void \hyperlink{player_8h_a14bfdfa212f96e6f4c06f27e5efbffd3}{free\+\_\+players\+\_\+list} (\hyperlink{structPlayer}{Player} $\ast$$\ast$list, int \hyperlink{display_8c_af732655d138393c1fb49a0da38413560}{num\+\_\+players})
+\item 
+void \hyperlink{player_8h_af6fc01a054b4f877a85e26997f6b6496}{change\+\_\+card} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} target, int position\+\_\+card)
+\item 
+void \hyperlink{player_8h_ae19c899061fe28bb972f56bf8912d2cb}{deal\+\_\+card} (\hyperlink{structDeck}{Deck} $\ast$\hyperlink{poker__game_8c_afebc8c7ed8eb62049c27e4435aad2ba6}{deck}, \hyperlink{structPlayer}{Player} target, int n)
+\item 
+void \hyperlink{player_8h_ab3ab09620c74df82e3722040196221fd}{check\+\_\+straight\+\_\+flush} (\hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+void \hyperlink{player_8h_a4fd38fc8890dc6263b3452db0a25e5d6}{check\+\_\+pairs} (\hyperlink{structPlayer}{Player} $\ast$player)
+\item 
+int \hyperlink{player_8h_ad05cf5d7fd90ca9bbc5dcd5fa134bf48}{compare\+\_\+hands} (\hyperlink{structPlayer}{Player} $\ast$$\ast$list, int length)
+\item 
+void \hyperlink{player_8h_a7067382ee222f6994bd8e36c3fb30e65}{print\+\_\+player\+\_\+info} (\hyperlink{structPlayer}{Player} player)
+\item 
+void \hyperlink{player_8h_a3149b725d01ce6b0b87ca8040f17e76f}{swap\+\_\+players} (\hyperlink{structPlayer}{Player} $\ast$x, \hyperlink{structPlayer}{Player} $\ast$y)
+\item 
+void \hyperlink{player_8h_a16afd8f0fa6d8d94d03a1046f46dc283}{sort\+\_\+players} (\hyperlink{structPlayer}{Player} $\ast$$\ast$a, int length)
+\item 
+void \hyperlink{player_8h_a0e2476ead816cc8c648d1e00d1972153}{copy\+\_\+\+Player\+\_\+array} (\hyperlink{structPlayer}{Player} $\ast$$\ast$src, \hyperlink{structPlayer}{Player} $\ast$$\ast$dst, int length)
+\item 
+\hyperlink{structPlayer}{Player} $\ast$$\ast$ \hyperlink{player_8h_a43706b366090e8f8b69e03669c7baa70}{clone\+\_\+\+Player\+\_\+array} (\hyperlink{structPlayer}{Player} $\ast$$\ast$a, int length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{player_8h_ac43b9f60af1c865bcb914655636dd1d3}{\index{player.\+h@{player.\+h}!L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S@{L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S}}
+\index{L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S@{L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S}!player.\+h@{player.\+h}}
+\subsubsection[{L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+E\+N\+G\+T\+H\+\_\+\+H\+A\+N\+D\+S~5}}\label{player_8h_ac43b9f60af1c865bcb914655636dd1d3}
+\hypertarget{player_8h_a32aeffb076efaee76df7ecca477d6dc7}{\index{player.\+h@{player.\+h}!S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+C\+H\+I\+P\+S@{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+C\+H\+I\+P\+S}}
+\index{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+C\+H\+I\+P\+S@{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+C\+H\+I\+P\+S}!player.\+h@{player.\+h}}
+\subsubsection[{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+C\+H\+I\+P\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+C\+H\+I\+P\+S~3000}}\label{player_8h_a32aeffb076efaee76df7ecca477d6dc7}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{player_8h_a59d630254d7ef6acd907142c9a263a00}{\index{player.\+h@{player.\+h}!Hands\+\_\+type@{Hands\+\_\+type}}
+\index{Hands\+\_\+type@{Hands\+\_\+type}!player.\+h@{player.\+h}}
+\subsubsection[{Hands\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}typedef enum {\bf hands\+\_\+type} {\bf Hands\+\_\+type}}}\label{player_8h_a59d630254d7ef6acd907142c9a263a00}
+\hypertarget{player_8h_a18f0f8cbac879377978628626293120d}{\index{player.\+h@{player.\+h}!Player\+\_\+type@{Player\+\_\+type}}
+\index{Player\+\_\+type@{Player\+\_\+type}!player.\+h@{player.\+h}}
+\subsubsection[{Player\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}typedef enum {\bf player\+\_\+type} {\bf Player\+\_\+type}}}\label{player_8h_a18f0f8cbac879377978628626293120d}
+\hypertarget{player_8h_ad56becc6de6903936d4070a4216142dc}{\index{player.\+h@{player.\+h}!Status@{Status}}
+\index{Status@{Status}!player.\+h@{player.\+h}}
+\subsubsection[{Status}]{\setlength{\rightskip}{0pt plus 5cm}typedef enum {\bf status} {\bf Status}}}\label{player_8h_ad56becc6de6903936d4070a4216142dc}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26}{\index{player.\+h@{player.\+h}!hands\+\_\+type@{hands\+\_\+type}}
+\index{hands\+\_\+type@{hands\+\_\+type}!player.\+h@{player.\+h}}
+\subsubsection[{hands\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf hands\+\_\+type}}}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26}
+Define poker hands \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{H\+I\+G\+H\+\_\+\+C\+A\+R\+D@{H\+I\+G\+H\+\_\+\+C\+A\+R\+D}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!H\+I\+G\+H\+\_\+\+C\+A\+R\+D@{H\+I\+G\+H\+\_\+\+C\+A\+R\+D}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a4bf7cb8b4e29b3d26d3ab1fa1bbfdd13}{H\+I\+G\+H\+\_\+\+C\+A\+R\+D}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a4bf7cb8b4e29b3d26d3ab1fa1bbfdd13}
+}]\index{P\+A\+I\+R@{P\+A\+I\+R}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!P\+A\+I\+R@{P\+A\+I\+R}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a360fa17489dc77903b0bcf1d91ae47bb}{P\+A\+I\+R}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a360fa17489dc77903b0bcf1d91ae47bb}
+}]\index{T\+W\+O\+\_\+\+P\+A\+I\+R\+S@{T\+W\+O\+\_\+\+P\+A\+I\+R\+S}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!T\+W\+O\+\_\+\+P\+A\+I\+R\+S@{T\+W\+O\+\_\+\+P\+A\+I\+R\+S}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26aa8469319b94da849cc0619b0fcc10873}{T\+W\+O\+\_\+\+P\+A\+I\+R\+S}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26aa8469319b94da849cc0619b0fcc10873}
+}]\index{T\+H\+R\+E\+E\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D@{T\+H\+R\+E\+E\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!T\+H\+R\+E\+E\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D@{T\+H\+R\+E\+E\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a95bce95773a363c23cd8131c557a8291}{T\+H\+R\+E\+E\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a95bce95773a363c23cd8131c557a8291}
+}]\index{S\+T\+R\+A\+I\+G\+H\+T@{S\+T\+R\+A\+I\+G\+H\+T}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!S\+T\+R\+A\+I\+G\+H\+T@{S\+T\+R\+A\+I\+G\+H\+T}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a08707fd429345dc72f3d7b0cc867ef05}{S\+T\+R\+A\+I\+G\+H\+T}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a08707fd429345dc72f3d7b0cc867ef05}
+}]\index{F\+L\+U\+S\+H@{F\+L\+U\+S\+H}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!F\+L\+U\+S\+H@{F\+L\+U\+S\+H}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a365b228f1c799ff897f963650ec33dd9}{F\+L\+U\+S\+H}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a365b228f1c799ff897f963650ec33dd9}
+}]\index{F\+U\+L\+L\+\_\+\+H\+O\+U\+S\+E@{F\+U\+L\+L\+\_\+\+H\+O\+U\+S\+E}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!F\+U\+L\+L\+\_\+\+H\+O\+U\+S\+E@{F\+U\+L\+L\+\_\+\+H\+O\+U\+S\+E}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a49fbc484dfc6768f0937c39462def32d}{F\+U\+L\+L\+\_\+\+H\+O\+U\+S\+E}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a49fbc484dfc6768f0937c39462def32d}
+}]\index{F\+O\+U\+R\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D@{F\+O\+U\+R\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!F\+O\+U\+R\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D@{F\+O\+U\+R\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a850cb6627e3c9162f1721e5fd4187fb0}{F\+O\+U\+R\+\_\+\+O\+F\+\_\+\+A\+\_\+\+K\+I\+N\+D}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a850cb6627e3c9162f1721e5fd4187fb0}
+}]\index{S\+T\+R\+A\+I\+G\+H\+T\+\_\+\+F\+L\+U\+S\+H@{S\+T\+R\+A\+I\+G\+H\+T\+\_\+\+F\+L\+U\+S\+H}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!S\+T\+R\+A\+I\+G\+H\+T\+\_\+\+F\+L\+U\+S\+H@{S\+T\+R\+A\+I\+G\+H\+T\+\_\+\+F\+L\+U\+S\+H}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a02768de5a629b299fc73da4b03833b0a}{S\+T\+R\+A\+I\+G\+H\+T\+\_\+\+F\+L\+U\+S\+H}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a02768de5a629b299fc73da4b03833b0a}
+}]\index{R\+O\+Y\+A\+L\+\_\+\+F\+L\+U\+S\+H@{R\+O\+Y\+A\+L\+\_\+\+F\+L\+U\+S\+H}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!R\+O\+Y\+A\+L\+\_\+\+F\+L\+U\+S\+H@{R\+O\+Y\+A\+L\+\_\+\+F\+L\+U\+S\+H}}\item[{\em 
+\hypertarget{player_8h_a76714ac0ca62066fc8a2f3644b200e26a92847e8d4d3f9773fd0ee844ffd9f9d7}{R\+O\+Y\+A\+L\+\_\+\+F\+L\+U\+S\+H}\label{player_8h_a76714ac0ca62066fc8a2f3644b200e26a92847e8d4d3f9773fd0ee844ffd9f9d7}
+}]\end{description}
+\end{Desc}
+\hypertarget{player_8h_a5d6b3fe01985f28925beacd034916872}{\index{player.\+h@{player.\+h}!player\+\_\+type@{player\+\_\+type}}
+\index{player\+\_\+type@{player\+\_\+type}!player.\+h@{player.\+h}}
+\subsubsection[{player\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf player\+\_\+type}}}\label{player_8h_a5d6b3fe01985f28925beacd034916872}
+Define player' type \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+I\+\_\+\+E\+A\+S\+Y@{A\+I\+\_\+\+E\+A\+S\+Y}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!A\+I\+\_\+\+E\+A\+S\+Y@{A\+I\+\_\+\+E\+A\+S\+Y}}\item[{\em 
+\hypertarget{player_8h_a5d6b3fe01985f28925beacd034916872a0dc065753255b5a2a3f9d78a855f778c}{A\+I\+\_\+\+E\+A\+S\+Y}\label{player_8h_a5d6b3fe01985f28925beacd034916872a0dc065753255b5a2a3f9d78a855f778c}
+}]\index{A\+I\+\_\+\+N\+O\+R\+M\+A\+L@{A\+I\+\_\+\+N\+O\+R\+M\+A\+L}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!A\+I\+\_\+\+N\+O\+R\+M\+A\+L@{A\+I\+\_\+\+N\+O\+R\+M\+A\+L}}\item[{\em 
+\hypertarget{player_8h_a5d6b3fe01985f28925beacd034916872a44740f43eaf7355a2ac4b8ef7d3fd61c}{A\+I\+\_\+\+N\+O\+R\+M\+A\+L}\label{player_8h_a5d6b3fe01985f28925beacd034916872a44740f43eaf7355a2ac4b8ef7d3fd61c}
+}]\index{A\+I\+\_\+\+C\+H\+E\+A\+T\+E\+R@{A\+I\+\_\+\+C\+H\+E\+A\+T\+E\+R}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!A\+I\+\_\+\+C\+H\+E\+A\+T\+E\+R@{A\+I\+\_\+\+C\+H\+E\+A\+T\+E\+R}}\item[{\em 
+\hypertarget{player_8h_a5d6b3fe01985f28925beacd034916872acc1abc57ec69590a9f7760a285d7e505}{A\+I\+\_\+\+C\+H\+E\+A\+T\+E\+R}\label{player_8h_a5d6b3fe01985f28925beacd034916872acc1abc57ec69590a9f7760a285d7e505}
+}]\index{H\+U\+M\+A\+N@{H\+U\+M\+A\+N}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!H\+U\+M\+A\+N@{H\+U\+M\+A\+N}}\item[{\em 
+\hypertarget{player_8h_a5d6b3fe01985f28925beacd034916872a940986bc09be03368f47c617cadb96bf}{H\+U\+M\+A\+N}\label{player_8h_a5d6b3fe01985f28925beacd034916872a940986bc09be03368f47c617cadb96bf}
+}]\end{description}
+\end{Desc}
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959}{\index{player.\+h@{player.\+h}!status@{status}}
+\index{status@{status}!player.\+h@{player.\+h}}
+\subsubsection[{status}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf status}}}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959}
+Define player' status \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{B\+U\+S\+T\+E\+D@{B\+U\+S\+T\+E\+D}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!B\+U\+S\+T\+E\+D@{B\+U\+S\+T\+E\+D}}\item[{\em 
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a7343c7ae1fb5d13750e8d514481041cc}{B\+U\+S\+T\+E\+D}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a7343c7ae1fb5d13750e8d514481041cc}
+}]\index{F\+O\+L\+D@{F\+O\+L\+D}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!F\+O\+L\+D@{F\+O\+L\+D}}\item[{\em 
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a4c06ebc69df9afd471c3044ba969a17f}{F\+O\+L\+D}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a4c06ebc69df9afd471c3044ba969a17f}
+}]\index{A\+L\+L\+I\+N@{A\+L\+L\+I\+N}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!A\+L\+L\+I\+N@{A\+L\+L\+I\+N}}\item[{\em 
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959af3d93fdae5f458ab57530c6b8da773aa}{A\+L\+L\+I\+N}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959af3d93fdae5f458ab57530c6b8da773aa}
+}]\index{A\+C\+T\+I\+V\+E@{A\+C\+T\+I\+V\+E}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!A\+C\+T\+I\+V\+E@{A\+C\+T\+I\+V\+E}}\item[{\em 
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a33cf1d8ef1d06ee698a7fabf40eb3a7f}{A\+C\+T\+I\+V\+E}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a33cf1d8ef1d06ee698a7fabf40eb3a7f}
+}]\index{C\+H\+E\+C\+K@{C\+H\+E\+C\+K}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!C\+H\+E\+C\+K@{C\+H\+E\+C\+K}}\item[{\em 
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959aed65b7dfe470f4e500b15f7074bb7fa2}{C\+H\+E\+C\+K}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959aed65b7dfe470f4e500b15f7074bb7fa2}
+}]\index{B\+E\+T@{B\+E\+T}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!B\+E\+T@{B\+E\+T}}\item[{\em 
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a6e37681e9042d59bf8a6a11e4e6c9a35}{B\+E\+T}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959a6e37681e9042d59bf8a6a11e4e6c9a35}
+}]\index{C\+A\+L\+L@{C\+A\+L\+L}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!C\+A\+L\+L@{C\+A\+L\+L}}\item[{\em 
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959abd0ebc08c262bab82a1882256d2d66e8}{C\+A\+L\+L}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959abd0ebc08c262bab82a1882256d2d66e8}
+}]\index{R\+A\+I\+S\+E@{R\+A\+I\+S\+E}!player.\+h@{player.\+h}}\index{player.\+h@{player.\+h}!R\+A\+I\+S\+E@{R\+A\+I\+S\+E}}\item[{\em 
+\hypertarget{player_8h_a015eb90e0de9f16e87bd149d4b9ce959ae9ec39715b515cb7a00034bced1c1ad4}{R\+A\+I\+S\+E}\label{player_8h_a015eb90e0de9f16e87bd149d4b9ce959ae9ec39715b515cb7a00034bced1c1ad4}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{player_8h_af6fc01a054b4f877a85e26997f6b6496}{\index{player.\+h@{player.\+h}!change\+\_\+card@{change\+\_\+card}}
+\index{change\+\_\+card@{change\+\_\+card}!player.\+h@{player.\+h}}
+\subsubsection[{change\+\_\+card}]{\setlength{\rightskip}{0pt plus 5cm}void change\+\_\+card (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player}}]{target, }
+\item[{int}]{position\+\_\+card}
+\end{DoxyParamCaption}
+)}}\label{player_8h_af6fc01a054b4f877a85e26997f6b6496}
+Change the card that the player wishes to change in change phase 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck used to deal cards \\
+\hline
+{\em target} & is the player who wishes to change card \\
+\hline
+{\em position\+\_\+card} & is the position of the card in the player's hand \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_a4fd38fc8890dc6263b3452db0a25e5d6}{\index{player.\+h@{player.\+h}!check\+\_\+pairs@{check\+\_\+pairs}}
+\index{check\+\_\+pairs@{check\+\_\+pairs}!player.\+h@{player.\+h}}
+\subsubsection[{check\+\_\+pairs}]{\setlength{\rightskip}{0pt plus 5cm}void check\+\_\+pairs (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{player_8h_a4fd38fc8890dc6263b3452db0a25e5d6}
+Check the cards of a player for pair, three of a kind, four of a kind, full house The cards musts be already sorted 
+\begin{DoxyParams}{Parameters}
+{\em player} & is the player to be checked \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_ab3ab09620c74df82e3722040196221fd}{\index{player.\+h@{player.\+h}!check\+\_\+straight\+\_\+flush@{check\+\_\+straight\+\_\+flush}}
+\index{check\+\_\+straight\+\_\+flush@{check\+\_\+straight\+\_\+flush}!player.\+h@{player.\+h}}
+\subsubsection[{check\+\_\+straight\+\_\+flush}]{\setlength{\rightskip}{0pt plus 5cm}void check\+\_\+straight\+\_\+flush (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$}]{player}
+\end{DoxyParamCaption}
+)}}\label{player_8h_ab3ab09620c74df82e3722040196221fd}
+Check the cards of a player for straight, flush, straight flush or royal flush The cards musts be already sorted 
+\begin{DoxyParams}{Parameters}
+{\em player} & is the player to be checked \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_a43706b366090e8f8b69e03669c7baa70}{\index{player.\+h@{player.\+h}!clone\+\_\+\+Player\+\_\+array@{clone\+\_\+\+Player\+\_\+array}}
+\index{clone\+\_\+\+Player\+\_\+array@{clone\+\_\+\+Player\+\_\+array}!player.\+h@{player.\+h}}
+\subsubsection[{clone\+\_\+\+Player\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$$\ast$ clone\+\_\+\+Player\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{a, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{player_8h_a43706b366090e8f8b69e03669c7baa70}
+Clone an array of players 
+\begin{DoxyParams}{Parameters}
+{\em a} & is the array to be cloned \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_ad05cf5d7fd90ca9bbc5dcd5fa134bf48}{\index{player.\+h@{player.\+h}!compare\+\_\+hands@{compare\+\_\+hands}}
+\index{compare\+\_\+hands@{compare\+\_\+hands}!player.\+h@{player.\+h}}
+\subsubsection[{compare\+\_\+hands}]{\setlength{\rightskip}{0pt plus 5cm}int compare\+\_\+hands (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{list, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{player_8h_ad05cf5d7fd90ca9bbc5dcd5fa134bf48}
+Compare a list of hands and choose the player with the best hands The hands should already be checked with check\+\_\+straight\+\_\+flush and check\+\_\+pairs 
+\begin{DoxyParams}{Parameters}
+{\em list} & is the list of the player \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_a0e2476ead816cc8c648d1e00d1972153}{\index{player.\+h@{player.\+h}!copy\+\_\+\+Player\+\_\+array@{copy\+\_\+\+Player\+\_\+array}}
+\index{copy\+\_\+\+Player\+\_\+array@{copy\+\_\+\+Player\+\_\+array}!player.\+h@{player.\+h}}
+\subsubsection[{copy\+\_\+\+Player\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}void copy\+\_\+\+Player\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{src, }
+\item[{{\bf Player} $\ast$$\ast$}]{dst, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{player_8h_a0e2476ead816cc8c648d1e00d1972153}
+Copy an array of players 
+\begin{DoxyParams}{Parameters}
+{\em src} & is the array to be copied \\
+\hline
+{\em dst} & is the array to be pasted to \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_acca440fdfa4cb730ff4a6df78553b494}{\index{player.\+h@{player.\+h}!create\+\_\+player@{create\+\_\+player}}
+\index{create\+\_\+player@{create\+\_\+player}!player.\+h@{player.\+h}}
+\subsubsection[{create\+\_\+player}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$ create\+\_\+player (
+\begin{DoxyParamCaption}
+\item[{int}]{length\+\_\+hands}
+\end{DoxyParamCaption}
+)}}\label{player_8h_acca440fdfa4cb730ff4a6df78553b494}
+Create a player 
+\begin{DoxyParams}{Parameters}
+{\em length\+\_\+hands} & is the number of cards in the player's hands \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_ab9efbaad5388c680c45dc1f69d7977ab}{\index{player.\+h@{player.\+h}!create\+\_\+players\+\_\+list@{create\+\_\+players\+\_\+list}}
+\index{create\+\_\+players\+\_\+list@{create\+\_\+players\+\_\+list}!player.\+h@{player.\+h}}
+\subsubsection[{create\+\_\+players\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$$\ast$ create\+\_\+players\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+\_\+players, }
+\item[{int}]{length\+\_\+hands, }
+\item[{{\bf Player\+\_\+type}}]{mode}
+\end{DoxyParamCaption}
+)}}\label{player_8h_ab9efbaad5388c680c45dc1f69d7977ab}
+Create a list of players 
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+players} & is the number of players \\
+\hline
+{\em length\+\_\+hands} & is the number of cards in each player's hands \\
+\hline
+{\em mode} & is the player's type \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_ae19c899061fe28bb972f56bf8912d2cb}{\index{player.\+h@{player.\+h}!deal\+\_\+card@{deal\+\_\+card}}
+\index{deal\+\_\+card@{deal\+\_\+card}!player.\+h@{player.\+h}}
+\subsubsection[{deal\+\_\+card}]{\setlength{\rightskip}{0pt plus 5cm}void deal\+\_\+card (
+\begin{DoxyParamCaption}
+\item[{{\bf Deck} $\ast$}]{deck, }
+\item[{{\bf Player}}]{target, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{player_8h_ae19c899061fe28bb972f56bf8912d2cb}
+Deal a card to a player 
+\begin{DoxyParams}{Parameters}
+{\em deck} & is the deck used to deal the card \\
+\hline
+{\em target} & is the player to receive the card \\
+\hline
+{\em n} & is the number of card to give out \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_a14bfdfa212f96e6f4c06f27e5efbffd3}{\index{player.\+h@{player.\+h}!free\+\_\+players\+\_\+list@{free\+\_\+players\+\_\+list}}
+\index{free\+\_\+players\+\_\+list@{free\+\_\+players\+\_\+list}!player.\+h@{player.\+h}}
+\subsubsection[{free\+\_\+players\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}void free\+\_\+players\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{list, }
+\item[{int}]{num\+\_\+players}
+\end{DoxyParamCaption}
+)}}\label{player_8h_a14bfdfa212f96e6f4c06f27e5efbffd3}
+Free the resources allocated for each player and the player list 
+\begin{DoxyParams}{Parameters}
+{\em list} & is the list of players \\
+\hline
+{\em num\+\_\+players} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_a7067382ee222f6994bd8e36c3fb30e65}{\index{player.\+h@{player.\+h}!print\+\_\+player\+\_\+info@{print\+\_\+player\+\_\+info}}
+\index{print\+\_\+player\+\_\+info@{print\+\_\+player\+\_\+info}!player.\+h@{player.\+h}}
+\subsubsection[{print\+\_\+player\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+player\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}}\label{player_8h_a7067382ee222f6994bd8e36c3fb30e65}
+Print the player info 
+\begin{DoxyParams}{Parameters}
+{\em player} & is the player to be printed \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_a16afd8f0fa6d8d94d03a1046f46dc283}{\index{player.\+h@{player.\+h}!sort\+\_\+players@{sort\+\_\+players}}
+\index{sort\+\_\+players@{sort\+\_\+players}!player.\+h@{player.\+h}}
+\subsubsection[{sort\+\_\+players}]{\setlength{\rightskip}{0pt plus 5cm}void sort\+\_\+players (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$$\ast$}]{a, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{player_8h_a16afd8f0fa6d8d94d03a1046f46dc283}
+Sort the player ranking based on their chips 
+\begin{DoxyParams}{Parameters}
+{\em a} & is the player list \\
+\hline
+{\em length} & is the number of players \\
+\hline
+\end{DoxyParams}
+\hypertarget{player_8h_a3149b725d01ce6b0b87ca8040f17e76f}{\index{player.\+h@{player.\+h}!swap\+\_\+players@{swap\+\_\+players}}
+\index{swap\+\_\+players@{swap\+\_\+players}!player.\+h@{player.\+h}}
+\subsubsection[{swap\+\_\+players}]{\setlength{\rightskip}{0pt plus 5cm}void swap\+\_\+players (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$}]{x, }
+\item[{{\bf Player} $\ast$}]{y}
+\end{DoxyParamCaption}
+)}}\label{player_8h_a3149b725d01ce6b0b87ca8040f17e76f}
+Swap the players 
+\begin{DoxyParams}{Parameters}
+{\em x} & is the first player to be swapped \\
+\hline
+{\em y} & is the second player to be swapped \\
+\hline
+\end{DoxyParams}

@@ -42,7 +42,7 @@ void add_chips(Game_round * round, Player * player, int chipsToAdd);
 
 /** Withdraw chips from a player
  * @param player is the player
- * @paray chipsToWithdraw is the number of chips to be withdrew
+ * @param chipsToWithdraw is the number of chips to be withdrew
  */
 void withdraw_chips(Player * player, int chipsToWithdraw);
 
