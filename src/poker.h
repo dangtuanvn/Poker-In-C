@@ -21,6 +21,14 @@ void AI_normal_change(Deck * deck, Player player);
 
 void AI_easy_change(Deck * deck, Player player);
 
+void AI_normal_bet_phase1(Game_round * round, Player * player);
+
+void AI_normal_bet_phase2(Game_round * round, Player * player);
+
+void AI_easy_bet_phase1(Game_round * round, Player * player);
+
+void AI_easy_bet_phase2(Game_round * round, Player * player);
+
 void AI_bet_phase1(Game_round * round, Player * player);
 
 void AI_bet_phase2(Game_round * round, Player * player);

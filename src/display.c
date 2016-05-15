@@ -505,6 +505,7 @@ void update_player_info(WINDOW ** seats, Player ** players, int turn){
         for(int a = 0; a < CARD_WIDTH * 5 + 6; a++)
         {
             mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + a, " ");
+            mvprintw(getbegy(seats[i]) + getmaxy(seats[i])+1, getbegx(seats[i]) + a, "  ");
         }
 
         if(i == turn)
@@ -513,6 +514,7 @@ void update_player_info(WINDOW ** seats, Player ** players, int turn){
         }
         mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 5, "%s", players[i]->name);
         mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 30, "Chips: %i", players[i]->chips);
+        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]) + 1, getbegx(seats[i]) + 30, "BET AMOUNT: %i", players[i]->bet_amount);
         mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 15, "[%s]", player_status[players[i]->status]);
 
         attroff(COLOR_PAIR(2));
@@ -626,6 +628,7 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " BET(X) ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(C) ");
         display_up_down_menu(input_win, NULL, game_round->call_amount, players[pos]->chips, 10 , "CHIPS AMOUNT");
+
     }
     else if(pos == 0){
         attron(COLOR_PAIR(3));

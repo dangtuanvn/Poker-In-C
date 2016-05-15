@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include "poker.h"
+#include "player.h"
 #include <ncurses.h>
 
 int showdown(Game_round round, Player ** list) {
@@ -172,7 +173,7 @@ void AI_easy_change(Deck *deck, Player player) {
     }
 }
 
-void AI_bet_phase1(Game_round * round, Player * player){
+void AI_normal_bet_phase1(Game_round * round, Player * player){
     srand((unsigned) time(NULL));
     sort_hands(player->player_hands, LENGTH_HANDS);
     check_straight_flush(player);
@@ -379,7 +380,7 @@ void AI_bet_phase1(Game_round * round, Player * player){
     // printf("%s : %d \n", player->name, player->status);
 }
 
-void AI_bet_phase2(Game_round * round, Player * player) {
+void AI_normal_bet_phase2(Game_round * round, Player * player) {
     srand((unsigned) time(NULL));
     sort_hands(player->player_hands, LENGTH_HANDS);
     check_straight_flush(player);
@@ -535,4 +536,94 @@ void AI_bet_phase2(Game_round * round, Player * player) {
 void waitFor (unsigned int secs) {
     unsigned int retTime = (unsigned int) time(0) + secs;   // Get finishing time.
     while (time(0) < retTime);               // Loop until it arrives.
+}
+
+void AI_easy_bet_phase1(Game_round * round, Player * player) {
+    srand((unsigned) time(NULL));
+    int r = rand() % 10;
+    if(r <= 3){
+        if (player->bet_amount == round->call_amount) {
+            int c = (rand() % 3) + 1;
+            action_bet(round, player, round->call_amount * c);
+        }
+        else {
+            if(player->chips <= round->call_amount){
+                action_call(round, player);
+            }
+            else {
+                int c = rand() % 3 + 1;
+                action_raise(round, player, round->call_amount * c);
+            }
+        }
+    }
+    if(r <= 7){
+        if (player->bet_amount == round->call_amount) {
+            action_check(round, player);
+        }
+        else {
+            action_call(round, player);
+        }
+    }
+    else{
+        if(player->bet_amount == round->call_amount) {
+            action_check(round, player);
+        }
+        else{
+            action_fold(round, player);
+        }
+    }
+}
+
+void AI_easy_bet_phase2(Game_round * round, Player * player) {
+    srand((unsigned) time(NULL));
+    int r = rand() % 10;
+    if (r <= 3) {
+        if (player->bet_amount == round->call_amount) {
+            int c = (rand() % 3) + 1;
+            action_bet(round, player, round->call_amount * c);
+        }
+        else {
+            if (player->chips <= round->call_amount) {
+                action_call(round, player);
+            }
+            else {
+                int c = rand() % 3 + 1;
+                action_raise(round, player, round->call_amount * c);
+            }
+        }
+    }
+    if (r <= 7) {
+        if (player->bet_amount == round->call_amount) {
+            action_check(round, player);
+        }
+        else {
+            action_call(round, player);
+        }
+    }
+    else {
+        if (player->bet_amount == round->call_amount) {
+            action_check(round, player);
+        }
+        else {
+            action_fold(round, player);
+        }
+    }
+}
+
+void AI_bet_phase1(Game_round * round, Player * player){
+    if(player->type == AI_NORMAL){
+        AI_normal_bet_phase1(round, player);
+    }
+    else{
+        AI_easy_bet_phase1(round, player);
+    }
+}
+
+void AI_bet_phase2(Game_round * round, Player * player){
+    if(player->type == AI_NORMAL){
+        AI_normal_bet_phase2(round, player);
+    }
+    else{
+        AI_easy_bet_phase2(round, player);
+    }
 }

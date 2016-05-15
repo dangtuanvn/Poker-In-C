@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
                     players_list[3]->player_hands[4].number = (Number) 12;
                     players_list[3]->player_hands[4].suit = (Suit) 1;
 */
-                    players_list[3]->status = BUSTED;
+                    // players_list[3]->status = BUSTED;
 
                     //mvprintw(25,3,"DEAL CARD!~\n");
                     for (int j = 1; j < get_num_players(); j++) {
