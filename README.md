@@ -68,4 +68,4 @@ When the player all in and the AIs fold. The player loses.
 
 The AIs will sometimes show wrong status such as Check instead of Call, or Bet instead of Raise.
 
-Due to different screen resolutions on different devices. The click box for mouse input can be slightly off, as well as the display.
+Due to different screen resolutions on different devices. The click box for mouse input can be slightly off, as well as the display. For best possible experience, configure the MiscDefaultGeometry in Terminal to 150x32.
