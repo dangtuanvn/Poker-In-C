@@ -664,7 +664,7 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
 
         mvprintw(2, getmaxx(stdscr) - 20, "         ");
         mvprintw(4, getmaxx(stdscr) - 20, "                      ");
-        mvprintw(getmaxy(stdscr) - 4, 1, "                                                  ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 50, "                                                  ");
     }
 
 
