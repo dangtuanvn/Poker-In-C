@@ -24,7 +24,7 @@ Each player starts with 3000 chips. At the start of each round, the players must
 
 Each round has 4 phases as follow: Betting phase one, change card phase, betting phase 2, showdown phase.
 
-Betting phases: ends when all the player have call, check or all in, or other players fold and there is a winner (in this case other phases are skipped). Each player is allowed to raise once. Unless the player with the status RAISE gets challenge by another raise (in this case the player can raise again), the betting phase ends when other players call or fold.
+Betting phases: ends when all the player have call, check or all in, or other players fold and there is a winner (in this case other phases are skipped). Each player is allowed to raise once. Unless the player with the status RAISE gets challenge by another raise (in this case the player can raise again), the betting phase ends when other players call or fold. The AI players have a delay of two seconds to make their decision. The player's name will turn red when it is their turn. 
 
 Change card phase: The player is allowed to change at most three cards. The AI players are allowed to change any number of cards in their hands.
 
@@ -34,7 +34,7 @@ Showdown phase: The player with the best hands win the pot and the round ends. I
 
 PLAYER INPUT
 
-Betting phases: Use Z X C V to do the action that display in each button on the screen. Pressing LEFT and RIGHT arrow keys to adjust the amount of chips for betting and raising.
+Betting phases: Use Z X C V to do the action that display in each button on the screen. Pressing LEFT and RIGHT arrow keys to adjust the amount of chips for betting and raising. 
 
 Change card phase: Use number keys 1 2 3 4 5 to pick the cards to be changed. The player can only change a maximum of three cards. Then press ENTER to change cards and end this phase.
 
