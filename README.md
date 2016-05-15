@@ -44,3 +44,12 @@ When the game is at the player's turn. Press Q to quit the game.
 
 --------------------------------------------------------------------------------
 
+EXTRA FEATURES:
+
+The game can receive input from both keyboard and mouse.
+
+--------------------------------------------------------------------------------
+
+OTHER NOTES:
+
+Save and load functions are not implemented.
