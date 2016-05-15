@@ -69,3 +69,5 @@ Tips to defeat AI Cheater: The best way to gain more chips is to bet a lot in Be
 KNOWN BUGS
 
 When the player all in and the AIs fold. The player loses.
+
+The AIs will sometimes show wrong status such as Check instead of Call, or Bet instead of Raise.
