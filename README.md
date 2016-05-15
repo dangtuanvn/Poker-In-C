@@ -30,6 +30,10 @@ Change card phase: The player is allowed to change at most three cards. The AI p
 
 Showdown phase: The player with the best hands win the pot and the round ends. In the case where the winner all in and there is a side pot (which contain the bets from other players after the winner all in), the chips in the side pot will be returned to the respective players.
 
+References:
+https://en.wikipedia.org/wiki/Five-card_draw
+https://en.wikipedia.org/wiki/Betting_in_poker#Ante
+
 --------------------------------------------------------------------------------
 
 PLAYER INPUT
@@ -48,6 +52,8 @@ EXTRA FEATURES:
 
 The game can receive input from both keyboard and mouse.
 
+There is an extra AI: Cheater. This AI will peek at the player's cards in Betting phase 2. If the AI's cards are worse than the player's, it is likely that it will fold. Tips to defeat this AI is in the section below.
+
 --------------------------------------------------------------------------------
 
 OTHER NOTES:
@@ -55,3 +61,11 @@ OTHER NOTES:
 Save and load functions are not implemented.
 
 Assuming that the screen is never re-sized. Otherwise the display will misbehave or worse, the game is unplayable. It is best to leave the screen size as it is configured.
+
+Tips to defeat AI Cheater: The best way to gain more chips is to bet a lot in Betting phase 1 when you have good cards. Then hope that the AI will not get better cards during Change card phase. In Betting phase 2, if the AI is aggressive, it is better to fold to save chips.
+
+--------------------------------------------------------------------------------
+
+KNOWN BUGS
+
+When the player all in and the AIs fold. The player loses.
