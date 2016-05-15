@@ -7,7 +7,7 @@
 #define MENU_WIDTH 40
 #define MENU_MAIN_NUM_SELECTIONS  4
 #define MENU_NEW_NUM_SELECTIONS  4
-#define MENU_MODE_NUM_SELECTIONS  2
+#define MENU_MODE_NUM_SELECTIONS  3
 #define MENU_SINGLE_NUM_SELECTIONS  2
 #define TITLE_WIDTH  47
 #define TERM_MAX_WIDTH  135
@@ -57,7 +57,7 @@ void add_cur_up_down(int a);
 int get_step_up_down();
 Player_type get_mode();
 int get_num_players();
-void select_card_to_change(int player, int position);
+void select_card_to_change(int position);
 void process_change_card(Deck * deck, Player ** players);
 void display_chips_rank(Player ** players);
 void display_pot(int amount);

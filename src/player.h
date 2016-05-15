@@ -16,7 +16,7 @@ typedef enum status Status;
 /** Define player' type
  */
 enum player_type {
-    AI_EASY, AI_NORMAL, HUMAN
+    AI_EASY, AI_NORMAL, AI_CHEATER, HUMAN
 };
 typedef enum player_type Player_type;
 

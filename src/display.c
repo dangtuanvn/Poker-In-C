@@ -17,12 +17,8 @@ Player_type mode = AI_NORMAL;
 //TODO free memory
 char * num_player_title = "NUMBER OF PLAYERS";
 
-int card_to_change[NUM_PLAYERS][LENGTH_HANDS] = {
-        {0,0,0,0,0},
-        {0,0,0,0,0},
-        {0,0,0,0,0},
-        {0,0,0,0,0}
-};
+int card_to_change[LENGTH_HANDS] = {0,0,0,0,0};
+
 
 
 char * player_status[] = {"BUSTED OUT", "FOLD", "ALL IN", "ACTIVE", "CHECK", "BET", "CALL", "RAISE"};
@@ -43,7 +39,8 @@ char * new_game_menu_items[] = {
 
 char * mode_menu_items[] = {
         "EASY",
-        "NORMAL"
+        "NORMAL",
+        "CHEATER"
 };
 
 char * SPlay_menu_items[] = {
@@ -377,6 +374,13 @@ void change_stage(WINDOW *win, Stage *stage)
                     mode = AI_NORMAL;
                     display_menu(win, stage);
                     break;
+                case 2:
+                    stage->num = NEW_GAME;
+                    stage->selection = 0;
+                    stage->num_selections = MENU_NEW_NUM_SELECTIONS;
+                    mode = AI_CHEATER;
+                    display_menu(win, stage);
+                    break;
                 default:
                     break;
             }
@@ -404,22 +408,22 @@ void change_stage(WINDOW *win, Stage *stage)
             break;
     }
 }
-void select_card_to_change(int player, int position)
+void select_card_to_change(int position)
 {
     int check = 0;
     for(int i = 0; i < LENGTH_HANDS; i++){
-        if(card_to_change[player][i] == 1){
+        if(card_to_change[i] == 1){
             check++;
         }
     }
 
-    if(card_to_change[player][position - 1] == 1)
+    if(card_to_change[position - 1] == 1)
     {
-        card_to_change[player][position - 1] = 0;
+        card_to_change[position - 1] = 0;
     }
     else if (check < 3)
     {
-        card_to_change[player][position - 1] = 1;
+        card_to_change[position - 1] = 1;
     }
 
 }
@@ -460,7 +464,7 @@ void display_deck(WINDOW *win, Player player)
             else if(player.player_hands[x].suit == 2) strcat(number_suit, "\u2663");
             else strcat(number_suit, "\u2660");
 
-            if(player.type == HUMAN && card_to_change[0][x] == 1)
+            if(player.type == HUMAN && card_to_change[x] == 1)
             {
                 startY--;
             }
@@ -581,7 +585,7 @@ void process_change_card(Deck * deck, Player ** players)
 {
     for(int i = 0; i < LENGTH_HANDS; i++)
     {
-        if(card_to_change[0][i] == 1)
+        if(card_to_change[i] == 1)
         {
             change_card(deck, *players[0], i);
         }
@@ -660,10 +664,7 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
 
         mvprintw(2, getmaxx(stdscr) - 20, "         ");
         mvprintw(4, getmaxx(stdscr) - 20, "                      ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 48, "            ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, "            ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, "            ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, "            ");
+        mvprintw(getmaxy(stdscr) - 4, 1, "                                                  ");
     }
 
 
@@ -676,7 +677,7 @@ void reset_select_card()
 {
     for(int i = 0; i < NUM_PLAYERS; i++){
         for(int j = 0; j < LENGTH_HANDS; j++){
-            card_to_change[i][j] = 0;
+            card_to_change[j] = 0;
         }
     }
 }

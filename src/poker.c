@@ -49,15 +49,6 @@ int showdown(Game_round round, Player ** list) {
         }
     }
     int top_rank = compare_hands(list, round.num_players);
-
-    mvprintw(1,1,"Player(s) with the best hands:");
-
-    for (int j = 0; j < round.num_players; j++) {
-        if (list[j]->rank == top_rank) {
-            mvprintw(1,1," %s %d %d", list[j]->name, list[j]->rank, list[j]->result.hands);
-        }
-    }
-    printf("\n");
     return top_rank;
 }
 
