@@ -70,4 +70,4 @@ The AIs will sometimes show wrong status such as Check instead of Call, or Bet i
 
 Due to different screen resolutions on different devices. The click box for mouse input can be slightly off, as well as the display. For best possible experience, configure the MiscDefaultGeometry in Terminal to 150x32.
 
-When other players fold and the remaining player steals the pot (automatically wins). The game will display the next phase, skip it and then the next round without displaying the winner. The game still continues normally afterwards though.
+When other players fold and the remaining player steals the pot (automatically wins). The game will display the next phase, skip it and then the next round without displaying the winner. The game still continues normally afterwards because it is handled in the back end but not the front end yet.
