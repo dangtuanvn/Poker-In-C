@@ -778,23 +778,23 @@ int mouse_in_game(int posY, int posX,int phase, int turn){
                 display_deck(player_seat[0], *players_list[0]);
                 check = 0;
             }
-            else if(posY >= 27 && posY <= 31 && posX >= 53 && posX <= 60){
+            else if(posY >= 24 && posY <= 28 && posX >= 53 && posX <= 60){
                 select_card_to_change(1);
                 display_deck(player_seat[0], *players_list[0]);
             }
-            else if(posY >= 27 && posY <= 31 && posX >= 62 && posX <= 69){
+            else if(posY >= 24 && posY <= 28 && posX >= 62 && posX <= 69){
                 select_card_to_change(2);
                 display_deck(player_seat[0], *players_list[0]);
             }
-            else if(posY >= 27 && posY <= 31 && posX >= 71 && posX <= 78){
+            else if(posY >= 24 && posY <= 28 && posX >= 71 && posX <= 78){
                 select_card_to_change(3);
                 display_deck(player_seat[0], *players_list[0]);
             }
-            else if(posY >= 27 && posY <= 31 && posX >= 80 && posX <= 87){
+            else if(posY >= 24 && posY <= 28 && posX >= 80 && posX <= 87){
                 select_card_to_change(4);
                 display_deck(player_seat[0], *players_list[0]);
             }
-            else if(posY >= 27 && posY <= 31 && posX >= 89 && posX <= 96){
+            else if(posY >= 24 && posY <= 28 && posX >= 89 && posX <= 96){
                 select_card_to_change(5);
                 display_deck(player_seat[0], *players_list[0]);
             }
