@@ -44,7 +44,7 @@ typedef struct display {
 } Stage;
 
 void change_stage(WINDOW *win, Stage *stage);
-void display_title(WINDOW * win);
+void display_title();
 void display_menu(WINDOW *win, Stage *stage);
 void display_player_seat(WINDOW ** seats, Player ** players, int turn);
 void update_player_info(WINDOW ** seats, Player ** players, int turn);

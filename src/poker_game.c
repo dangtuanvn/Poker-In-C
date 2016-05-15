@@ -11,12 +11,14 @@
 #define START_Y_PHASE       -3
 #define INPUT_WIN_HEIGHT    4
 #define INPUT_WIN_WIDTH     18
+#define WAITING_TIME        1
 
 
 static void init_screen();
 static void finish(int sig);
 void set_up_player_seat(int num_players);
-
+void free_win(WINDOW ** win, int length);
+int mouse_in_game(int posY, int posX,int phase, int turn);
 
 Deck * deck;
 Player ** players_list;
@@ -52,10 +54,8 @@ int main(int argc, char *argv[]) {
                                   getbegx(my_wins[0]) + MENU_WIDTH/2 - 3);
     WINDOW *current_win = my_wins[0];
 
-    display_title(current_win);
+    display_title();
     display_menu(current_win, &current_stage);
-    //wchar_t *clubs = (wchar_t *) L"\u2663 \u2667";
-    //printw("%ls\n", clubs);
 
     while(1) {
         c = wgetch(stdscr);//get mouse ad key event
@@ -81,6 +81,9 @@ int main(int argc, char *argv[]) {
 
 
                 while(game_round->remaining_players != 1 && players_list[0]->status > 0) {
+                    mvprintw(getmaxy(stdscr) - 6, getmaxx(stdscr) - 35, "GAME-ROUND %i", game_round->round_number);
+                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE - 2,
+                             (getmaxx(stdscr) - 20)/2 + 5, "                               ");
                     // ROUND START
                     deck->top = LENGTH_DECK - 1;
                     shuffle_deck(deck, LENGTH_DECK);
@@ -98,41 +101,16 @@ int main(int argc, char *argv[]) {
                     display_deck(player_seat[0], *players_list[0]);
 
                     place_ante(game_round, players_list);
-                    //printf("Players places initial ante of %d\n", game_round->ante);
-
-                    /*players_list[3]->player_hands[0].number = (Number) 14;
-                    players_list[3]->player_hands[0].suit = (Suit) 1;
-                    players_list[3]->player_hands[1].number = (Number) 10;
-                    players_list[3]->player_hands[1].suit = (Suit) 1;
-                    players_list[3]->player_hands[2].number = (Number) 13;
-                    players_list[3]->player_hands[2].suit = (Suit) 1;
-                    players_list[3]->player_hands[3].number = (Number) 11;
-                    players_list[3]->player_hands[3].suit = (Suit) 1;
-                    players_list[3]->player_hands[4].number = (Number) 12;
-                    players_list[3]->player_hands[4].suit = (Suit) 1;
-*/
-                    // players_list[3]->status = BUSTED;
-
-                    //mvprintw(25,3,"DEAL CARD!~\n");
+                    mvprintw(getmaxy(stdscr) - 4, 1, "                                           ");
                     for (int j = 1; j < get_num_players(); j++) {
                         sort_hands(players_list[j]->player_hands, LENGTH_HANDS);
                     }
                     // BETTING PHASE 1
+
                     attron(COLOR_PAIR(2));
-                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE, (int) (getmaxx(stdscr) - strlen("BETTING-PHASE-1"))/2, "BETTING-PHASE-1");
+                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen("BETTING-PHASE-1"))/2, "BETTING-PHASE-1");
                     attroff(COLOR_PAIR(2));
 
-                    // print_player_info(players_list[0]);
-                    /*
-                    action_bet(&round, &players_list[0], 20);
-                    action_call(&round, &players_list[1]);
-                    action_raise(&round, &players_list[2], 70);
-                    action_call(&round, &players_list[3]);
-
-                    AI_bet_phase1(&round, &players_list[1]);
-                    AI_bet_phase1(&round, &players_list[2]);
-                    AI_bet_phase1(&round, &players_list[3]);
-                    */
                     int check_fold = 0;
 
                     int position = 0;
@@ -147,7 +125,7 @@ int main(int argc, char *argv[]) {
                             continue;
                         }
                         update(input_win, player_seat, players_list, game_round, position);
-                        waitFor(2);
+                        waitFor(WAITING_TIME);
 
                         if (players_list[position]->type == HUMAN) {
                             if (players_list[position]->status > 2) {
@@ -157,10 +135,10 @@ int main(int argc, char *argv[]) {
                                     switch (in) {
                                         case KEY_MOUSE:
                                             if (getmouse(&event) == OK && event.bstate & BUTTON1_CLICKED) {
-
-
+                                                mouse_in_game(event.y, event.x, 1, position);
+                                                check_input0 = 0;
                                             }
-                                            check_input0 = 0;
+
                                             break;
                                         case 'z':
                                             if(players_list[position]->bet_amount == game_round->call_amount){
@@ -205,7 +183,7 @@ int main(int argc, char *argv[]) {
                                             current_stage.num = MAIN_MENU;
                                             current_win = my_wins[0];
                                             clear();
-                                            display_title(current_win);
+                                            display_title();
                                             change_stage(current_win, &current_stage);
                                             goto stop;
                                         default:
@@ -234,8 +212,15 @@ int main(int argc, char *argv[]) {
 
                     // EXCHANGE CARDS PHASE
                     attron(COLOR_PAIR(2));
-                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE, (int) (getmaxx(stdscr) - strlen("CHANGE-CARD-PHASE"))/2, "CHANGE-CARD-PHASE");
+                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen("CHANGE-CARD-PHASE"))/2, "CHANGE-CARD-PHASE");
                     attroff(COLOR_PAIR(2));
+
+                    attron(COLOR_PAIR(3));
+                    attron(A_BOLD);
+                    mvprintw(getmaxy(stdscr)/2 + 5, (int) (getmaxx(stdscr) - strlen(" CHANGE(ENTER) "))/2, " CHANGE(ENTER) ");
+                    attroff(A_BOLD);
+                    attroff(COLOR_PAIR(3));
+
                     position = 5;
                     update(input_win, player_seat, players_list, game_round, position);
                     if (!check_fold) {
@@ -248,10 +233,7 @@ int main(int argc, char *argv[]) {
                                 switch (in) {
                                     case KEY_MOUSE:
                                         if (getmouse(&event) == OK && event.bstate & BUTTON1_CLICKED) {
-                                            mvprintw(29, 3, "%i , %i", event.x, event.y);
-                                            process_change_card(deck, players_list);
-                                            display_deck(player_seat[0], *players_list[0]);
-                                            check_input0 = 1;
+                                            mouse_in_game(event.y, event.x, 2, position);
                                         }
                                         break;
                                     case '1':
@@ -284,7 +266,7 @@ int main(int argc, char *argv[]) {
                                         current_stage.num = MAIN_MENU;
                                         current_win = my_wins[0];
                                         clear();
-                                        display_title(current_win);
+                                        display_title();
                                         change_stage(current_win, &current_stage);
                                         goto stop;
                                     default:
@@ -295,9 +277,10 @@ int main(int argc, char *argv[]) {
                     }
 
                     // BETTING PHASE 2
-                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE, (int) (getmaxx(stdscr) - strlen("CHANGE-CARD-PHASE"))/2, "                    ");
+                    mvprintw(getmaxy(stdscr)/2 + 5, (int) (getmaxx(stdscr) - strlen("                    "))/2, "                    ");
+                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen("CHANGE-CARD-PHASE"))/2, "                    ");
                     attron(COLOR_PAIR(2));
-                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE, (int) (getmaxx(stdscr) - strlen("BETTING-PHASE-2"))/2, "BETTING-PHASE-2");
+                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen("BETTING-PHASE-2"))/2, "BETTING-PHASE-2");
                     attroff(COLOR_PAIR(2));
                     if (!check_fold) {
                         position = 0;
@@ -312,7 +295,7 @@ int main(int argc, char *argv[]) {
                                 continue;
                             }
                             update(input_win, player_seat, players_list, game_round, position);
-                            waitFor(2);
+                            waitFor(WAITING_TIME);
                             if (players_list[position]->type == HUMAN) {
                                 if (players_list[position]->status > 2) {
                                     check_input2 = 1;
@@ -369,7 +352,7 @@ int main(int argc, char *argv[]) {
                                                 current_stage.num = MAIN_MENU;
                                                 current_win = my_wins[0];
                                                 clear();
-                                                display_title(current_win);
+                                                display_title();
                                                 change_stage(current_win, &current_stage);
                                                 goto stop;
                                             default:
@@ -403,7 +386,18 @@ int main(int argc, char *argv[]) {
                         }
                         int top_rank = showdown(*game_round, players_list);
                         get_pot(game_round, players_list, top_rank);
+                        for (int j = 0; j < game_round->num_players; j++) {
+                            if (players_list[j]->rank == top_rank) {
+                                attron(COLOR_PAIR(3));
+                                attron(A_BOLD);
+                                mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE - 2, (int) (getmaxx(stdscr) -
+                                        strlen(players_list[j]->name) - 5)/2, "%s WIN!", players_list[j]->name);
+                                attroff(COLOR_PAIR(3));
+                                attroff(A_BOLD);
+                            }
+                        }
                     }
+
 
                     update(input_win, player_seat, players_list, game_round, position);
                     for (int i = 0; i < get_num_players(); i++) {
@@ -415,7 +409,7 @@ int main(int argc, char *argv[]) {
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE, (int) (getmaxx(stdscr) - strlen("CHANGE-CARD-PHASE"))/2, "                    ");
                     attron(COLOR_PAIR(3));
                     attron(A_BOLD);
-                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE, (int) (getmaxx(stdscr) - strlen(" NEXT-ROUND(N) "))/2, " NEXT-ROUND(N) ");
+                    mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen(" NEXT-ROUND(N) "))/2, " NEXT-ROUND(N) ");
                     attroff(A_BOLD);
                     attroff(COLOR_PAIR(3));
                     check_input3 = 1;
@@ -439,7 +433,7 @@ int main(int argc, char *argv[]) {
                                 current_stage.num = MAIN_MENU;
                                 current_win = my_wins[0];
                                 clear();
-                                display_title(current_win);
+                                display_title();
                                 change_stage(current_win, &current_stage);
                                 goto stop;
                             default:
@@ -477,7 +471,7 @@ int main(int argc, char *argv[]) {
                             current_stage.num = MAIN_MENU;
                             current_win = my_wins[0];
                             clear();
-                            display_title(current_win);
+                            display_title();
                             change_stage(current_win, &current_stage);
                             goto stop;
                         default:
@@ -579,6 +573,7 @@ int main(int argc, char *argv[]) {
         }
     }
     end:
+    free_win(my_wins, 2);
     finish(0);
 }
 
@@ -615,7 +610,15 @@ static void finish(int sig) {
     free_deck(deck);
     free_players_list(players_list, get_num_players());
     free_game_round(game_round);
+    free_win(player_seat,get_num_players());
     exit(sig);
+}
+
+void free_win(WINDOW ** win, int length){
+    for(int i = 0; i < length; i++){
+        free(win[i]);
+    }
+    free(win);
 }
 
 void set_up_player_seat(int num_players)//set up position of players based on numbers of players
@@ -644,4 +647,53 @@ void set_up_player_seat(int num_players)//set up position of players based on nu
                                 getmaxx(stdscr) - seat_width - 2);
     }
 }
+
+
+int mouse_in_game(int posY, int posX,int phase, int turn){
+    int check = 1;
+    switch(phase)
+    {
+        case 1:
+                if(players_list[turn]->bet_amount == game_round->call_amount){
+                    if(posY == getmaxy(stdscr) - 4 && posX >= getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 47
+                       && posX < getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37) {
+                        action_check(game_round, players_list[turn]);
+                        check = 0;
+                    }
+                    else if(posY == getmaxy(stdscr) - 4 && posX >= getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 35
+                            && posX < getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 27){
+                        action_bet(game_round, players_list[turn], get_cur_up_down());
+                    }
+                    else if(posY == getmaxy(stdscr) - 4 && posX >= getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25
+                            && posX < getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 16){
+                        action_fold(game_round, players_list[turn]);
+                    }
+                    else if(posY == getmaxy(stdscr) - 4 && posX >= getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14
+                            && posX < getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 3){
+                        action_bet(game_round, players_list[turn], players_list[turn]->chips);
+                    }
+                }
+                else{
+                    if(posY == getmaxy(stdscr) - 4 && posX >= getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 48
+                       && posX < getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37)
+                    {
+                        action_call(game_round, players_list[turn]);
+                        check = 0;
+                    }
+                }
+
+        case 2:
+            if(posY == getmaxy(stdscr)/2 + 5 && posX >= (getmaxx(stdscr) - 15)/2 && posX < (getmaxx(stdscr) - 15)/2 + 15)
+            {
+                mvprintw(3,1,"a");
+                process_change_card(deck, players_list);
+                check = 0;
+            }
+        default:
+            break;
+    }
+    return check;
+}
+
+
 
