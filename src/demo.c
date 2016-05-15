@@ -2,6 +2,8 @@
 #include <string.h>
 #include "poker.h"
 
+#define     NUM_PLAYERS     4
+
 int main(){
     Deck * deck = create_deck();
     //print_cards(deck, LENGTH_DECK);
@@ -73,7 +75,7 @@ int main(){
         printf("\nBETTING PHASE 1 STARTS\n");
         int position = 0;
 
-        while(round->position_turn  > 0){
+        while(round->remaining_turns > 0){
             // printf("%d %d", players_list[0].bet_amount, round.call_amount);
 
             if(players_list[position]->type == HUMAN){
@@ -121,7 +123,7 @@ int main(){
             if(position == 4){
                 position = 0;
             }
-            round->position_turn--;
+            round->remaining_turns--;
             waitFor(1);
         }
         printf("\n");
@@ -141,8 +143,8 @@ int main(){
         if(!check_fold) {
             printf("\nBETTING PHASE 2 STARTS\n");
             position = 0;
-            round->position_turn = round->num_players;
-            while (round->position_turn > 0) {
+            round->remaining_turns = round->num_players;
+            while (round->remaining_turns > 0) {
                 // printf("%d %d", players_list[0].bet_amount, round.call_amount);
                 if (players_list[position]->type == HUMAN) {
                     if (players_list[position]->status > 2) {
@@ -190,7 +192,7 @@ int main(){
                     position = 0;
                 }
 
-                round->position_turn--;
+                round->remaining_turns--;
                 waitFor(1);
             }
             printf("\n");
