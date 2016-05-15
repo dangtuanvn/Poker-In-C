@@ -44,9 +44,9 @@ int main(int argc, char *argv[]) {
 
     //create windows
     my_wins[0] = newwin(MENU_HEIGHT, MENU_WIDTH, (getmaxy(stdscr) - MENU_HEIGHT)/2 + 7, (getmaxx(stdscr) - MENU_WIDTH)/2);
-    my_wins[1] = newwin(MENU_HEIGHT/2 + 3, MENU_WIDTH/2 + 1, getbegy(my_wins[0]),
+    my_wins[1] = newwin(MENU_HEIGHT/2 + 3, MENU_WIDTH/2 + 1, getbegy(my_wins[0]) + 1,
                         getbegx(my_wins[0]) + MENU_WIDTH/2 - 3);
-    my_wins[2] = newwin(INPUT_WIN_HEIGHT, INPUT_WIN_WIDTH, getmaxy(stdscr) - 12, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 35);
+    my_wins[2] = newwin(INPUT_WIN_HEIGHT, INPUT_WIN_WIDTH, getmaxy(stdscr) - 9, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 35);
 
     WINDOW *current_win = my_wins[0];
 
@@ -715,6 +715,7 @@ void set_up_player_seat(int num_players)//set up position of players based on nu
 
 int mouse_in_game(int posY, int posX,int phase, int turn){
     int check = 1;
+    mvprintw(1, 1, "X: %i, Y: %i", posX, posY);
     switch(phase)
     {
         case 1:
