@@ -52,8 +52,6 @@ EXTRA FEATURES:
 
 The game can receive input from both keyboard and mouse.
 
-There is an extra AI: Cheater. This AI will peek at the player's cards in Betting phase 2. If the AI's cards are worse than the player's, it is likely that it will fold. Tips to defeat this AI is in the section below.
-
 --------------------------------------------------------------------------------
 
 OTHER NOTES:
@@ -62,8 +60,6 @@ Save and load functions are not implemented.
 
 Assuming that the screen is never re-sized. Otherwise the display will misbehave or worse, the game is unplayable. It is best to leave the screen size as it is configured.
 
-Tips to defeat AI Cheater: The best way to gain more chips is to bet a lot in Betting phase 1 when you have good cards. Then hope that the AI will not get better cards during Change card phase. In Betting phase 2, if the AI is aggressive, it is better to fold to save chips.
-
 --------------------------------------------------------------------------------
 
 KNOWN BUGS
@@ -71,3 +67,5 @@ KNOWN BUGS
 When the player all in and the AIs fold. The player loses.
 
 The AIs will sometimes show wrong status such as Check instead of Call, or Bet instead of Raise.
+
+Due to different screen resolutions on different devices. The click box for mouse input can be slightly off, as well as the display.
