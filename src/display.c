@@ -96,6 +96,7 @@ void display_title(WINDOW * win)
     attroff(COLOR_PAIR(2));
     wrefresh(win);
 }
+
 //print up_down_menu
 void display_up_down_menu(WINDOW *win, Stage *stage, int min, int max, int step, char * title)
 {
@@ -428,69 +429,73 @@ void select_card_to_change(int player, int position)
 void display_deck(WINDOW *win, Player player)
 {
     wclear(win);
-    wattron(win, COLOR_PAIR(1));
-    wattron(win, A_BOLD);
-    box(win, 0, 0);
-    wattroff(win, COLOR_PAIR(1));
-    wattroff(win, A_BOLD);
+    if(player.status != BUSTED)
+    {
+        wattron(win, COLOR_PAIR(1));
+        wattron(win, A_BOLD);
+        box(win, 0, 0);
+        wattroff(win, COLOR_PAIR(1));
+        wattroff(win, A_BOLD);
 
-    for(int x = 0; x < LENGTH_HANDS; x++) {
-        int startX = 1 + x * (CARD_WIDTH + 1);
-        int startY = 1;
+        for(int x = 0; x < LENGTH_HANDS; x++) {
+            int startX = 1 + x * (CARD_WIDTH + 1);
+            int startY = 1;
 
-        char number_suit[6];
+            char number_suit[6];
 
-        if(player.player_hands[x].number == 2) strcpy(number_suit, "2");
-        else if(player.player_hands[x].number == 3) strcpy(number_suit, "3");
-        else if(player.player_hands[x].number == 4) strcpy(number_suit, "4");
-        else if(player.player_hands[x].number == 5) strcpy(number_suit, "5");
-        else if(player.player_hands[x].number == 6) strcpy(number_suit, "6");
-        else if(player.player_hands[x].number == 7) strcpy(number_suit, "7");
-        else if(player.player_hands[x].number == 8) strcpy(number_suit, "8");
-        else if(player.player_hands[x].number == 9) strcpy(number_suit, "9");
-        else if(player.player_hands[x].number == 10) strcpy(number_suit, "10");
-        else if(player.player_hands[x].number == 11) strcpy(number_suit, "J");
-        else if(player.player_hands[x].number == 12) strcpy(number_suit, "Q");
-        else if(player.player_hands[x].number == 13) strcpy(number_suit, "K");
-        else strcpy(number_suit, "A");
+            if(player.player_hands[x].number == 2) strcpy(number_suit, "2");
+            else if(player.player_hands[x].number == 3) strcpy(number_suit, "3");
+            else if(player.player_hands[x].number == 4) strcpy(number_suit, "4");
+            else if(player.player_hands[x].number == 5) strcpy(number_suit, "5");
+            else if(player.player_hands[x].number == 6) strcpy(number_suit, "6");
+            else if(player.player_hands[x].number == 7) strcpy(number_suit, "7");
+            else if(player.player_hands[x].number == 8) strcpy(number_suit, "8");
+            else if(player.player_hands[x].number == 9) strcpy(number_suit, "9");
+            else if(player.player_hands[x].number == 10) strcpy(number_suit, "10");
+            else if(player.player_hands[x].number == 11) strcpy(number_suit, "J");
+            else if(player.player_hands[x].number == 12) strcpy(number_suit, "Q");
+            else if(player.player_hands[x].number == 13) strcpy(number_suit, "K");
+            else strcpy(number_suit, "A");
 
-        if(player.player_hands[x].suit == 0) strcat(number_suit, "\u2665");
-        else if(player.player_hands[x].suit == 1) strcat(number_suit, "\u2666");
-        else if(player.player_hands[x].suit == 2) strcat(number_suit, "\u2663");
-        else strcat(number_suit, "\u2660");
+            if(player.player_hands[x].suit == 0) strcat(number_suit, "\u2665");
+            else if(player.player_hands[x].suit == 1) strcat(number_suit, "\u2666");
+            else if(player.player_hands[x].suit == 2) strcat(number_suit, "\u2663");
+            else strcat(number_suit, "\u2660");
 
-        if(player.type == HUMAN && card_to_change[0][x] == 1)
-        {
-            startY--;
-        }
+            if(player.type == HUMAN && card_to_change[0][x] == 1)
+            {
+                startY--;
+            }
 
-        for (int i = 0; i < CARD_HEIGHT; i++) {
-            if(i == CARD_HEIGHT/2 - 1)
+            for (int i = 0; i < CARD_HEIGHT; i++) {
+                if(i == CARD_HEIGHT/2 - 1)
+                {
+                    wattron(win, COLOR_PAIR(5));
+                }
+                else
+                {
+                    wattron(win, COLOR_PAIR(4));
+                }
+                for (int j = 0; j < CARD_WIDTH; j++) {
+                    mvwprintw(win, startY + i, startX + j, " ");
+                }
+            }
+
+            if(player.player_hands[x].suit == 0 || player.player_hands[x].suit == 1)
             {
                 wattron(win, COLOR_PAIR(5));
             }
-            else
-            {
-                wattron(win, COLOR_PAIR(4));
+            else{
+                wattron(win, COLOR_PAIR(6));
             }
-            for (int j = 0; j < CARD_WIDTH; j++) {
-                mvwprintw(win, startY + i, startX + j, " ");
-            }
+            mvwprintw(win, startY + 1, startX + (CARD_WIDTH - 2)/2, number_suit);
         }
-
-        if(player.player_hands[x].suit == 0 || player.player_hands[x].suit == 1)
-        {
-            wattron(win, COLOR_PAIR(5));
-        }
-        else{
-            wattron(win, COLOR_PAIR(6));
-        }
-        mvwprintw(win, startY + 1, startX + (CARD_WIDTH - 2)/2, number_suit);
+        wattroff(win, COLOR_PAIR(4));
+        wattroff(win, COLOR_PAIR(5));
+        wattroff(win, COLOR_PAIR(6));
+        wrefresh(win);
     }
-    wattroff(win, COLOR_PAIR(4));
-    wattroff(win, COLOR_PAIR(5));
-    wattroff(win, COLOR_PAIR(6));
-    wrefresh(win);
+
 
 }
 
@@ -513,7 +518,9 @@ void update_player_info(WINDOW ** seats, Player ** players, int turn){
         }
         mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 5, "%s", players[i]->name);
         mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 30, "Chips: %i", players[i]->chips);
-        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 15, "[%s]", player_status[players[i]->status]);
+        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]) + 1, getbegx(seats[i]) + 42, "          ");
+        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]) + 1, getbegx(seats[i]) + 30, "Bet Amount: %i", players[i]->bet_amount);
+        mvprintw(getbegy(seats[i]) + getmaxy(seats[i]), getbegx(seats[i]) + 17, "[%s]", player_status[players[i]->status]);
 
         attroff(COLOR_PAIR(2));
         wattroff(seats[i], COLOR_PAIR(1));
@@ -617,14 +624,19 @@ void display_pot(int a)
 void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * game_round, int pos)
 {
 
+    if(pos < 0 || pos > 4)
+    {
+        return;
+    }
     if(pos == 0 && (players[pos]->bet_amount == game_round->call_amount)) {
         attron(COLOR_PAIR(3));
         attron(A_BOLD);
         mvprintw(2, getmaxx(stdscr) - 20, " QUIT(Q) ");
         mvprintw(4, getmaxx(stdscr) - 20, " SAVE-AND-QUIT(S) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " CHECK(Z) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " BET(X) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(C) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 47, " CHECK(Z) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 35, " BET(X) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " FOLD(C) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " ALL-IN(V) ");
         display_up_down_menu(input_win, NULL, game_round->call_amount, players[pos]->chips, 10 , "CHIPS AMOUNT");
     }
     else if(pos == 0){
@@ -632,22 +644,24 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
         attron(A_BOLD);
         mvprintw(2, getmaxx(stdscr) - 20, " QUIT(Q) ");
         mvprintw(4, getmaxx(stdscr) - 20, " SAVE-AND-QUIT(S) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " CALL(Z) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " RAISE(X) ");
-        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " FOLD(C) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 48, " CALL(Z) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " RAISE(X) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " FOLD(C) ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " ALL-IN(V) ");
         display_up_down_menu(input_win, NULL, game_round->call_amount, players[pos]->chips, 10 , "CHIPS AMOUNT");
     }
     else{
         for(int i = 0; i < 18; i++)
         {
             for(int j = 0; j < 4; j++){
-                mvprintw(getmaxy(stdscr) - 9 + j, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 30 + i, " ");
+                mvprintw(getmaxy(stdscr) - 9 + j, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 35 + i, " ");
             }
 
         }
 
         mvprintw(2, getmaxx(stdscr) - 20, "         ");
         mvprintw(4, getmaxx(stdscr) - 20, "                      ");
+        mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 47, "           ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, "           ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, "           ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, "           ");
