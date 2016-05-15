@@ -9,7 +9,7 @@
 #define START_Y_PHASE       -3
 #define INPUT_WIN_HEIGHT    4
 #define INPUT_WIN_WIDTH     18
-#define WAITING_TIME        1
+#define WAITING_TIME        2
 
 /** Initialize screen and set up attribute
 */
@@ -734,7 +734,6 @@ void set_up_player_seat(int num_players)//set up position of players based on nu
 
 int mouse_in_game(int posY, int posX,int phase, int turn){ // mouse listener for in game
     int check = 1;
-    mvprintw(1, 1, "X: %i, Y: %i", posX, posY);
     switch(phase)
     {
         case 1:
@@ -798,7 +797,7 @@ int mouse_in_game(int posY, int posX,int phase, int turn){ // mouse listener for
                         display_in_game_stuff(my_wins[2], players_list, game_round, turn);
                     }
                 }
-
+            break;
         case 2:
             if(posY == getmaxy(stdscr)/2 + 5 && posX >= (getmaxx(stdscr) - 15)/2 && posX < (getmaxx(stdscr) - 15)/2 + 15)
             {
@@ -826,6 +825,7 @@ int mouse_in_game(int posY, int posX,int phase, int turn){ // mouse listener for
                 select_card_to_change(5);
                 display_deck(player_seat[0], *players_list[0]);
             }
+            break;
         default:
             break;
     }

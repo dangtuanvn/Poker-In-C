@@ -14,7 +14,6 @@ set(SOURCE_FILES
         src/gameround.c
         src/poker_game.c
         src/display.c
-#        src/demo.c
         )
 
 set(HEADER_FILES
@@ -31,5 +30,4 @@ find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 
 add_executable(poker_game src/poker_game.c ${SOURCE_FILES})
-add_executable(demo src/demo.c ${SOURCE_FILES})
 target_link_libraries(poker_game ncursesw)
