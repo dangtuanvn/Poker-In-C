@@ -5,19 +5,38 @@
 #include <locale.h>
 #include <string.h>
 #include "display.h"
-#include "player.h"
-#include "gameround.h"
 
 #define START_Y_PHASE       -3
 #define INPUT_WIN_HEIGHT    4
 #define INPUT_WIN_WIDTH     18
 #define WAITING_TIME        1
 
-
+/** Initialize screen and set up attribute
+*/
 static void init_screen();
+
+/** Free memory and finish game
+* @param sig is the system signal
+*/
 static void finish(int sig);
+
+/** Set up player seat position based on number of players
+* @param num_players is the number of players
+*/
 void set_up_player_seat(int num_players);
+
+/** Free memory for created windows
+* @param win is an array holding many windows
+* @param length is the length of win array
+*/
 void free_win(WINDOW ** win, int length);
+
+/** Manage in game mouse event
+* @param posY is the Y coordinate of the mouse event
+* @param posX is the X coordinate of the mouse event
+* @param phase is the current phase of the game
+* @param turn is the current player's turn
+*/
 int mouse_in_game(int posY, int posX,int phase, int turn);
 
 Deck * deck;
@@ -74,7 +93,7 @@ int main(int argc, char *argv[]) {
 
                 players_list = create_players_list(get_num_players(), LENGTH_HANDS, get_mode());
 
-
+//Game Flow-------------------
                 while(game_round->remaining_players != 1 && players_list[0]->status > 0) {
                     mvprintw(getmaxy(stdscr) - 6, getmaxx(stdscr) - 35, "GAME-ROUND %i", game_round->round_number);
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE - 2,
@@ -83,7 +102,7 @@ int main(int argc, char *argv[]) {
                              (getmaxx(stdscr) - 20)/2, "                                ");
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE,
                              (getmaxx(stdscr) - 20)/2, "                                ");
-                    // ROUND START
+                    // ROUND START-------
                     deck->top = LENGTH_DECK - 1;
                     shuffle_deck(deck, LENGTH_DECK);
 
@@ -104,7 +123,7 @@ int main(int argc, char *argv[]) {
                     for (int j = 1; j < get_num_players(); j++) {
                         sort_hands(players_list[j]->player_hands, LENGTH_HANDS);
                     }
-                    // BETTING PHASE 1
+                    // BETTING PHASE 1-------------
 
                     attron(COLOR_PAIR(2));
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen("BETTING-PHASE-1"))/2, "BETTING-PHASE-1");
@@ -126,13 +145,13 @@ int main(int argc, char *argv[]) {
                         update(my_wins[2], player_seat, players_list, game_round, position);
                         waitFor(WAITING_TIME);
 
-                        if (players_list[position]->type == HUMAN) {
+                        if (players_list[position]->type == HUMAN) { // player
                             if (players_list[position]->status > 2) {
                                 check_input0 = 1;
                                 while (check_input0) {
                                     in = wgetch(stdscr);
                                     switch (in) {
-                                        case KEY_MOUSE:
+                                        case KEY_MOUSE: // mouse event
                                             if (getmouse(&event) == OK && (event.bstate & BUTTON1_CLICKED
                                                                            || event.bstate & BUTTON1_DOUBLE_CLICKED
                                                                            || event.bstate & BUTTON1_TRIPLE_CLICKED)) {
@@ -219,7 +238,7 @@ int main(int argc, char *argv[]) {
                         game_round->position_turn--;
                     }
 
-                    // EXCHANGE CARDS PHASE
+                    // EXCHANGE CARDS PHASE----------------
                     attron(COLOR_PAIR(2));
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen("CHANGE-CARD-PHASE"))/2, "CHANGE-CARD-PHASE");
                     attroff(COLOR_PAIR(2));
@@ -240,7 +259,7 @@ int main(int argc, char *argv[]) {
                             while (check_input1) {
                                 in = wgetch(stdscr);
                                 switch (in) {
-                                    case KEY_MOUSE:
+                                    case KEY_MOUSE: // mouse event
                                         if (getmouse(&event) == OK && (event.bstate & BUTTON1_CLICKED
                                                                        || event.bstate & BUTTON1_DOUBLE_CLICKED
                                                                        || event.bstate & BUTTON1_TRIPLE_CLICKED)) {
@@ -296,7 +315,7 @@ int main(int argc, char *argv[]) {
                         }
                     }
 
-                    // BETTING PHASE 2
+                    // BETTING PHASE 2---------------
                     mvprintw(getmaxy(stdscr)/2 + 5, (int) (getmaxx(stdscr) - strlen("                    "))/2, "                    ");
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen("CHANGE-CARD-PHASE"))/2, "                    ");
                     attron(COLOR_PAIR(2));
@@ -322,7 +341,7 @@ int main(int argc, char *argv[]) {
                                     while (check_input2) {
                                         in = wgetch(stdscr);
                                         switch (in) {
-                                            case KEY_MOUSE:
+                                            case KEY_MOUSE: // mouse event
                                                 if (getmouse(&event) == OK && (event.bstate & BUTTON1_CLICKED
                                                                                || event.bstate & BUTTON1_DOUBLE_CLICKED
                                                                                || event.bstate & BUTTON1_TRIPLE_CLICKED)) {
@@ -407,7 +426,7 @@ int main(int argc, char *argv[]) {
                         }
                     }
 
-                    // SHOWDOWN PHASE
+                    // SHOWDOWN PHASE------------------
                     if (!check_fold) {
                         for (int j = 0; j < get_num_players(); j++) {
                             sort_hands(players_list[j]->player_hands, LENGTH_HANDS);
@@ -435,7 +454,7 @@ int main(int argc, char *argv[]) {
 
                         display_deck(player_seat[i], *players_list[i]);
                     }
-                    reset_round(game_round, players_list);
+                    reset_round(game_round, players_list); // reset round for next round
 
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE, (int) (getmaxx(stdscr) - strlen("CHANGE-CARD-PHASE"))/2, "                    ");
                     attron(COLOR_PAIR(3));
@@ -451,7 +470,7 @@ int main(int argc, char *argv[]) {
                     while (check_input3) {
                         in = wgetch(stdscr);
                         switch (in) {
-                            case KEY_MOUSE:
+                            case KEY_MOUSE: // mouse event
                                 if (getmouse(&event) == OK && (event.bstate & BUTTON1_CLICKED
                                                                || event.bstate & BUTTON1_DOUBLE_CLICKED
                                                                || event.bstate & BUTTON1_TRIPLE_CLICKED)) {
@@ -489,7 +508,7 @@ int main(int argc, char *argv[]) {
                 attron(COLOR_PAIR(3));
                 attron(A_BOLD);
 
-                if(players_list[0]->status == BUSTED){
+                if(players_list[0]->status == BUSTED){ // if player is busted out, print game over
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE, (int) (getmaxx(stdscr) - strlen(" GAME-OVER! "))/2, " GAME-OVER! ");
                     mvprintw(getmaxy(stdscr)/2 + START_Y_PHASE + 1, (int) (getmaxx(stdscr) - strlen(" RETURN-TO-MENU(ENTER) "))/2, " RETURN-TO-MENU(ENTER) ");
 
@@ -504,7 +523,7 @@ int main(int argc, char *argv[]) {
                 while (1) {
                     in = wgetch(stdscr);
                     switch (in) {
-                        case KEY_MOUSE:
+                        case KEY_MOUSE: // mouse event
                             if (getmouse(&event) == OK && (event.bstate & BUTTON1_CLICKED
                                                            || event.bstate & BUTTON1_DOUBLE_CLICKED
                                                            || event.bstate & BUTTON1_TRIPLE_CLICKED)) {
@@ -553,7 +572,7 @@ int main(int argc, char *argv[]) {
             is_game_start = 0;
             switch(c)
             {
-                case KEY_MOUSE:
+                case KEY_MOUSE: // mouse event for menu
                     if (getmouse(&event) == OK && (event.bstate & BUTTON1_CLICKED
                                                    || event.bstate & BUTTON1_DOUBLE_CLICKED
                                                    || event.bstate & BUTTON1_TRIPLE_CLICKED)) {
@@ -669,7 +688,7 @@ static void init_screen() {
 
 }
 
-static void finish(int sig) {
+static void finish(int sig) { // free memory and stop game
     endwin();
     free_deck(deck);
     free_players_list(players_list, get_num_players());
@@ -678,7 +697,7 @@ static void finish(int sig) {
     exit(sig);
 }
 
-void free_win(WINDOW ** win, int length){
+void free_win(WINDOW ** win, int length){ // free win
     for(int i = 0; i < length; i++){
         free(win[i]);
     }
@@ -713,7 +732,7 @@ void set_up_player_seat(int num_players)//set up position of players based on nu
 }
 
 
-int mouse_in_game(int posY, int posX,int phase, int turn){
+int mouse_in_game(int posY, int posX,int phase, int turn){ // mouse listener for in game
     int check = 1;
     mvprintw(1, 1, "X: %i, Y: %i", posX, posY);
     switch(phase)

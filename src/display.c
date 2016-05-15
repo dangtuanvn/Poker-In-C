@@ -3,9 +3,6 @@
 #include <ncurses.h>
 #include <string.h>
 #include "display.h"
-#include "player.h"
-#include "gameround.h"
-
 
 int num_players = NUM_PLAYERS;
 int cur_up_down = 0;
@@ -14,12 +11,9 @@ int min_up_down = 1;
 int step_up_down = 1;
 Player_type mode = AI_NORMAL;
 
-//TODO free memory
 char * num_player_title = "NUMBER OF PLAYERS";
 
-int card_to_change[LENGTH_HANDS] = {0,0,0,0,0};
-
-
+int card_to_change[LENGTH_HANDS] = {0,0,0,0,0}; // hold card to change
 
 char * player_status[] = {"BUSTED OUT", "FOLD", "ALL IN", "ACTIVE", "CHECK", "BET", "CALL", "RAISE"};
 
@@ -624,14 +618,14 @@ void display_pot(int a)
 
 }
 
-void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * game_round, int pos)
+void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * game_round, int turn)
 {
 
-    if(pos < 0 || pos > 4)
+    if(turn < 0 || turn > 4)
     {
         return;
     }
-    if(pos == 0 && (players[pos]->bet_amount == game_round->call_amount)) {
+    if(turn == 0 && (players[turn]->bet_amount == game_round->call_amount)) {
         attron(COLOR_PAIR(3));
         attron(A_BOLD);
         mvprintw(2, getmaxx(stdscr) - 20, " QUIT(Q) ");
@@ -640,9 +634,9 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 35, " BET(X) ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " FOLD(C) ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " ALL-IN(V) ");
-        display_up_down_menu(input_win, NULL, game_round->call_amount, players[pos]->chips, 10 , "CHIPS AMOUNT");
+        display_up_down_menu(input_win, NULL, game_round->call_amount, players[turn]->chips, 10 , "CHIPS AMOUNT");
     }
-    else if(pos == 0){
+    else if(turn == 0){
         attron(COLOR_PAIR(3));
         attron(A_BOLD);
         mvprintw(2, getmaxx(stdscr) - 20, " QUIT(Q) ");
@@ -651,7 +645,7 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 37, " RAISE(X) ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 25, " FOLD(C) ");
         mvprintw(getmaxy(stdscr) - 4, getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 14, " ALL-IN(V) ");
-        display_up_down_menu(input_win, NULL, game_round->call_amount, players[pos]->chips, 10 , "CHIPS AMOUNT");
+        display_up_down_menu(input_win, NULL, game_round->call_amount, players[turn]->chips, 10 , "CHIPS AMOUNT");
     }
     else{
         for(int i = 0; i < 18; i++)
