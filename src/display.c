@@ -4,7 +4,7 @@
 #include <string.h>
 #include "display.h"
 
-int num_players = NUM_PLAYERS;
+int num_players = 4;
 int cur_up_down = 0;
 int max_up_down = 10;
 int min_up_down = 1;
@@ -669,11 +669,10 @@ void display_in_game_stuff(WINDOW * input_win, Player ** players, Game_round * g
 
 void reset_select_card()
 {
-    for(int i = 0; i < NUM_PLAYERS; i++){
-        for(int j = 0; j < LENGTH_HANDS; j++){
-            card_to_change[j] = 0;
-        }
+    for(int j = 0; j < LENGTH_HANDS; j++){
+        card_to_change[j] = 0;
     }
+
 }
 
 void update(WINDOW * input_win, WINDOW ** seats, Player ** players, Game_round * game_round, int turn){

@@ -133,13 +133,13 @@ int main(int argc, char *argv[]) {
 
                     int position = 0;
 
-                    while (game_round->position_turn > 0) {
+                    while (game_round->remaining_turns > 0) {
                         if(players_list[position]->status <2){
                             position++;
                             if (position == get_num_players()) {
                                 position = 0;
                             }
-                            game_round->position_turn--;
+                            game_round->remaining_turns--;
                             continue;
                         }
                         update(my_wins[2], player_seat, players_list, game_round, position);
@@ -235,7 +235,7 @@ int main(int argc, char *argv[]) {
                         if (position == get_num_players()) {
                             position = 0;
                         }
-                        game_round->position_turn--;
+                        game_round->remaining_turns--;
                     }
 
                     // EXCHANGE CARDS PHASE----------------
@@ -323,14 +323,14 @@ int main(int argc, char *argv[]) {
                     attroff(COLOR_PAIR(2));
                     if (!check_fold) {
                         position = 0;
-                        game_round->position_turn = game_round->num_players;
-                        while (game_round->position_turn > 0) {
+                        game_round->remaining_turns = game_round->num_players;
+                        while (game_round->remaining_turns > 0) {
                             if(players_list[position]->status <2){
                                 position++;
                                 if (position == get_num_players()) {
                                     position = 0;
                                 }
-                                game_round->position_turn--;
+                                game_round->remaining_turns--;
                                 continue;
                             }
                             update(my_wins[2], player_seat, players_list, game_round, position);
@@ -422,7 +422,7 @@ int main(int argc, char *argv[]) {
                             if (position == get_num_players()) {
                                 position = 0;
                             }
-                            game_round->position_turn--;
+                            game_round->remaining_turns--;
                         }
                     }
 
