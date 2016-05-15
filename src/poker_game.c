@@ -740,11 +740,11 @@ int mouse_in_game(int posY, int posX,int phase, int turn){
                         action_bet(game_round, players_list[turn], players_list[turn]->chips);
                         check = 0;
                     }
-                    else if(posY == 28 && posX == 30 ){
+                    else if(posY == 25 && posX == 30 ){
                         add_cur_up_down(get_step_up_down());
                         display_in_game_stuff(my_wins[2], players_list, game_round, turn);
                     }
-                    else if(posY == 28 && posX == 21 ){
+                    else if(posY == 25 && posX == 21 ){
                         add_cur_up_down(-get_step_up_down());
                         display_in_game_stuff(my_wins[2], players_list, game_round, turn);
                     }
@@ -769,6 +769,14 @@ int mouse_in_game(int posY, int posX,int phase, int turn){
                             && posX < getmaxx(stdscr) / 2 - (CARD_WIDTH * 5 + 6) / 2 - 3){
                         action_raise(game_round, players_list[turn], players_list[turn]->chips);
                         check = 0;
+                    }
+                    else if(posY == 25 && posX == 30 ){
+                        add_cur_up_down(get_step_up_down());
+                        display_in_game_stuff(my_wins[2], players_list, game_round, turn);
+                    }
+                    else if(posY == 25 && posX == 21 ){
+                        add_cur_up_down(-get_step_up_down());
+                        display_in_game_stuff(my_wins[2], players_list, game_round, turn);
                     }
                 }
 
