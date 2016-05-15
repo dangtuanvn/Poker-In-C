@@ -5,11 +5,6 @@
 
 #define     NUM_PLAYERS         4
 
-
-// TYPEDEF, ENUM and STRUCT
-
-// FUNCTIONS
-
 /* Determine the hands of each player, then pick the best hands
  * @param list is the list of players
  */
