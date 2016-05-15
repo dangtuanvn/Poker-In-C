@@ -60,6 +60,8 @@ Save and load functions are not implemented.
 
 Assuming that the screen is never re-sized. Otherwise the display will misbehave or worse, the game is unplayable. It is best to leave the screen size as it is configured.
 
+Doxygen Documents are in the src folder.
+
 --------------------------------------------------------------------------------
 
 KNOWN BUGS
