@@ -7,7 +7,7 @@ Game_round * create_game_round(int num_players){
     Game_round * round = malloc(sizeof(Game_round));
     round->num_players = num_players;
     round->remaining_players = num_players;
-    round->position_turn = num_players;
+    round->remaining_turns = num_players;
     round->call_amount = 0;
     round->pot = 0;
     round->round_number = 1;
@@ -52,7 +52,7 @@ void withdraw_chips(Player * player, int chipsToWithdraw) {
 }
 
 void action_bet(Game_round * round, Player * player, int chips) {
-    round->position_turn = round->num_players;
+    round->remaining_turns = round->num_players;
     if(player->chips <= chips){
         action_allIn(round, player);
     }
@@ -79,7 +79,7 @@ void action_call(Game_round * round, Player * player) {
 }
 
 void action_raise(Game_round * round, Player * player, int chips){
-    round->position_turn = round->num_players;
+    round->remaining_turns = round->num_players;
     if (player->chips <= chips) {
         action_allIn(round, player);
     }
@@ -159,7 +159,7 @@ void reset_round(Game_round * round, Player ** list){
     round->remaining_players = round->num_players - count;
     round->fold_count = count;
     round->round_number++;
-    round->position_turn = round->num_players;
+    round->remaining_turns = round->num_players;
     round->call_amount = 0;
 
     if(round->round_number < 5) {
